@@ -1,0 +1,34 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "db/**/*"
+    - "lib/tasks/*"
+    - "vendor/ruby/**/*"
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Style/DocumentationMethod:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    "%i": "()"
+    "%I": "()"
+    "%w": "()"
+    "%W": "()"
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Layout/LineLength:
+  Max: 250
