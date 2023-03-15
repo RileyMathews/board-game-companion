@@ -1,0 +1,11 @@
+{
+    "dockerComposeFile": "../docker-compose.yml",
+    "extensions": [
+        "castwide.solargraph",
+        "kaiwood.endwise",
+        "misogi.ruby-rubocop",
+        "rebornix.ruby"
+    ],
+    "service": "dev",
+    "workspaceFolder": "/code"
+}
