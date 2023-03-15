@@ -18,6 +18,8 @@ gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby) # Windows does not
 
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw) # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "factory_bot_rails"
+  gem "rspec-rails"
 end
 
 group :development do
