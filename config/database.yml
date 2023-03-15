@@ -41,6 +41,6 @@ test:
 #
 production:
   <<: *default
-  database: bgc_db
+  database: board_game_companion
   username: code
   password: <%= ENV["CODE_DATABASE_PASSWORD"] %>
