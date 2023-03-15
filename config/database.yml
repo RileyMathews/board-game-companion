@@ -7,17 +7,14 @@ default: &default
 
 development:
   <<: *default
-  database: code_development
+  database: board_game_companion_dev
   username: user
   password: password
   host: database
 
 test:
   <<: *default
-  database: code_test
-  username: user
-  password: password
-  host: database
+  database: board_game_companion_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
