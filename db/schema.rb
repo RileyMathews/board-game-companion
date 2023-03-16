@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_174241) do
     t.string "unconfirmed_email"
     t.string "username"
     t.string "slug"
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -33,6 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_174241) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+    t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
 end
