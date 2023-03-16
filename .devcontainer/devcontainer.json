@@ -1,11 +1,19 @@
 {
     "dockerComposeFile": "../docker-compose.yml",
-    "extensions": [
-        "castwide.solargraph",
-        "kaiwood.endwise",
-        "misogi.ruby-rubocop",
-        "rebornix.ruby"
-    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "castwide.solargraph",
+                "kaiwood.endwise",
+                "misogi.ruby-rubocop",
+                "rebornix.ruby",
+                "formulahendry.auto-close-tag",
+                "manuelpuyol.erb-linter",
+                "aki77.rails-db-schema",
+                "rayhanw.erb-helpers"
+            ]
+        }
+    },
     "service": "dev",
     "workspaceFolder": "/code"
 }
