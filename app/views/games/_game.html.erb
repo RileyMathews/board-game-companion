@@ -1,17 +1,11 @@
+<%= turbo_frame_tag game do %>
 <div id="<%= dom_id game %>">
   <p class="my-5">
-    <strong class="font-medium mb-1">Name:</strong>
-    <%= game.name %>
+    <%= render LinkComponent.new text: game.name, url: game_path(game), data: { turbo_frame: "_top" } %>
   </p>
 
-  <p class="my-5">
-    <strong class="font-medium mb-1">Created by:</strong>
-    <%= game.created_by.username %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this game", game, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this game', edit_game_path(game), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <%= button_to "Delete", game_path(game), method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to 'Edit', edit_game_path(game), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+  <hr class="mt-6">
 </div>
+<% end %>

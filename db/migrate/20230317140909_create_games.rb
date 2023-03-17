@@ -1,7 +1,7 @@
 class CreateGames < ActiveRecord::Migration[7.0]
   def change
     create_table :games do |t|
-      t.string :name
+      t.string :name, null: false
       t.uuid :uuid, null: false, default: "gen_random_uuid()"
       t.string :slug, null: false
       t.references :created_by, null: false

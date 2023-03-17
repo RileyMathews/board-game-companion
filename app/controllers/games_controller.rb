@@ -54,6 +54,7 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to games_url, notice: "Game was successfully destroyed." }
       format.json { head :no_content }
+      format.turbo_stream
     end
   end
 

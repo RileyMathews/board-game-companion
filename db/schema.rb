@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_17_140909) do
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.string "slug", null: false
     t.bigint "created_by_id", null: false
