@@ -5,9 +5,12 @@
 
     <div class="flex justify-between items-center">
       <h1 class="font-bold text-4xl">Games</h1>
-      <%= link_to 'New game', new_game_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <%= link_to 'New game', new_game_path, data: { turbo_frame: dom_id(Game.new) }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     </div>
+  <%= turbo_frame_tag Game.new %>
   <div id="games" class="min-w-full">
-    <%= render @games %>
+    <%= turbo_frame_tag "games" do %>
+      <%= render @games %>
+    <% end %>
   </div>
 </div>

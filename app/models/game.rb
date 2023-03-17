@@ -5,6 +5,8 @@ class Game < ApplicationRecord
 
   validates :name, uniqueness: true, presence: true
 
+  scope :ordered, -> { order(id: :desc) }
+
   def should_generate_new_friendly_id?
     name_changed?
   end
