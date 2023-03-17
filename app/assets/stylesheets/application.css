@@ -1,1 +1,5 @@
 /* Application styles */
+turbo-frame {
+    border: 4px dashed red;
+    display: block
+}

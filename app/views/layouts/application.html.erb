@@ -14,8 +14,8 @@
 
   <body>
     <%= render "layouts/navbar" %>
-    <p class="text-blue-500"><%= notice %></p>
-    <p class="text-red-500"><%= alert %></p>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block"><%= alert %></p>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
