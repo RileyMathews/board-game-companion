@@ -1,3 +1,4 @@
 <%= turbo_frame_tag @game do %>
+  <h3>Editing <%= @game.name %></h3>
   <%= render "form", game: @game %>
 <% end %>
