@@ -29,7 +29,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to game_room_url(@room), notice: "Room was successfully created." }
+        format.html { redirect_to game_room_url(game, @room), notice: "Room was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -49,10 +49,10 @@ class RoomsController < ApplicationController
 
   # DELETE /rooms/1 or /rooms/1.json
   def destroy
-    @room.destroy
+    room.destroy
 
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: "Room was successfully destroyed." }
+      format.html { redirect_to game_rooms_url(game), notice: "Room was successfully destroyed." }
     end
   end
 
