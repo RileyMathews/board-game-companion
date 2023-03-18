@@ -1,0 +1,27 @@
+<div id="<%= dom_id room %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= room.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Slug:</strong>
+    <%= room.slug %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Uuid:</strong>
+    <%= room.uuid %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Game:</strong>
+    <%= room.game_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this room", game_room_path(game, room), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this room', edit_game_room_path(game, room), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

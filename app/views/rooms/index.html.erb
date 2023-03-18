@@ -1,0 +1,10 @@
+<div class="w-full">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Rooms</h1>
+    <%= link_to 'New room', new_game_room_path(game), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="rooms" class="min-w-full">
+    <%= render rooms %>
+  </div>
+</div>
