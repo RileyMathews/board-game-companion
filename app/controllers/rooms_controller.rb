@@ -12,7 +12,6 @@ class RoomsController < ApplicationController
 
   # GET /rooms/new
   def new
-    self.room = Room.new
   end
 
   # GET /rooms/1/edit
@@ -21,7 +20,6 @@ class RoomsController < ApplicationController
 
   # POST /rooms or /rooms.json
   def create
-    self.room = Room.new
     room.game = game
     room.created_by = current_user
     room.join_code = SecureRandom.urlsafe_base64(3).upcase
