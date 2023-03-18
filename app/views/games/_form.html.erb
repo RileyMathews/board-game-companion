@@ -17,7 +17,7 @@
   </div>
 
   <div class="inline">
-    <%= link_to "Cancel", games_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= render LinkButton.new text: "Cancel", href: games_path %>
+    <%= render SubmitButton.new text: "Submit" %>
   </div>
 <% end %>

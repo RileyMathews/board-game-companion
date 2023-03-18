@@ -1,4 +1,4 @@
 <div class="min-w-full">
-    <%= link_to 'Back to games', games_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= render LinkButton.new text: "Back to games", href: games_path %>
     <%= render @game %>
 </div>
