@@ -20,10 +20,9 @@ class RoomsController < ApplicationController
 
   # POST /rooms or /rooms.json
   def create
-    @room = Room.new(room_params)
-    @room.game = game
-    @room.created_by = current_user
-    @room.join_code = SecureRandom.urlsafe_base64(3).upcase
+    room.game = game
+    room.created_by = current_user
+    room.join_code = SecureRandom.urlsafe_base64(3).upcase
 
     save
   end
