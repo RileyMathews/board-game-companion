@@ -2,12 +2,12 @@
 <div id="<%= dom_id game %>">
   <div class="flex items-center justify-between py-2">
     <p class="">
-      <%= render LinkComponent.new text: game.name, url: game_path(game), data: { turbo_frame: "_top" } %>
+      <%= render Link.new text: game.name, url: game_path(game), data: { turbo_frame: "_top" } %>
     </p>
 
     <div class="flex">
       <%= button_to "Delete", game_path(game), method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= link_to 'Edit', edit_game_path(game), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= button_to 'Edit', edit_game_path(game), method: :get, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     </div>
   </div>
   <hr class="">
