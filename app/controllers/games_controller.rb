@@ -27,7 +27,7 @@ class GamesController < ApplicationController
       if @game.save
         format.html { redirect_to game_url(@game), notice: "Game was successfully created." }
         format.json { render :show, status: :created, location: @game }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Game was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @game.errors, status: :unprocessable_entity }
@@ -41,6 +41,7 @@ class GamesController < ApplicationController
       if @game.update(game_params)
         format.html { redirect_to game_url(@game), notice: "Game was successfully updated." }
         format.json { render :show, status: :ok, location: @game }
+        format.turbo_stream { flash.now[:notice] = "Game was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @game.errors, status: :unprocessable_entity }
@@ -55,7 +56,7 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to games_url, notice: "Game was successfully destroyed." }
       format.json { head :no_content }
-      format.turbo_stream
+      format.turbo_stream { flash.now[:notice] = "Game was successfully destroyed." }
     end
   end
 
