@@ -1,7 +1,7 @@
 <%= turbo_frame_tag game do %>
 <div id="<%= dom_id game %>">
-  <div class="flex items-center justify-between">
-    <p class="my-5">
+  <div class="flex items-center justify-between py-2">
+    <p class="">
       <%= render LinkComponent.new text: game.name, url: game_path(game), data: { turbo_frame: "_top" } %>
     </p>
 
@@ -10,6 +10,6 @@
       <%= link_to 'Edit', edit_game_path(game), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     </div>
   </div>
-  <hr class="mt-6">
+  <hr class="">
 </div>
 <% end %>
