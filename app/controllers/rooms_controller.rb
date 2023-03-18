@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
-  let(:room) { Room.find_by(slug: params[:id]) }
   let(:game) { Game.find_by(slug: params[:game_id]) }
   let(:rooms) { game.rooms }
+  let(:room) { rooms.find_or_initialize_by(slug: params[:id]) }
 
   # GET /rooms or /rooms.json
   def index
@@ -12,12 +12,10 @@ class RoomsController < ApplicationController
 
   # GET /rooms/new
   def new
-    @room = Room.new
   end
 
   # GET /rooms/1/edit
   def edit
-    @room = room
   end
 
   # POST /rooms or /rooms.json
@@ -27,24 +25,12 @@ class RoomsController < ApplicationController
     @room.created_by = current_user
     @room.join_code = SecureRandom.urlsafe_base64(3).upcase
 
-    respond_to do |format|
-      if @room.save
-        format.html { redirect_to game_room_url(game, @room), notice: "Room was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
-    end
+    save
   end
 
   # PATCH/PUT /rooms/1 or /rooms/1.json
   def update
-    respond_to do |format|
-      if room.update(room_params)
-        format.html { redirect_to game_room_url(game, room), notice: "Room was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
+    save
   end
 
   # DELETE /rooms/1 or /rooms/1.json
@@ -57,6 +43,16 @@ class RoomsController < ApplicationController
   end
 
   private
+
+  def save
+    respond_to do |format|
+      if room.update(room_params)
+        format.html { redirect_to game_room_url(game, room), notice: "Room was successfully updated." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # Only allow a list of trusted parameters through.
   def room_params
