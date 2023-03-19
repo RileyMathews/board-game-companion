@@ -1,2 +1,1 @@
-  <h3>Editing <%= @game.name %></h3>
-  <%= render ModelComponents::GameForm.new(game: @game) %>
+<%= render ModelComponents::GameForm.new(game: @game, title: "Editing #{@game.name}") %>
