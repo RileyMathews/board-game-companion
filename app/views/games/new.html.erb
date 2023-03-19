@@ -1,4 +1,2 @@
-<%= turbo_frame_tag @game do %>
   <h3>New Game</h3>
-  <%= render "form", game: @game %>
-<% end %>
+  <%= render ModelComponents::GameForm.new(game: @game) %>

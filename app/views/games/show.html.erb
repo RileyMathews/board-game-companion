@@ -1,4 +1,4 @@
 <div class="min-w-full">
     <%= render LinkButton.new text: "Back to games", href: games_path %>
-    <%= render @game %>
+    <%= render ModelComponents::Game.new(game: @game) %>
 </div>
