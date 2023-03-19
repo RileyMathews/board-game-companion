@@ -1,4 +1,6 @@
 <%= turbo_frame_tag @game do %>
+<div class="p-4 border-2 border-slate-500 rounded-xl inline-block">
   <h3>Editing <%= @game.name %></h3>
   <%= render "form", game: @game %>
+</div>
 <% end %>
