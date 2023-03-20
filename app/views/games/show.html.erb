@@ -1,6 +1,6 @@
 <div class="min-w-full">
     <%= render LinkButton.new text: "Back to games", href: games_path %>
-    <%= render ModelComponents::Game.new(game: game) %>
+    <%= render Board::Game::Detail.new(game: game) %>
     <h2>Rooms for <%= game.name %></h2>
     <%= render Board::Room::Card.with_collection(game_rooms) %>
     <%= render LinkButton.new text: "Create new room", href: new_game_room_path(game) %>

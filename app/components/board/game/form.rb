@@ -1,5 +1,5 @@
-module ModelComponents
-  class GameForm < ViewComponent::Base
+module Board::Game
+  class Form < ViewComponent::Base
     def initialize(game:, title:)
       @game = game
       @title = title
