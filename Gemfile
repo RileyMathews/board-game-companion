@@ -17,8 +17,6 @@ gem "stimulus-rails" # Hotwire's modest JavaScript framework [https://stimulus.h
 gem "tailwindcss-rails" # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby) # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "view_component"
-
 
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw) # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
