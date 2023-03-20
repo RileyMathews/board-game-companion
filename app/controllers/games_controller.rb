@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   let(:games) { Game.ordered }
   let(:game) { games.find_or_initialize_by(slug: params[:id]) }
+  let(:game_rooms) { game.rooms }
 
   # GET /games or /games.json
   def index; end

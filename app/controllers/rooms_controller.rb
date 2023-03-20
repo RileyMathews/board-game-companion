@@ -1,11 +1,7 @@
 class RoomsController < ApplicationController
   let(:game) { Game.find_by(slug: params[:game_id]) }
-  let(:rooms) { game.rooms }
+  let(:rooms) { Room.all }
   let(:room) { rooms.find_or_initialize_by(slug: params[:id]) }
-
-  # GET /rooms or /rooms.json
-  def index
-  end
 
   # GET /rooms/1 or /rooms/1.json
   def show; end
@@ -34,10 +30,11 @@ class RoomsController < ApplicationController
 
   # DELETE /rooms/1 or /rooms/1.json
   def destroy
+    redirect_game = room.game
     room.destroy
 
     respond_to do |format|
-      format.html { redirect_to game_rooms_url(game), notice: "Room was successfully destroyed." }
+      format.html { redirect_to game_url(redirect_game), notice: "Room was successfully destroyed." }
     end
   end
 
@@ -46,7 +43,7 @@ class RoomsController < ApplicationController
   def save
     respond_to do |format|
       if room.update(room_params)
-        format.html { redirect_to game_room_url(game, room), notice: "Room was successfully updated." }
+        format.html { redirect_to room_url(room), notice: "Room was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

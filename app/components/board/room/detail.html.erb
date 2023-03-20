@@ -1,0 +1,17 @@
+<div id="<%= dom_id @room %>">
+  <p class="my-5">
+    <strong class="font-medium mb-1">Name:</strong>
+    <%= @room.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="font-medium mb-1">Game:</strong>
+    <%= render Link.new text: @room.game.name, url: game_path(@room.game) %>
+  </p>
+
+  <%= link_to 'Edit this room', edit_room_path(@room), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+  <%= button_to 'Destroy this room', room_path(@room), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+  <%= link_to 'Back to game', game_path(@room.game), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>

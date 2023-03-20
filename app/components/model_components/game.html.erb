@@ -3,7 +3,6 @@
   <div class="flex items-center justify-between py-2">
     <p class="">
       <%= render Link.new text: @game.name, url: game_path(@game), data: { turbo_frame: "_top" } %>
-      <%= render Link.new text: "Show rooms", url: game_rooms_path(@game), data: { turbo_frame: "_top"} %>
     </p>
 
     <div class="flex">

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :games do
+  resources :games, shallow: true do
     resources :rooms
   end
   devise_for :users
