@@ -3,9 +3,9 @@
     <%= render "devise/shared/error_messages", resource: resource %>
     <div class="flex flex-col gap-4">
     <h2 class="text-lg">Forgot your password?</h2>
-      <div>
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="my-2">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-text" %>
       </div>
 
       <div>

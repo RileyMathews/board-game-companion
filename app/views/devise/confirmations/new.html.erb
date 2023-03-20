@@ -4,9 +4,9 @@
       <h2>Resend confirmation instructions</h2>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div>
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+      <div class="my-2">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "input-text" %>
       </div>
 
       <div>

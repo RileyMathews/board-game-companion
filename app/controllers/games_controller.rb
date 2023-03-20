@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!
   let(:games) { Game.ordered }
   let(:game) { games.find_or_initialize_by(slug: params[:id]) }
   let(:game_rooms) { game.rooms }

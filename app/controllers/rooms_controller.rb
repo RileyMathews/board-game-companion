@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
   let(:game) { Game.find_by(slug: params[:game_id]) }
   let(:rooms) { Room.all }
   let(:room) { rooms.find_or_initialize_by(slug: params[:id]) }
