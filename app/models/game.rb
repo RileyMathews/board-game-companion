@@ -1,7 +1,8 @@
 class Game < ApplicationRecord
   extend FriendlyId
   belongs_to :created_by, class_name: "User"
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
+  has_many :dice, dependent: :destroy, class_name: "Die"
   friendly_id :name, use: :slugged
 
   validates :name, uniqueness: true, presence: true

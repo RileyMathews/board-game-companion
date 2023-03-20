@@ -1,8 +1,15 @@
 <div class="min-w-full">
     <%= link_to "Back to games", games_path, class: "btn-primary" %>
-
     
     <%= render game %>
+
+    <h2>Dice for <%= game.name %></h2>
+    <%= link_to "Add Die", new_game_dice_path(game), data: { turbo_frame: dom_id(Die.new) }, class: "btn" %>
+    <%= turbo_frame_tag Die.new %>
+    <%= turbo_frame_tag "dice" do %>
+      <%= render game_dice %>
+    <% end %>
+
     <h2>Rooms for <%= game.name %></h2>
     <% game_rooms.each do |room| %>
       <div class="border-2 rounded-lg p-2 inline-block">

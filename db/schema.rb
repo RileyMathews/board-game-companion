@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_18_213133) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_20_202852) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dice", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "created_by_id", null: false
+    t.string "name", null: false
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_dice_on_created_by_id"
+    t.index ["game_id"], name: "index_dice_on_game_id"
+    t.index ["name", "created_by_id"], name: "index_dice_on_name_and_created_by_id", unique: true
+    t.index ["uuid"], name: "index_dice_on_uuid", unique: true
+  end
 
   create_table "games", force: :cascade do |t|
     t.string "name", null: false
@@ -66,6 +79,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_18_213133) do
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
+  add_foreign_key "dice", "games"
+  add_foreign_key "dice", "users", column: "created_by_id"
   add_foreign_key "games", "users", column: "created_by_id"
   add_foreign_key "rooms", "games"
   add_foreign_key "rooms", "users", column: "created_by_id"

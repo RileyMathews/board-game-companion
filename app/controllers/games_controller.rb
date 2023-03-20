@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   let(:games) { Game.ordered }
   let(:game) { games.find_or_initialize_by(slug: params[:id]) }
   let(:game_rooms) { game.rooms }
+  let(:game_dice) { game.dice }
 
   # GET /games or /games.json
   def index; end
@@ -43,7 +44,7 @@ class GamesController < ApplicationController
     respond_to do |format|
       if game.update(game_params)
         format.html { redirect_to game_url(game), notice: "Game was successfully saved" }
-        format.turbo_stream { flash.now[:notice] = "Game was successively saved." }
+        format.turbo_stream { flash.now[:notice] = "Game was successfully saved." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
