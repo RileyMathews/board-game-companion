@@ -1,12 +1,11 @@
-<%= tag.turbo_frame id: dom_id(@game) do %>
-    <h3><%= @title %></h3>
-    <%= form_with(model: @game, class: "contents") do |form| %>
-    <% if @game.errors.any? %>
+<%= tag.turbo_frame id: dom_id(game) do %>
+    <%= form_with(model: game, class: "contents") do |form| %>
+    <% if game.errors.any? %>
         <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-        <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+        <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
 
         <ul>
-            <% @game.errors.each do |error| %>
+            <% game.errors.each do |error| %>
             <li><%= error.full_message %></li>
             <% end %>
         </ul>
@@ -19,8 +18,8 @@
     </div>
 
     <div class="inline">
-        <%= render LinkButton.new text: "Cancel", href: games_path %>
-        <%= render SubmitButton.new text: "Submit" %>
+        <%= link_to "Cancel", games_path, class: "btn-primary" %>
+        <%= form.submit "Submit", class: "btn-primary" %>
     </div>
     <% end %>
 <% end %>

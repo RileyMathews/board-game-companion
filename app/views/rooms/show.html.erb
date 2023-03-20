@@ -1,1 +1,17 @@
-<%= render Board::Room::Detail.new room: room %>
+<div id="<%= dom_id room %>">
+  <p class="my-5">
+    <strong class="font-medium mb-1">Name:</strong>
+    <%= room.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="font-medium mb-1">Game:</strong>
+    <%= link_to room.game.name, game_path(room.game), class: "link" %>
+  </p>
+
+  <%= link_to 'Edit this room', edit_room_path(room), class: "btn" %>
+    <div class="inline-block ml-2">
+  <%= button_to 'Destroy this room', room_path(room), method: :delete, class: "btn" %>
+    </div>
+  <%= link_to 'Back to game', game_path(room.game), class: "btn" %>
+</div>

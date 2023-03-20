@@ -11,3 +11,15 @@
 }
 
 */
+
+.btn {
+    @apply mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium;
+}
+
+.btn-primary {
+    @apply rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium;
+}
+
+.link {
+    @apply text-blue-500 underline hover: text-blue-300 active:text-blue-700
+}

@@ -1,1 +1,2 @@
-<%= render Board::Game::Form.new(game: game, title: "Editing #{game.name}") %>
+<h3>Editing <%= game.name %></h3>
+<%= render "form", game: game %>

@@ -1,12 +1,13 @@
 <div class="w-full">
     <div class="flex justify-between items-center">
       <h1 class="font-bold text-4xl">Games</h1>
-      <%= render LinkButton.new text: "New game", href: new_game_path, data: { turbo_frame: dom_id(Game.new) } %>
+      <%= link_to "New game", new_game_path,class: "btn-primary", data: { turbo_frame: dom_id(Game.new) },  %>
+
     </div>
   <%= turbo_frame_tag Game.new %>
   <div id="games" class="min-w-full">
     <%= turbo_frame_tag "games" do %>
-      <%= render Board::Game::Detail.with_collection(games) %>
+      <%= render games %>
     <% end %>
   </div>
 </div>

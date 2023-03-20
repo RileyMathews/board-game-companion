@@ -1,18 +1,18 @@
 <div>
   <%- if controller_name != 'sessions' %>
-    <%= render Link.new text: "Log in", url: new_session_path(resource_name) %>
+    <%= link_to "Login", new_session_path(resource_name), class: "link" %>
   <% end %>
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= render Link.new text: "Sign up", url: new_registration_path(resource_name) %>
+    <%= link_to "Sign up", new_registration_path(resource_name), class: "link" %>
   <% end %>
 
   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-    <%= render Link.new text: "Forgot your password?", url: new_password_path(resource_name) %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name), class: "link" %>
   <% end %>
 
   <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-    <%= render Link.new text: "Didn't receive confirmation instructions?", url: new_confirmation_path(resource_name) %>
+    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "link" %>
   <% end %>
 
   <%# Things below here not in use yet... %>

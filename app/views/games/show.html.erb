@@ -1,7 +1,13 @@
 <div class="min-w-full">
-    <%= render LinkButton.new text: "Back to games", href: games_path %>
-    <%= render Board::Game::Detail.new(game: game) %>
+    <%= link_to "Back to games", games_path, class: "btn-primary" %>
+
+    
+    <%= render game %>
     <h2>Rooms for <%= game.name %></h2>
-    <%= render Board::Room::Card.with_collection(game_rooms) %>
-    <%= render LinkButton.new text: "Create new room", href: new_game_room_path(game) %>
+    <% game_rooms.each do |room| %>
+      <div class="border-2 rounded-lg p-2 inline-block">
+          <%= link_to room.name, room_path(room), class: "link" %>
+      </div>
+    <% end %>
+    <%= link_to "Create new room", new_game_room_path(game), class: "btn-primary" %>
 </div>
