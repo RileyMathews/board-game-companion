@@ -1,2 +1,2 @@
-<%= turbo_stream.replace dom_id(@game), ModelComponents::Game.new(game: @game) %>
+<%= turbo_stream.replace dom_id(game), ModelComponents::Game.new(game: game) %>
 <%= render_turbo_stream_flash_messages %>
