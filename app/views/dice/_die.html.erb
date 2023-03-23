@@ -1,1 +1,7 @@
-<p><%= die.name %></p>
+<%= turbo_frame_tag die do %>
+  <div class="inline-block border-2 rounded-lg border-slate-500 p-2">
+      <p><%= die.name %></p>
+      <%= link_to "Edit", edit_die_path(die), class: "link" %>
+      <%= button_to "Delete", die_path(die), method: :delete, class: "link" %>
+  </div>
+<% end %>

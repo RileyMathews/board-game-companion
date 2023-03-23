@@ -1,13 +1,15 @@
 class DiceController < ApplicationController
   let(:game) { Game.find_by slug: params[:game_id] }
-  let(:die) { Die.find_or_initialize_by id: params[:id] }
-  let(:dice) { game.dice }
+  let(:dice) { Die.all }
+  let(:die) { dice.find_or_initialize_by id: params[:id] }
 
   def index; end
 
   def show; end
 
-  def new; end
+  def new
+    die.game = game
+  end
 
   def edit; end
 
