@@ -1,0 +1,7 @@
+<h1>Dice for <%= game.name %></h1>
+<%= link_to "New Die", new_game_die_path, class: "btn", data: { turbo_frame: dom_id(Die.new) } %>
+
+<%= turbo_frame_tag Die.new %>
+<%= turbo_frame_tag "dice" do %>
+  <%= render dice %>
+<% end %>

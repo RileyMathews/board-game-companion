@@ -1,5 +1,5 @@
 <%= turbo_frame_tag die do %>
-  <%= form_with(model: [game, die], url: game_dice_index_path(game)) do |f| %>
+  <%= form_with(model: [game, die]) do |f| %>
     
     <% if die.errors.any? %>
       <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="inline">
-      <%= link_to "Cancel", games_path, class: "btn-primary" %>
+      <%= link_to "Cancel", game_dice_path(game), class: "btn-primary" %>
       <%= f.submit "Submit", class: "btn-primary" %>
     </div>
   <% end %>
