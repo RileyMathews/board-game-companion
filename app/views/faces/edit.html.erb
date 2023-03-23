@@ -1,0 +1,5 @@
+<%= turbo_frame_tag dom_id(die, :face_form) do %>
+  <h3>Editing <%= face.name %></h3>
+  <%= render "form", face: face %>
+<% end %>
+

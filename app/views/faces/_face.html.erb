@@ -1,0 +1,7 @@
+<%= turbo_frame_tag face do %>
+  <div class="border-2 inline-block p-2">
+    <p><%= face.name %>: <%= face.count %></p>
+    <%= button_to "Delete", die_face_path(die, face), method: :delete, class: "link" %>
+    <%= link_to "Edit", edit_die_face_path(die, face), class: "link", data: { turbo_frame: dom_id(die, :face_form) } %>
+  </div>
+<% end %>

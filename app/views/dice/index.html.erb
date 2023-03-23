@@ -1,9 +1,10 @@
 <div class="flex justify-between items-center">
-  <h1>Dice for <%= link_to game.name, game_path(game), class: "link" %></h1>
+  <h1 class="text-xl">Dice for <%= link_to game.name, game_path(game), class: "link" %></h1>
   <%= link_to "New Die", new_game_die_path, class: "btn", data: { turbo_frame: dom_id(Die.new) } %>
 </div>
 
 <%= turbo_frame_tag Die.new %>
+<hr class="mt-4">
 <%= turbo_frame_tag "dice" do %>
   <%= render dice %>
 <% end %>

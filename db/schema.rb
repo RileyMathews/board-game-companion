@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_20_202852) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_23_160328) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_202852) do
     t.index ["game_id"], name: "index_dice_on_game_id"
     t.index ["name", "game_id"], name: "index_dice_on_name_and_game_id", unique: true
     t.index ["uuid"], name: "index_dice_on_uuid", unique: true
+  end
+
+  create_table "faces", force: :cascade do |t|
+    t.integer "count"
+    t.string "name"
+    t.bigint "die_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["die_id"], name: "index_faces_on_die_id"
+    t.index ["name", "die_id"], name: "index_faces_on_name_and_die_id", unique: true
   end
 
   create_table "games", force: :cascade do |t|
@@ -81,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_202852) do
 
   add_foreign_key "dice", "games"
   add_foreign_key "dice", "users", column: "created_by_id"
+  add_foreign_key "faces", "dice"
   add_foreign_key "games", "users", column: "created_by_id"
   add_foreign_key "rooms", "games"
   add_foreign_key "rooms", "users", column: "created_by_id"
