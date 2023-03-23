@@ -9,7 +9,7 @@ class CreateDice < ActiveRecord::Migration[7.0]
       t.timestamps
     end
     add_index :dice, :uuid, unique: true
-    add_index :dice, [:name, :created_by_id], unique: true
+    add_index :dice, [:name, :game_id], unique: true
     add_foreign_key :dice, :users, column: :created_by_id
   end
 end

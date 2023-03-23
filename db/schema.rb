@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_202852) do
     t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_dice_on_created_by_id"
     t.index ["game_id"], name: "index_dice_on_game_id"
-    t.index ["name", "created_by_id"], name: "index_dice_on_name_and_created_by_id", unique: true
+    t.index ["name", "game_id"], name: "index_dice_on_name_and_game_id", unique: true
     t.index ["uuid"], name: "index_dice_on_uuid", unique: true
   end
 
