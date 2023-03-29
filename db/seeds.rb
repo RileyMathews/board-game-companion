@@ -27,5 +27,7 @@ Face.create!(name: "Swords", count: 1, die: Die.second)
 Face.create!(name: "Fire", count: 1, die: Die.second)
 Face.create!(name: "Skull", count: 1, die: Die.second)
 Face.create!(name: "Lightning", count: 1, die: Die.second)
+Face.create!(name: "test", count: 1, die: Die.fourth)
+
 
 
