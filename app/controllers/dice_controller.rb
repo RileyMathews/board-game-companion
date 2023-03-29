@@ -5,6 +5,7 @@ class DiceController < ApplicationController
 
   # GET /dice or /dice.json
   def index
+    @can_create_die = can?(:create, Die.new(game: @game))
     @dice = @game.dice
   end
 
@@ -13,7 +14,8 @@ class DiceController < ApplicationController
 
   # GET /dice/new
   def new
-    @die = Die.new
+    @die = @game.dice.build
+    authorize! :new, @die
   end
 
   # GET /dice/1/edit
@@ -23,6 +25,7 @@ class DiceController < ApplicationController
   def create
     @die = Die.new(die_params)
     @die.game = @game
+    authorize! :create, @die
 
     respond_to do |format|
       if @die.save

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_29_194857) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_29_202255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_194857) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_dice_on_game_id"
+  end
+
+  create_table "faces", force: :cascade do |t|
+    t.bigint "die_id", null: false
+    t.string "name"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["die_id"], name: "index_faces_on_die_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -49,5 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_194857) do
   end
 
   add_foreign_key "dice", "games"
+  add_foreign_key "faces", "dice"
   add_foreign_key "games", "users", column: "created_by_id"
 end

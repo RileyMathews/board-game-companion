@@ -5,7 +5,12 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Dice for <%= @game.name %></h1>
-    <%= link_to 'New die', new_game_die_path(@game), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'Back to games', games_path, class: "btn" %>
+    
+    <% if @can_create_die %>
+      <%= link_to 'New die', new_game_die_path(@game), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <% end %>
+    
   </div>
 
   <div id="dice" class="min-w-full">
