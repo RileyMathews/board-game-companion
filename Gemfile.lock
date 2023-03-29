@@ -93,8 +93,6 @@ GEM
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
     ffi (1.15.5)
-    friendly_id (5.4.2)
-      activerecord (>= 4.0.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     hotwire-livereload (1.2.3)
@@ -291,7 +289,6 @@ DEPENDENCIES
   debug
   devise
   factory_bot_rails
-  friendly_id (~> 5.4.0)
   hotwire-livereload
   importmap-rails
   jbuilder

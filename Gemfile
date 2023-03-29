@@ -5,7 +5,6 @@ ruby "3.2.1"
 
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
 gem "devise"
-gem "friendly_id", "~> 5.4.0"
 gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "jbuilder" # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "pg", "~> 1.1" # Use postgresql as the database for Active Record
