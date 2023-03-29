@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :dice, shallow: true do
       resources :faces, shallow: true
     end
+    resources :rooms, shallow: true
   end
   devise_for :users
   root to: "home#index"

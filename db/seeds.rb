@@ -29,5 +29,6 @@ Face.create!(name: "Skull", count: 1, die: Die.second)
 Face.create!(name: "Lightning", count: 1, die: Die.second)
 Face.create!(name: "test", count: 1, die: Die.fourth)
 
-
+Room.create!(name: "Skyrim game night", created_by: User.first, game: Game.first)
+Room.create!(name: "Second users room", created_by: User.second, game: Game.first)
 
