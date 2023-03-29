@@ -21,9 +21,9 @@
 }
 
 .link {
-    @apply text-blue-500 underline hover:text-blue-300 active:text-blue-700
+    @apply inline-block text-blue-500 underline hover:text-blue-300 active:text-blue-700
 }
 
 .input-text {
-    @apply block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full
+    @apply block shadow rounded-md border border-gray-200 outline-none px-3 py-2 w-full
 }
