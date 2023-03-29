@@ -6,7 +6,11 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Faces for <%= @die.name %></h1>
     <%= link_to 'Back to die', @die, class: "btn" %>
-    <%= link_to 'New face', new_die_face_path(@die), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    
+    <% if @can_create_face %>
+      <%= link_to 'New face', new_die_face_path(@die), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <% end %>
+    
   </div>
 
   <div id="faces" class="min-w-full">
