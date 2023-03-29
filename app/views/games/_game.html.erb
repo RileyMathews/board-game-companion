@@ -4,8 +4,12 @@
     created by player <%= game.created_by.username %>
   </p>
   <div class="flex gap-2">
+  
+  <% if can? :manage, game %>
     <%= link_to 'Edit this game', edit_game_path(game), class: "btn" %>
-    <%= button_to 'delete', game, method: :delete, class: "btn" %>
+    <%= button_to 'Delete', game, method: :delete, class: "btn" %>
+  <% end %>
+  
   </div>
   <hr class="mt-6">
 </div>
