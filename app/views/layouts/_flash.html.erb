@@ -1,6 +1,6 @@
 <% flash.each do |flash_type, message| %>
   <div 
-    class="py-2 px-3 bg-slate-50 mb-5 text-slate-500 font-medium rounded-lg inline-block fade"
+    class="py-2 px-3 mb-5 font-medium rounded-lg inline-block fade flash-<%= flash_type %>"
     data-controller="fade"
     data-action="animationend->fade#remove"
   >

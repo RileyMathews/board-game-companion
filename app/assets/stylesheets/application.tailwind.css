@@ -27,3 +27,11 @@
 .input-text {
     @apply block shadow rounded-md border border-gray-200 outline-none px-3 py-2 w-full
 }
+
+.flash-notice {
+    @apply bg-green-500 text-green-50
+}
+
+.flash-alert {
+    @apply bg-red-500 text-red-50
+}
