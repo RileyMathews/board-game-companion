@@ -13,20 +13,15 @@ class PlayController < ApplicationController
     potential_rolls = []
     faces.each do |face|
       face.count.times do
-        potential_rolls.push face.name
+        potential_rolls.push face
       end
     end
-    @roll_detail = {}
     number_to_roll.to_i.times do
-      roll = potential_rolls.sample
-      if @roll_detail.key? roll
-        @roll_detail[roll] += 1
-      else
-        @roll_detail[roll] = 1
-      end
+      face = potential_rolls.sample
+      RollResult.create!(user: current_user, face: face, room: @room)
     end
 
-    render :index, status: 206
+    redirect_to room_play_url(@room)
   end
 
   private
@@ -35,6 +30,7 @@ class PlayController < ApplicationController
     @room = Room.find(params[:room_id])
     @game = @room.game
     @dice = @game.dice
+    @roll_results = RollResult.where(user: current_user, room: @room)
     @roll_options = 1..10
   end
 end

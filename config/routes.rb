@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   end
   devise_for :users
 
-  get "/rooms/:room_id/play", to: "play#index"
-  get "/rooms/:room_id/roll/:die_id/:number", to: "play#roll", as: "roll_dice"
+  get "/rooms/:room_id/play", to: "play#index", as: "room_play"
+  post "/rooms/:room_id/roll/:die_id/:number", to: "play#roll", as: "roll_dice"
 
   root to: "home#index"
 end

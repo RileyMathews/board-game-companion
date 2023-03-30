@@ -7,15 +7,17 @@
 <% @dice.each do |die| %>
   <div class="border-2 border-slate-500">
     <h2><%= die.name %></h2>
-    <% @roll_options.each do |number| %>
-      <%= link_to number, roll_dice_path(@room, die, number), class: "btn" %>
-    <% end %>
+    <div class="flex gap-2">
+      <% @roll_options.each do |number| %>
+        <%= button_to number, roll_dice_path(@room, die, number), method: :post, class: "btn" %>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
-<% if @roll_detail %>
+<% if @roll_results %>
 <h2>You Rolled...</h2>
-  <% @roll_detail.each do |key, value| %>
-    <p><%= key %>: <%= value %></p>
+  <% @roll_results.each do |result| %>
+    <p><%= result.face.name %></p>
   <% end %>
 <% end %>
