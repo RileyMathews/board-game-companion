@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
 <h1>Playing <%= @room.game.name %></h1>
 
 <% @dice.each do |die| %>

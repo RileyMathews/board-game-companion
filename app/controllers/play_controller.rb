@@ -26,7 +26,7 @@ class PlayController < ApplicationController
       end
     end
 
-    render :index
+    render :index, status: 206
   end
 
   private
