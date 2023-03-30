@@ -1,4 +1,5 @@
 class DiceController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_game, only: %i(index new create)
   before_action :set_die, only: %i(show edit update destroy)
   authorize_resource

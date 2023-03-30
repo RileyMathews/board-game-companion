@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_game, only: %i(index new create)
-  before_action :set_room, only: %i(show edit update destroy)
+  before_action :set_room, only: %i(show edit update destroy play roll)
   authorize_resource
 
   # GET /rooms or /rooms.json
