@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :face do
-    die { nil }
-    name { "MyString" }
+    die { die }
+    name { SecureRandom.uuid }
     count { 1 }
   end
 end

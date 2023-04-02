@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :die do
-    name { "MyString" }
-    game { nil }
+    name { SecureRandom.uuid }
+    game { game }
   end
 end

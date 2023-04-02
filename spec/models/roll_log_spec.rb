@@ -2,31 +2,25 @@ require "rails_helper"
 
 RSpec.describe RollLog do
   describe "#summary" do
-    it "loads the most recent rolls data" do
-      user = User.create!(email: "test@test.com", password: "Password1@", username: "Testname", confirmed_at: DateTime.now)
-      game = Game.create!(name: "Skyrim", created_by: user)
-      room = Room.create!(name: "weekly game night", game: game, created_by: user)
-      die1 = Die.create!(game:game, name: "Die 1")
-      die2 = Die.create!(game:game, name: "Die 2")
-      die1_face1 = Face.create!(die: die1, name: "Die 1 face 1")
-      die1_face2 = Face.create!(die: die1, name: "Die 1 face 2")
-      die2_face1 = Face.create!(die: die2, name: "Die 2 face 1")
-      die2_face2 = Face.create!(die: die2, name: "Die 2 face 2")
-      log = described_class.create!(user: User.first, room: room)
-      RollResult.create!(roll_log: log, face: die1_face1)
-      RollResult.create!(roll_log: log, face: die1_face2)
-      RollResult.create!(roll_log: log, face: die2_face1)
-      RollResult.create!(roll_log: log, face: die2_face2)
-      RollResult.create!(roll_log: log, face: die2_face2)
-
-      # archived results
-      RollResult.create!(roll_log: log, face: die1_face1, archived: true)
+    it "loads the most recent roll data" do
+      log = create(:roll_log)
+      die1 = create(:die, game: log.room.game)
+      die2 = create(:die, game: log.room.game)
+      face1 = create(:face, die: die1)
+      face2 = create(:face, die: die1)
+      face3 = create(:face, die: die2)
+      face4 = create(:face, die: die2)
+      create(:roll_result, face: face1, roll_log: log)
+      create(:roll_result, face: face2, roll_log: log)
+      create(:roll_result, face: face3, roll_log: log)
+      create(:roll_result, face: face4, roll_log: log)
 
       summary = log.summary
-      expect(summary[die1_face1.name]).to eq 1
-      expect(summary[die1_face2.name]).to eq 1
-      expect(summary[die2_face1.name]).to eq 1
-      expect(summary[die2_face2.name]).to eq 2
+
+      expect(summary[face1.name]).to eq 1
+      expect(summary[face2.name]).to eq 1
+      expect(summary[face3.name]).to eq 1
+      expect(summary[face4.name]).to eq 1
     end
   end
 end

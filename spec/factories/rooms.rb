@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :room do
-    game { nil }
-    name { "MyString" }
-    created_by { nil }
+    game
+    name { SecureRandom.uuid }
+    created_by
   end
 end

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :roll_log do
-    room { nil }
-    user { nil }
+    room
+    user
   end
 end
