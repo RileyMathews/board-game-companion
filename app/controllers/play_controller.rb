@@ -18,7 +18,7 @@ class PlayController < ApplicationController
     end
     number_to_roll.to_i.times do
       face = potential_rolls.sample
-      RollResult.create!(user: current_user, face: face, room: @room)
+      RollResult.create!(face: face, roll_log: @roll_log)
     end
 
     redirect_to room_play_url(@room)
@@ -30,7 +30,8 @@ class PlayController < ApplicationController
     @room = Room.find(params[:room_id])
     @game = @room.game
     @dice = @game.dice
-    @roll_results = RollResult.where(user: current_user, room: @room)
+    @roll_log = RollLog.find_or_create_by(room: @room, user: current_user)
+    @roll_results = @roll_log.roll_results
     @roll_options = 1..10
   end
 end

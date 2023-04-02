@@ -1,5 +1,4 @@
 class RollResult < ApplicationRecord
+  belongs_to :roll_log
   belongs_to :face
-  belongs_to :user
-  belongs_to :room
 end

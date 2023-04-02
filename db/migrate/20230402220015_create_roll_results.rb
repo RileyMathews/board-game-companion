@@ -1,10 +1,9 @@
 class CreateRollResults < ActiveRecord::Migration[7.0]
   def change
     create_table :roll_results do |t|
+      t.references :roll_log, null: false, foreign_key: true
       t.references :face, null: false, foreign_key: true
-      t.references :user, null: false, foreign_key: true
-      t.references :room, null: false, foreign_key: true
-      t.boolean :archived
+      t.boolean :archived, null: false, default: false
 
       t.timestamps
     end
