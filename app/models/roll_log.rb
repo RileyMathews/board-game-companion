@@ -4,6 +4,6 @@ class RollLog < ApplicationRecord
   has_many :roll_results, dependent: :destroy
 
   def summary
-    RollResult.where(archived: false).joins(:face).group('faces.name').count
+    roll_results.where(archived: false).joins(:face).group("faces.name").count
   end
 end
