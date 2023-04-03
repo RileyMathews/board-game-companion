@@ -5,7 +5,10 @@ class PlayController < ApplicationController
     populate_game_data
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def roll
+    # TODO: Move this hacked up code into model method(s)
     populate_game_data
     @die = @dice.find params[:die_id]
     number_to_roll = params[:number]
@@ -23,6 +26,8 @@ class PlayController < ApplicationController
 
     redirect_to room_play_url(@room)
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   private
 

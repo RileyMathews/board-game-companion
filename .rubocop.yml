@@ -17,6 +17,18 @@ Style/Documentation:
 Style/DocumentationMethod:
   Enabled: false
 
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Max: 5
+
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 

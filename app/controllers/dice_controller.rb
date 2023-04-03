@@ -31,10 +31,8 @@ class DiceController < ApplicationController
     respond_to do |format|
       if @die.save
         format.html { redirect_to die_url(@die), notice: "Die was successfully created." }
-        format.json { render :show, status: :created, location: @die }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @die.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,10 +42,8 @@ class DiceController < ApplicationController
     respond_to do |format|
       if @die.update(die_params)
         format.html { redirect_to die_url(@die), notice: "Die was successfully updated." }
-        format.json { render :show, status: :ok, location: @die }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @die.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,7 +54,6 @@ class DiceController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to dice_url, notice: "Die was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

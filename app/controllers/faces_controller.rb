@@ -31,10 +31,8 @@ class FacesController < ApplicationController
     respond_to do |format|
       if @face.save
         format.html { redirect_to face_url(@face), notice: "Face was successfully created." }
-        format.json { render :show, status: :created, location: @face }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @face.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,10 +42,8 @@ class FacesController < ApplicationController
     respond_to do |format|
       if @face.update(face_params)
         format.html { redirect_to face_url(@face), notice: "Face was successfully updated." }
-        format.json { render :show, status: :ok, location: @face }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @face.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,7 +54,6 @@ class FacesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to faces_url, notice: "Face was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

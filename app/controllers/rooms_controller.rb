@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_game, only: %i(index new create)
-  before_action :set_room, only: %i(show edit update destroy play roll)
+  before_action :set_room, only: %i(show edit update destroy)
   authorize_resource
 
   # GET /rooms or /rooms.json
@@ -29,10 +29,8 @@ class RoomsController < ApplicationController
     respond_to do |format|
       if @room.save
         format.html { redirect_to room_url(@room), notice: "Room was successfully created." }
-        format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,10 +40,8 @@ class RoomsController < ApplicationController
     respond_to do |format|
       if @room.update(room_params)
         format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
-        format.json { render :show, status: :ok, location: @room }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +53,6 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to game_rooms_url(game), notice: "Room was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
