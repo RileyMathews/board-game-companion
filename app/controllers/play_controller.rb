@@ -18,7 +18,7 @@ class PlayController < ApplicationController
     end
     number_to_roll.to_i.times do
       face = potential_rolls.sample
-      RollResult.create!(face: face, roll_log: @roll_log)
+      RollResult.create!(face:, roll_log: @roll_log)
     end
 
     redirect_to room_play_url(@room)
