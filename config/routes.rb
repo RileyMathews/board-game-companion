@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :games, except: %i(show), shallow: true do
+    resources :resources
     resources :dice, shallow: true do
       resources :faces, shallow: true
     end

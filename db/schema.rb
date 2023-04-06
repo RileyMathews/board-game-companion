@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_06_180721) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_06_191912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_180721) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_games_on_created_by_id"
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.string "name", null: false
+    t.integer "min", default: 0, null: false
+    t.integer "max", default: 1000, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id", "name"], name: "index_resources_on_game_id_and_name", unique: true
+    t.index ["game_id"], name: "index_resources_on_game_id"
   end
 
   create_table "roll_logs", force: :cascade do |t|
@@ -101,6 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_180721) do
   add_foreign_key "dice", "games"
   add_foreign_key "faces", "dice"
   add_foreign_key "games", "users", column: "created_by_id"
+  add_foreign_key "resources", "games"
   add_foreign_key "roll_logs", "rooms"
   add_foreign_key "roll_logs", "users"
   add_foreign_key "roll_results", "faces"

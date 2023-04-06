@@ -1,0 +1,30 @@
+<div id="<%= dom_id resource %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Game:</strong>
+    <%= resource.game_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= resource.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Min:</strong>
+    <%= resource.min %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Max:</strong>
+    <%= resource.max %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this resource", resource, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% if can? :manage, resource %>
+      <%= link_to 'Edit this resource', edit_resource_path(resource), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
+
+    <hr class="mt-6">
+  <% end %>
+</div>

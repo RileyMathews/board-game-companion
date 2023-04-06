@@ -18,6 +18,12 @@ Die.create!(name: "Enemy Die", game: Game.first)
 Die.create!(name: "Test Die", game: Game.second)
 Die.create!(name: "Testing Die", game: Game.third)
 
+Resource.create!(name: "Septims", game: Game.first)
+Resource.create!(name: "Soul Gems", game: Game.first)
+Resource.create!(name: "Ore", game: Game.first)
+Resource.create!(name: "Test's resource", game: Game.second)
+Resource.create!(name: "Testings's resource", game: Game.third)
+
 Face.create!(name: "Circle", count: 3, die: Die.first)
 Face.create!(name: "Pyramid", count: 1, die: Die.first)
 Face.create!(name: "Triangle", count: 2, die: Die.first)
