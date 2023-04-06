@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
     resources :rooms, shallow: true
   end
+  resources :user_room_resources, only: %i(update)
   devise_for :users
 
   get "/rooms/join/:join_code", to: "join_room#find_room", as: "find_room"

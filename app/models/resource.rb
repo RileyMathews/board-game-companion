@@ -6,7 +6,6 @@ class Resource < ApplicationRecord
   after_create :sync_resources
 
   def sync_resources
-    # TODO: add test
     active_rooms = UserRoom.joins(room: :game).where(games: { id: game.id })
     active_rooms.each(&:sync_resources)
   end
