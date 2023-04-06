@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   end
   devise_for :users
 
+  get "/rooms/join/:join_code", to: "join_room#find_room", as: "find_room"
+  post "/rooms/join/:join_code", to: "join_room#join_room", as: "join_room"
+
   get "/rooms/:room_id/play", to: "play#index", as: "room_play"
   post "/rooms/:room_id/roll/:die_id/:number", to: "play#roll", as: "roll_dice"
   post "/rooms/:room_id/archive_rolls", to: "play#archive_rolls", as: "archive_rolls"

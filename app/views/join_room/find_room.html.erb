@@ -1,0 +1,7 @@
+<h1>Join room <%= @room.name %> playing <%= @room.game.name %>?</h1>
+<p>Room managed by <%= @room.created_by.username %></p>
+<h3>All players</h3>
+<% @room.users.each do |user| %>
+  <%= user.username %>
+<% end %>
+<%= button_to "confirm", join_room_path(@room.join_code), method: :post, class: "btn" %>

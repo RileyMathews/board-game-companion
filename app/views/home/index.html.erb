@@ -1,1 +1,12 @@
-<h1 class="text-lg">Test</h1>
+<h1 class="text-lg">Welcome to board game companion!</h1>
+<h3>Your active rooms</h3>
+
+<div class="flex flex-wrap">
+  <% @active_rooms.each do |room| %>
+    <div class="p-4 border-slate-500 rounded-md border-2 flex flex-col items-center">
+      <h5><%= room.name %></h5>
+      <p>Game: <%= room.game.name %></p>
+      <%= link_to "Play!", room_play_url(room), class: "btn" %>
+    </div>
+  <% end %>
+</div>

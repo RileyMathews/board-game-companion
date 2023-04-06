@@ -1,3 +1,5 @@
 class HomeController < ApplicationController
-  def index; end
+  def index
+    @active_rooms = current_user.rooms
+  end
 end

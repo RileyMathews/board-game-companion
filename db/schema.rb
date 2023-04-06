@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_02_220015) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_06_180721) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,8 +64,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_220015) do
     t.bigint "created_by_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "join_code", default: -> { "gen_random_uuid()" }, null: false
     t.index ["created_by_id"], name: "index_rooms_on_created_by_id"
     t.index ["game_id"], name: "index_rooms_on_game_id"
+    t.index ["join_code"], name: "index_rooms_on_join_code", unique: true
+  end
+
+  create_table "user_rooms", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_user_rooms_on_room_id"
+    t.index ["user_id", "room_id"], name: "index_user_rooms_on_user_id_and_room_id", unique: true
+    t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,4 +107,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_220015) do
   add_foreign_key "roll_results", "roll_logs"
   add_foreign_key "rooms", "games"
   add_foreign_key "rooms", "users", column: "created_by_id"
+  add_foreign_key "user_rooms", "rooms"
+  add_foreign_key "user_rooms", "users"
 end
