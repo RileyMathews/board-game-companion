@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :resource do
-    game { nil }
-    name { "MyString" }
+    game
+    name { SecureRandom.uuid }
     min { 1 }
     max { 1 }
   end

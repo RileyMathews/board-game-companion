@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Die do
-  let(:die) { create(:die) }
-  let!(:face) { create(:face, die: die) }
+  let(:die) { create :die }
+  let!(:face) { create :face, die: die }
 
   describe "#roll" do
     it "rolls one die by default" do
@@ -22,9 +22,9 @@ RSpec.describe Die do
     end
 
     describe "rolling a die with multiple faces" do
-      let(:d2) { create(:die) }
-      let!(:face1) { create(:face, die: d2) }
-      let!(:face2) { create(:face, die: d2) }
+      let(:d2) { create :die }
+      let!(:face1) { create :face, die: d2 }
+      let!(:face2) { create :face, die: d2 }
 
       it "is able to roll multiple sides" do
         results = d2.roll number: 20

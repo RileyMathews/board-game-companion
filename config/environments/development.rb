@@ -2,7 +2,7 @@ require "active_support/core_ext/integer/time"
 require "socket"
 require "ipaddr"
 
-Rails.application.configure do # rubocop:disable Metrics/BlockLength
+Rails.application.configure do
   config.web_console.whitelisted_ips = Socket.ip_address_list.reduce([]) do |res, addrinfo|
     addrinfo.ipv4? ? res << IPAddr.new(addrinfo.ip_address).mask(24) : res
   end

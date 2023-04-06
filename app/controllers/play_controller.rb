@@ -22,7 +22,7 @@ class PlayController < ApplicationController
     redirect_to room_play_url(room)
   end
 
-  private
+private
 
   def populate_game_data
     @room = Room.find(params[:room_id])

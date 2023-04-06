@@ -7,7 +7,7 @@ class Room < ApplicationRecord
 
   after_create :just_created
 
-  private
+private
 
   def just_created
     users << created_by
