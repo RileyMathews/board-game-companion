@@ -4,20 +4,34 @@
 
 <h1>Playing <%= @room.game.name %></h1>
 
-<% @dice.each do |die| %>
-  <div class="border-2 border-slate-500">
-    <h2><%= die.name %></h2>
-    <div class="flex gap-2">
-      <% @roll_options.each do |number| %>
-        <%= button_to number, roll_dice_path(@room, die, number), method: :post, class: "btn" %>
-      <% end %>
+<div class="flex gap-2 flex-wrap">
+  <% @dice.each do |die| %>
+    <div class="border-2 border-slate-500 rounded-md p-2">
+      <h2><%= die.name %></h2>
+      <div class="flex gap-2">
+        <% @roll_options.each do |number| %>
+          <%= button_to number, roll_dice_path(@room, die, number), method: :post, class: "btn" %>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
-
-<% if @roll_results %>
-<h2>You Rolled...</h2>
-  <% @roll_results.each do |result| %>
-    <p><%= result.face.name %></p>
   <% end %>
-<% end %>
+</div>
+<%= button_to "archive rolls", archive_rolls_path(@room), method: :post, class: "btn" %>
+
+<div class="grid grid-cols-1 gap-2 md:grid-cols-2">
+  <div class="border-2 border-slate-500 rounded-md p-2">
+    <h2>Roll summary</h2>
+    <% @roll_summary.each do |key, value| %>
+      <p class="odd:bg-slate-200 px-2"><%= key %>: <%= value %></p>
+    <% end %>
+  </div>
+
+  <div class="border-2 border-slate-500 rounded-md p-2">
+    <% if @roll_results %>
+      <h2>You Rolled...</h2>
+      <% @roll_results.each do |result| %>
+        <p class="odd:bg-slate-200 px-2"><%= result.face.name %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get "/rooms/:room_id/play", to: "play#index", as: "room_play"
   post "/rooms/:room_id/roll/:die_id/:number", to: "play#roll", as: "roll_dice"
+  post "/rooms/:room_id/archive_rolls", to: "play#archive_rolls", as: "archive_rolls"
 
   root to: "home#index"
 end

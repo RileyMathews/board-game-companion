@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :face do
-    die { die }
+    die
     name { SecureRandom.uuid }
     count { 1 }
   end
