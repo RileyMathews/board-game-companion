@@ -1,12 +1,11 @@
 class PlayController < ApplicationController
   before_action :authenticate_user!
+  before_action :populate_game_data
+  before_action :authorize
 
-  def index
-    populate_game_data
-  end
+  def index; end
 
   def roll
-    populate_game_data
     die = @dice.find params[:die_id]
     rolls = die.roll number: params[:number]
     roll_results = rolls.map { |face| { face: face, roll_log: @roll_log } }
@@ -33,5 +32,13 @@ class PlayController < ApplicationController
     @roll_results = @roll_log.roll_results.where(archived: false).order(created_at: :desc).includes(:face)
     @roll_summary = @roll_log.summary
     @roll_options = 1..10
+  end
+
+  def authorize
+    authorize! :play, @room
+  end
+
+  def current_ability
+    @current_ability ||= PlayAbility.new current_user
   end
 end
