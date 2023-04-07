@@ -50,10 +50,11 @@ class DiceController < ApplicationController
 
   # DELETE /dice/1 or /dice/1.json
   def destroy
+    game = @die.game
     @die.destroy
 
     respond_to do |format|
-      format.html { redirect_to dice_url, notice: "Die was successfully destroyed." }
+      format.html { redirect_to game_dice_url(game), notice: "Die was successfully destroyed." }
     end
   end
 
