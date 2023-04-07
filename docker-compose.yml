@@ -49,7 +49,7 @@ services:
 
     rspec:
         <<: *ci
-        command: "bundle exec rails db:setup && rspec"
+        command: "bin/rspec-ci"
         user: "root"
         depends_on:
             - database
