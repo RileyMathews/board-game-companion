@@ -2,16 +2,18 @@ class PlayController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @room = Room.find(params[:room_id])
+    user_room = UserRoom.eager_load(:user_room_resources, room: { game: :dice })
+                        .find_by(room_id: params[:room_id], user: current_user)
+    @room = user_room.room
     authorize! :play, @room
-    user_room = UserRoom.find_by room: @room, user: current_user
+
     @game = @room.game
     @dice = @game.dice
     @roll_log = RollLog.find_or_create_by(room: @room, user: current_user)
-    @roll_results = @roll_log.roll_results.where(archived: false).order(created_at: :desc).includes(:face)
+    @roll_results = @roll_log.roll_results.eager_load(:face).where(archived: false).order(created_at: :desc)
     @roll_summary = @roll_log.summary
     @roll_options = 1..10
-    @resources = UserRoomResource.where(user_room: user_room)
+    @resources = user_room.user_room_resources
   end
 
   def roll
