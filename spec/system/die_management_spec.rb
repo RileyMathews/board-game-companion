@@ -41,5 +41,6 @@ RSpec.describe "die management" do
     click_button "Destroy this die"
 
     expect(page).to have_text("Dice for #{game.name}")
+    expect(page).not_to have_text("New name for die")
   end
 end

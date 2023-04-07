@@ -50,10 +50,11 @@ class ResourcesController < ApplicationController
 
   # DELETE /resources/1 or /resources/1.json
   def destroy
+    game = @resource.game
     @resource.destroy
 
     respond_to do |format|
-      format.html { redirect_to resources_url, notice: "Resource was successfully destroyed." }
+      format.html { redirect_to game_resources_url(game), notice: "Resource was successfully destroyed." }
     end
   end
 

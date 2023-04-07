@@ -50,10 +50,11 @@ class FacesController < ApplicationController
 
   # DELETE /faces/1 or /faces/1.json
   def destroy
+    die = @face.die
     @face.destroy
 
     respond_to do |format|
-      format.html { redirect_to faces_url, notice: "Face was successfully destroyed." }
+      format.html { redirect_to die_faces_url(die), notice: "Face was successfully destroyed." }
     end
   end
 
