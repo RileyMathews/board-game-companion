@@ -33,10 +33,9 @@ end
 
 Capybara.register_driver :chrome_headless do |app|
   Capybara::Selenium::Driver.new(app,
-                                  browser: :remote,
-                                  url: "http://chrome:4444/wd/hub",
-                                  options: Selenium::WebDriver::Chrome::Options.new
-                                )
+                                 browser: :remote,
+                                 url: "http://chrome:4444/wd/hub",
+                                 options: Selenium::WebDriver::Chrome::Options.new)
 end
 
 RSpec.configure do |config|

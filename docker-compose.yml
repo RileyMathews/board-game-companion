@@ -34,6 +34,29 @@ services:
         image: selenium/standalone-chrome:3.141.59-zirconium # this version should match that of the selenium-webdriver gem (see Gemfile)
         volumes:
             - /dev/shm:/dev/shm
+    
+    ci: &ci
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+            target: build
+        volumes:
+            - .:/code
+
+    rubocop:
+        <<: *ci
+        command: "bundle exec rubocop"
+
+    rspec:
+        <<: *ci
+        command: "bin/rspec-ci"
+        user: "root"
+        depends_on:
+            - database
+            - redis
+            - chrome
+
+    
 
 volumes:
     db:
