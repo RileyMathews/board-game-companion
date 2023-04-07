@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe "game management", type: :system do
+RSpec.describe "game management" do
   before do
-    user = create(:user, password: "Password1@")
+    user = create :user, password: "Password1@"
     visit "/users/sign_in"
     fill_in "Email", with: user.email
     fill_in "Password", with: "Password1@"

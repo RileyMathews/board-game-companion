@@ -1,6 +1,7 @@
 class PlayController < ApplicationController
   before_action :authenticate_user!
 
+  # rubocop:disable Metrics/AbcSize
   def index
     user_room = UserRoom.eager_load(:user_room_resources, room: { game: :dice })
                         .find_by(room_id: params[:room_id], user: current_user)
@@ -32,6 +33,7 @@ class PlayController < ApplicationController
 
     redirect_to room_play_url(params[:room_id])
   end
+  # rubocop:enable Metrics/AbcSize
 
 private
 

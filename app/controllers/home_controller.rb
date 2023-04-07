@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
   def index
-    if user_signed_in?
-      @active_rooms = current_user.rooms
-    else
-      @active_rooms = []
-    end
+    @active_rooms = if user_signed_in?
+                      current_user.rooms
+                    else
+                      []
+                    end
   end
 end
