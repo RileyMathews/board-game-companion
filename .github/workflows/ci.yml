@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run docker compose rubocop
-        run: docker-compose run rubocop
+        run: docker compose run rubocop
   
   rspec:
     runs-on: ubuntu-latest
@@ -21,4 +21,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run docker compose rspec
-        run: docker-compose run rspec
+        run: docker compose run rspec
