@@ -84,7 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_194302) do
   create_table "user_room_resources", force: :cascade do |t|
     t.bigint "user_room_id", null: false
     t.bigint "resource_id", null: false
-    t.integer "ammount", null: false, default: 0
+    t.integer "ammount", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resource_id"], name: "index_user_room_resources_on_resource_id"

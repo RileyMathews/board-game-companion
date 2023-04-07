@@ -18,9 +18,9 @@
 
 <div class="flex gap-2 flex-wrap">
   <% @dice.each do |die| %>
-    <div class="border-2 border-slate-500 rounded-md p-2">
-      <h2><%= die.name %></h2>
-      <div class="flex gap-2 flex-wrap">
+    <div data-controller="toggle" id="<%= die.id %>" class="border-2 border-slate-500 rounded-md p-2">
+      <h2><%= die.name %> <button data-toggle-target="button" data-action="click->toggle#toggle" class="bg-slate-200 p-2 rounded-md">Toggle</button></h2>
+      <div data-toggle-target="content" class="flex gap-2 flex-wrap hidden">
         <% @roll_options.each do |number| %>
           <%= button_to number, roll_dice_path(@room, die, number), method: :post, class: "btn" %>
         <% end %>
