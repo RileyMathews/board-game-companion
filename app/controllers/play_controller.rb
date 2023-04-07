@@ -2,35 +2,8 @@ class PlayController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    populate_game_data
-    authorize
-  end
-
-  def roll
-    populate_game_data
-    authorize
-    die = @dice.find params[:die_id]
-    rolls = die.roll number: params[:number]
-    roll_results = rolls.map { |face| { face: face, roll_log: @roll_log } }
-    RollResult.create! roll_results
-
-    redirect_to room_play_url(@room)
-  end
-
-  def archive_rolls
-    populate_game_data
-    authorize
-    room = Room.find params[:room_id]
-    roll_log = RollLog.find_by(room: room, user: current_user)
-    RollResult.where(roll_log: roll_log).update_all(archived: true) # rubocop:disable Rails/SkipsModelValidations
-
-    redirect_to room_play_url(room)
-  end
-
-private
-
-  def populate_game_data
     @room = Room.find(params[:room_id])
+    authorize! :play, @room
     user_room = UserRoom.find_by room: @room, user: current_user
     @game = @room.game
     @dice = @game.dice
@@ -41,9 +14,24 @@ private
     @resources = UserRoomResource.where(user_room: user_room)
   end
 
-  def authorize
-    authorize! :play, @room
+  def roll
+    roll_log = RollLog.find_by(room_id: params[:room_id], user: current_user)
+    die = Die.find params[:die_id]
+    rolls = die.roll number: params[:number]
+    roll_results = rolls.map { |face| { face_id: face.id, roll_log_id: roll_log.id } }
+    RollResult.insert_all! roll_results # rubocop:disable Rails/SkipsModelValidations
+
+    redirect_to room_play_url(params[:room_id])
   end
+
+  def archive_rolls
+    roll_log = RollLog.find_by(room_id: params[:room_id], user: current_user)
+    RollResult.where(roll_log: roll_log, archived: false).update_all(archived: true) # rubocop:disable Rails/SkipsModelValidations
+
+    redirect_to room_play_url(params[:room_id])
+  end
+
+private
 
   def current_ability
     @current_ability ||= PlayAbility.new current_user
