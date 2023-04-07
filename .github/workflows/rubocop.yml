@@ -9,9 +9,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - name: Run RuboCop
-        run: bundle exec rubocop --parallel
+
+      - name: Run docker compose rubocop
+        run: docker-compose run rubocop
