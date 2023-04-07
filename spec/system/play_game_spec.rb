@@ -13,7 +13,7 @@ RSpec.describe "playing a game" do
     fill_in "Password", with: "Password1@"
     click_button "Log In"
 
-    visit "/"
+    expect(page).to have_text("Welcome")
 
     visit room_play_path(room)
 

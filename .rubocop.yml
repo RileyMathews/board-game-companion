@@ -40,6 +40,12 @@ Style/Documentation:
 Style/DocumentationMethod:
   Enabled: false
 
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 
@@ -55,3 +61,9 @@ Style/PercentLiteralDelimiters:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+RSpec/MultipleExpectations:
+  Max: 25
+
+RSpec/ExampleLength:
+  Max: 100
