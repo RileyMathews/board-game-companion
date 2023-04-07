@@ -50,6 +50,7 @@ services:
     rspec:
         <<: *ci
         command: "bundle exec rspec"
+        user: "root"
         depends_on:
             - database
             - redis
