@@ -30,6 +30,10 @@ services:
         image: redis:7
         ports:
             - 6379:6379
+    chrome:
+        image: selenium/standalone-chrome:3.141.59-zirconium # this version should match that of the selenium-webdriver gem (see Gemfile)
+        volumes:
+            - /dev/shm:/dev/shm
 
 volumes:
     db:

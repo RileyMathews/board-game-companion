@@ -20,9 +20,11 @@ gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.
 gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby) # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 
 group :development, :test do
+  gem "capybara"
   gem "debug", platforms: %i(mri mingw x64_mingw) # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "factory_bot_rails"
   gem "rspec-rails"
+  gem "selenium-webdriver"
 end
 
 group :development do
