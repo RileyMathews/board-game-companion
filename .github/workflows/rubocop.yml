@@ -3,7 +3,7 @@ name: RuboCop
 on: [pull_request]
 
 jobs:
-  build:
+  rubocop:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,3 +12,13 @@ jobs:
 
       - name: Run docker compose rubocop
         run: docker-compose run rubocop
+  
+  rspec:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Run docker compose rspec
+        run: docker-compose run rspec
