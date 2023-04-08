@@ -1,5 +1,6 @@
 class Resource < ApplicationRecord
   belongs_to :game
+  belongs_to :resource_group, optional: true
   has_many :user_room_resources, dependent: :destroy
   has_many :user_rooms, through: :user_room_resources
 
