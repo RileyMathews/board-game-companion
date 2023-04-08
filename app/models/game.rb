@@ -3,6 +3,7 @@ class Game < ApplicationRecord
   has_many :dice, dependent: :destroy
   has_many :resources, dependent: :destroy
   has_many :rooms, dependent: :destroy
+  has_many :resource_groups, dependent: :destroy
 
   validates :name, presence: true
 end
