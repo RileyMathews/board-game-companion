@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe ResourceGroupsController do
+RSpec.describe "resource group management" do
   let(:user) { create :user }
   let(:game) { create :game, created_by: user }
   let!(:resource_group) { create :resource_group, game: game }
