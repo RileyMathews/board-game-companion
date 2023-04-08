@@ -14,7 +14,7 @@ class PlayController < ApplicationController
     @roll_results = @roll_log.roll_results.eager_load(:face).where(archived: false).order(created_at: :desc)
     @roll_summary = @roll_log.summary
     @roll_options = 1..10
-    @resources = user_room.user_room_resources
+    @resources_by_group = user_room.resources_by_group
   end
 
   def roll

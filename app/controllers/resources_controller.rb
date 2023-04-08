@@ -17,10 +17,14 @@ class ResourcesController < ApplicationController
   def new
     @resource = @game.resources.build
     authorize! :new, @resource
+
+    @resource_group_options = resource_group_options @game
   end
 
   # GET /resources/1/edit
-  def edit; end
+  def edit
+    @resource_group_options = resource_group_options @resource.game
+  end
 
   # POST /resources or /resources.json
   def create
@@ -73,8 +77,12 @@ private
     @current_ability ||= ResourceAbility.new current_user
   end
 
+  def resource_group_options(game)
+    [["------", ""]] + game.resource_groups.map { |group| [group.name, group.id] }
+  end
+
   # Only allow a list of trusted parameters through.
   def resource_params
-    params.require(:resource).permit(:game_id, :name, :min, :max)
+    params.require(:resource).permit(:game_id, :name, :min, :max, :resource_group_id)
   end
 end

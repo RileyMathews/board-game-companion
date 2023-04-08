@@ -17,4 +17,23 @@ RSpec.describe UserRoom do
       ).to eq resource.name
     end
   end
+
+  describe "#resourecs_by_group" do
+    it "returns a map of resources by their group name" do
+      user_room = create :user_room
+      resource_group_one = create :resource_group, game: user_room.room.game
+      resource_group_two = create :resource_group, game: user_room.room.game
+      [resource_group_one, resource_group_two].each do |group|
+        create_list :resource, 10, resource_group: group, game: user_room.room.game
+      end
+      create_list :resource, 5, resource_group: nil, game: user_room.room.game
+
+      result = user_room.resources_by_group
+
+      expect(result[resource_group_one.name].length).to eq 10
+      expect(result[resource_group_two.name].length).to eq 10
+      expect(result["Ungrouped"].length).to eq 5
+      expect(result[resource_group_one.name].first).to be_a UserRoomResource
+    end
+  end
 end

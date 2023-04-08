@@ -5,16 +5,24 @@
 <h1>Playing <%= @room.game.name %></h1>
 
 <h3>Resources</h3>
-<div class="flex gap-2 my-2">
-  <% @resources.each do |user_resource| %>
-    <div data-controller="user-room-resource" id="resource-<%= user_resource.id %>" class="border-2 border-slate-500 rounded-md p-2">
-      <data data-user-room-resource-target="id" id="<%= user_resource.id %>"></data>
-      <p><%= user_resource.resource.name %>: <span data-user-room-resource-target="output"><%= user_resource.ammount %></span></p>
-      <button data-action="click->user-room-resource#decrement" class="text-2xl inline-block text-white border-2 border-red-600 rounded-md px-2 bg-red-500">-1</button>
-      <button data-action="click->user-room-resource#increment" class="text-2xl inline-block text-white border-2 border-green-600 rounded-md px-2 bg-green-500">+1</button>
+
+<% @resources_by_group.each do |group_name, resources| %>
+  <div>
+    <h3><%= group_name %></h3>
+    <div class="flex gap-2 my-2">
+      <% resources.each do |user_resource| %>
+        <div data-controller="user-room-resource" id="resource-<%= user_resource.id %>" class="border-2 border-slate-500 rounded-md p-2">
+          <data data-user-room-resource-target="id" id="<%= user_resource.id %>"></data>
+          <p><%= user_resource.resource.name %>: <span data-user-room-resource-target="output"><%= user_resource.ammount %></span></p>
+          <button data-action="click->user-room-resource#decrement" class="text-2xl inline-block text-white border-2 border-red-600 rounded-md px-2 bg-red-500">-1</button>
+          <button data-action="click->user-room-resource#increment" class="text-2xl inline-block text-white border-2 border-green-600 rounded-md px-2 bg-green-500">+1</button>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
+
 
 <div class="flex gap-2 flex-wrap">
   <% @dice.each do |die| %>

@@ -10,4 +10,8 @@ class Resource < ApplicationRecord
     active_rooms = UserRoom.joins(room: :game).where(games: { id: game.id })
     active_rooms.each(&:sync_resources)
   end
+
+  def group_name
+    resource_group&.name || "Ungrouped"
+  end
 end
