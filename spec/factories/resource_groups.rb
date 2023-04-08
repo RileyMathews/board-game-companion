@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :resource_group do
-    name { "MyString" }
-    game { nil }
+    name { SecureRandom.uuid }
+    game
   end
 end
