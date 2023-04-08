@@ -15,7 +15,7 @@ RSpec.describe "die management" do
 
     expect(page).to have_text(game.name)
 
-    click_on "Show Dice"
+    click_on "Dice"
 
     expect(page).to have_text("Dice for #{game.name}")
 

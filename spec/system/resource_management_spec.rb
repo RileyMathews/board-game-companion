@@ -15,7 +15,7 @@ RSpec.describe "resource management" do
 
     expect(page).to have_text(game.name)
 
-    click_on "Show Resources"
+    click_on "Resources"
 
     expect(page).to have_text("Resources for #{game.name}")
 

@@ -29,6 +29,7 @@ RSpec.describe "playing a game" do
 
     expect(page).to have_text("#{resource.name}: 0")
 
+    click_on "Toggle"
     click_on "5"
 
     expect(page).to have_text(face.name)
