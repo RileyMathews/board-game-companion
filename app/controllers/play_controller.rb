@@ -24,7 +24,10 @@ class PlayController < ApplicationController
     roll_results = rolls.map { |face| { face_id: face.id, roll_log_id: roll_log.id } }
     RollResult.insert_all! roll_results # rubocop:disable Rails/SkipsModelValidations
 
-    redirect_to room_play_url(params[:room_id])
+    roll_counts = rolls.each_with_object(Hash.new(0)) { |face, counts| counts[face.name] += 1 }
+    roll_counts_string = roll_counts.map { |name, count| "#{name}: #{count}" }.join(" | ")
+
+    redirect_to room_play_url(params[:room_id]), notice: roll_counts_string
   end
 
   def archive_rolls
