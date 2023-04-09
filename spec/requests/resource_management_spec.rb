@@ -4,10 +4,12 @@ RSpec.describe "resource management" do
   let(:user) { create :user }
   let(:game) { create :game, created_by: user }
   let!(:resource_group) { create :resource_group, game: game }
-  let!(:resource_group2) { create :resource_group, game: game }
 
   before do
     sign_in user
+    3.times do
+      create :resource_group, game: game
+    end
   end
 
   describe "#new" do
