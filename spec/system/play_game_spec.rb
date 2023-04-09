@@ -18,19 +18,21 @@ RSpec.describe "playing a game" do
     visit room_play_path(room)
 
     expect(page).to have_text("Playing #{room.game.name}")
-    expect(page).to have_text("#{resource.name}:\n0")
+    expect(page).to have_text("#{resource.name}: 0")
     expect(page).to have_text(die.name)
 
-    click_on resource.name
+    click_button id: "resource-button-#{resource.id}"
     click_on "+1"
 
-    expect(page).to have_text("#{resource.name}:\n1")
+    expect(page).to have_text("#{resource.name}: 1")
 
     click_on "-1"
 
-    expect(page).to have_text("#{resource.name}:\n0")
+    expect(page).to have_text("#{resource.name}: 0")
+    # click resource again to clear dropdown
+    click_button id: "resource-button-#{resource.id}"
 
-    click_on die.name
+    click_button id: "die-button-#{die.id}"
     click_on "5"
 
     expect(page).to have_text(face.name)
