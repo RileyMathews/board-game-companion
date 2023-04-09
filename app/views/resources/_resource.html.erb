@@ -1,12 +1,12 @@
 <div id="<%= dom_id resource %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Game:</strong>
-    <%= resource.game_id %>
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= resource.name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= resource.name %>
+    <strong class="block font-medium mb-1">Group:</strong>
+    <%= resource.resource_group&.name %>
   </p>
 
   <p class="my-5">

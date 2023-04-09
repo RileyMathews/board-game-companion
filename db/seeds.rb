@@ -9,18 +9,23 @@
 User.create!(email: "test@test.com", password: "Password1@", username: "Testname", confirmed_at: DateTime.now)
 User.create!(email: "testing@test.com", password: "Password1@", username: "Testingname", confirmed_at: DateTime.now)
 
-Game.create!(name: "Skyrim", created_by: User.first)
+skyrim = Game.create!(name: "Skyrim", created_by: User.first)
 Game.create!(name: "Test's game", created_by: User.first)
 Game.create!(name: "Testings's game", created_by: User.second)
 
-Die.create!(name: "Player Die", game: Game.first)
-Die.create!(name: "Enemy Die", game: Game.first)
+skyrim_resources = ResourceGroup.create!(name: "Resources", game: skyrim)
+skyrim_armor = ResourceGroup.create!(name: "Armor", game: skyrim)
+
+Die.create!(name: "Player Die", game: skyrim)
+Die.create!(name: "Enemy Die", game: skyrim)
 Die.create!(name: "Test Die", game: Game.second)
 Die.create!(name: "Testing Die", game: Game.third)
 
-Resource.create!(name: "Septims", game: Game.first)
-Resource.create!(name: "Soul Gems", game: Game.first)
-Resource.create!(name: "Ore", game: Game.first)
+Resource.create!(name: "Septims", game: skyrim, resource_group: skyrim_resources)
+Resource.create!(name: "Soul Gems", game: skyrim, resource_group: skyrim_resources)
+Resource.create!(name: "Ore", game: skyrim, resource_group: skyrim_resources)
+Resource.create!(name: "Magic Armor", game: skyrim, resource_group: skyrim_armor)
+Resource.create!(name: "Health", game: skyrim, resource_group: nil)
 Resource.create!(name: "Test's resource", game: Game.second)
 Resource.create!(name: "Testings's resource", game: Game.third)
 
@@ -35,6 +40,6 @@ Face.create!(name: "Skull", count: 1, die: Die.second)
 Face.create!(name: "Lightning", count: 1, die: Die.second)
 Face.create!(name: "test", count: 1, die: Die.fourth)
 
-Room.create!(name: "Skyrim game night", created_by: User.first, game: Game.first)
-Room.create!(name: "Second users room", created_by: User.second, game: Game.first)
+Room.create!(name: "Skyrim game night", created_by: User.first, game: skyrim)
+Room.create!(name: "Second users room", created_by: User.second, game: skyrim)
 

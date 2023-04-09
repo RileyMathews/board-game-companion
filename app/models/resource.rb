@@ -1,5 +1,6 @@
 class Resource < ApplicationRecord
   belongs_to :game
+  belongs_to :resource_group, optional: true
   has_many :user_room_resources, dependent: :destroy
   has_many :user_rooms, through: :user_room_resources
 
@@ -8,5 +9,9 @@ class Resource < ApplicationRecord
   def sync_resources
     active_rooms = UserRoom.joins(room: :game).where(games: { id: game.id })
     active_rooms.each(&:sync_resources)
+  end
+
+  def group_name
+    resource_group&.name || "Ungrouped"
   end
 end

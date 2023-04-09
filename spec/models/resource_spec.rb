@@ -16,4 +16,15 @@ RSpec.describe Resource do
       ).to eq resource.name
     end
   end
+
+  describe "group_name" do
+    it "returns 'Ungrouped' when not part of a group" do
+      expect(create(:resource, resource_group: nil).group_name).to eq "Ungrouped"
+    end
+
+    it "returns the name of the group when the resource has one" do
+      resource = create :resource
+      expect(resource.group_name).to eq resource.resource_group.name
+    end
+  end
 end

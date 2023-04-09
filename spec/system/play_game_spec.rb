@@ -21,6 +21,7 @@ RSpec.describe "playing a game" do
     expect(page).to have_text("#{resource.name}: 0")
     expect(page).to have_text(die.name)
 
+    click_button id: "resource-button-#{resource.id}"
     click_on "+1"
 
     expect(page).to have_text("#{resource.name}: 1")
@@ -28,8 +29,10 @@ RSpec.describe "playing a game" do
     click_on "-1"
 
     expect(page).to have_text("#{resource.name}: 0")
+    # click resource again to clear dropdown
+    click_button id: "resource-button-#{resource.id}"
 
-    click_on "Toggle"
+    click_button id: "die-button-#{die.id}"
     click_on "5"
 
     expect(page).to have_text(face.name)
