@@ -1,7 +1,6 @@
 FactoryBot.define do
-  factory :roll_result do
-    face
-    roll
+  factory :roll do
+    roll_log
     archived { false }
   end
 end

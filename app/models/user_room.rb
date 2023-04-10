@@ -3,6 +3,7 @@ class UserRoom < ApplicationRecord
   belongs_to :user
   has_many :user_room_resources, dependent: :destroy
   has_many :resources, through: :user_room_resources
+  has_many :roll_logs, dependent: :destroy
 
   after_create :sync_resources
 
