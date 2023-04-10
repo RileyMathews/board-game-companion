@@ -3,7 +3,7 @@ services:
     dev:
         build:
             context: .
-            dockerfile: ./Dockerfile
+            dockerfile: ./.docker/dev/dockerfile
             target: dev
         tty: true
         stdin_open: true
