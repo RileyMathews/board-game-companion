@@ -12,7 +12,7 @@ RSpec.describe "face management" do
 
     expect(page).to have_text("Welcome")
 
-    visit die_path(die)
+    visit game_dice_path(die.game)
 
     expect(page).to have_text(die.name)
 

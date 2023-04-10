@@ -1,7 +1,7 @@
 class DiceController < ApplicationController
   before_action :authenticate_user!
   before_action :set_game, only: %i(index new create)
-  before_action :set_die, only: %i(show edit update destroy)
+  before_action :set_die, only: %i(edit update destroy)
   authorize_resource
 
   # GET /dice or /dice.json
@@ -9,9 +9,6 @@ class DiceController < ApplicationController
     @can_create_die = can?(:create, Die.new(game: @game))
     @dice = @game.dice
   end
-
-  # GET /dice/1 or /dice/1.json
-  def show; end
 
   # GET /dice/new
   def new
@@ -30,7 +27,7 @@ class DiceController < ApplicationController
 
     respond_to do |format|
       if @die.save
-        format.html { redirect_to die_url(@die), notice: "Die was successfully created." }
+        format.html { redirect_to game_dice_url(@game), notice: "Die was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -41,7 +38,7 @@ class DiceController < ApplicationController
   def update
     respond_to do |format|
       if @die.update(die_params)
-        format.html { redirect_to die_url(@die), notice: "Die was successfully updated." }
+        format.html { redirect_to game_dice_url(@die.game), notice: "Die was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

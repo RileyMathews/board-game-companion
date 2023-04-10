@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :games, except: %i(show), shallow: true do
     resources :resources
     resources :resource_groups, except: %i(show)
-    resources :dice, shallow: true do
+    resources :dice, shallow: true, except: %i(show) do
       resources :faces, shallow: true, except: %i(show)
     end
     resources :rooms, shallow: true
