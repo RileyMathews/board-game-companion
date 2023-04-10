@@ -1,9 +1,8 @@
 class RollLog < ApplicationRecord
-  belongs_to :room
-  belongs_to :user
-  has_many :roll_results, dependent: :destroy
+  belongs_to :user_room
+  has_many :rolls, dependent: :destroy
 
   def summary
-    roll_results.where(archived: false).joins(:face).group("faces.name").count
+    RollResult.joins(:face).joins(:roll).where(archived: false, roll: { roll_log: self }).group("faces.name").count
   end
 end

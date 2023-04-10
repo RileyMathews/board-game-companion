@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :roll_log do
-    room
-    user
+    user_room
   end
 end
