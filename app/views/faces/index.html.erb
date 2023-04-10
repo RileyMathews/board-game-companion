@@ -1,7 +1,7 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Faces for <%= @die.name %></h1>
-    <%= render "shared/link_button", text: 'Back to die', path: @die %>
+    <%= render "shared/link_button", text: 'Back to dice', path: game_dice_path(@die.game) %>
     
     <% if @can_create_face %>
       <%= render "shared/link_button", text: 'New face', path: new_die_face_path(@die) %>

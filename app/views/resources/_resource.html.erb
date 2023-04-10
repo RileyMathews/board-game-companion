@@ -18,14 +18,12 @@
     <strong class="block font-medium mb-1">Max:</strong>
     <%= resource.max %>
   </p>
-
-  <% if action_name != "show" %>
+  <div class="flex flex-wrap">
     <%= render "shared/link_button", text: "Show this resource", path: resource %>
     <% if can? :manage, resource %>
       <%= render "shared/link_button", text: 'Edit this resource', path: edit_resource_path(resource) %>
       <%= render "shared/delete_button", text: "Delete", path: resource %>
     <% end %>
-
-    <hr class="mt-6">
-  <% end %>
+  </div>
+  <hr class="mt-6">
 </div>

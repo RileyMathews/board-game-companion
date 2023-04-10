@@ -4,12 +4,12 @@
     <strong class="block font-medium mb-1"><%= face.name %>: <%= face.count %></strong>
   </p>
 
-  <% if action_name != "show" %>
+  <div class="flex flex-wrap">
     <%= render "shared/link_button", text: "Show this face", path: face %>
     <% if can? :manage, face %>
       <%= render "shared/link_button", text: 'Edit this face', path: edit_face_path(face) %>  
       <%= render "shared/delete_button", text: "Delete", path: face %>
     <% end %>
-    <hr class="mt-6">
-  <% end %>
+  </div>
+  <hr class="mt-6">
 </div>

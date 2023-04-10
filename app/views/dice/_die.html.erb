@@ -4,19 +4,13 @@
     <%= die.name %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Game:</strong>
-    <%= die.game_id %>
-  </p>
-
-  <% if action_name != "show" %>
+  <div class="flex flex-wrap">
     <%= render "shared/link_button", text: "Faces", path: die_faces_path(die) %>
     
     <% if can? :manage, die %>
       <%= render "shared/link_button", text: 'Edit this die', path: edit_die_path(die) %>
       <%= render "shared/delete_button", text: "Delete", path: die %>
     <% end %>
-    
-    <hr class="mt-6">
-  <% end %>
+  </div>
+  <hr class="mt-6">
 </div>

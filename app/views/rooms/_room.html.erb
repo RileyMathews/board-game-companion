@@ -1,24 +1,10 @@
 <div id="<%= dom_id room %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Game:</strong>
-    <%= room.game_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
     <%= room.name %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Created by:</strong>
-    <%= room.created_by_id %>
-  </p>
-
-  <% if action_name != "show" %>
+  <div class="flex flex-wrap">
     <%= render "shared/link_button", text: "Show this room", path: room %>
-    <% if can? :manage, room %>
-      <%= render "shared/link_button", text: 'Edit this room', path: edit_room_path(room) %>
-    <% end %>
-    <hr class="mt-6">
-  <% end %>
+  </div>
+  <hr class="mt-6">
 </div>

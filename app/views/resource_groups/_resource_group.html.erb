@@ -1,11 +1,10 @@
 <div class="flex items-center justify-between mt-4" id="<%= dom_id resource_group %>">
   <p class="text-lg"><%= resource_group.name %></p>
   <% if can? :manage, resource_group %>
-    <div class="flex gap-2">
+    <div class="flex flex-wrap">
       <%= render "shared/link_button", text: 'Edit', path: edit_resource_group_path(resource_group) %>
       <%= render "shared/delete_button", text: 'Delete', path: resource_group_path(resource_group) %>
     </div>
   <% end %>
-
 </div>
 <hr class="mt-6">
