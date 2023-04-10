@@ -3,7 +3,6 @@
 app = "boardgamecompanion"
 kill_signal = "SIGINT"
 kill_timeout = 5
-primary_region = "dfw"
 processes = []
 
 [env]
