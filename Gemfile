@@ -38,4 +38,4 @@ group :development do
   gem "web-console" # Use console on exceptions pages [https://github.com/rails/web-console]
 end
 
-gem "dockerfile-rails", ">= 1.2", :group => :development
+gem "dockerfile-rails", ">= 1.2", group: :development
