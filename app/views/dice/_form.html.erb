@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= render "shared/text_field", f: form, field: :name %>
   </div>
 
   <div class="inline">
