@@ -11,14 +11,14 @@
   </div>
 
   <div class="my-2">
-    <%= render "shared/text_field", f: f, field: :password %>
+    <%= render "shared/password_field", f: f, field: :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
   </div>
 
   <div class="my-2">
-    <%= render "shared/text_field", f: f, field: :password_confirmation %>
+    <%= render "shared/password_field", f: f, field: :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
