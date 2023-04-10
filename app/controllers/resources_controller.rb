@@ -1,7 +1,7 @@
 class ResourcesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_game, only: %i(index new create)
-  before_action :set_resource, only: %i(show edit update destroy)
+  before_action :set_resource, only: %i(edit update destroy)
   authorize_resource
 
   # GET /resources or /resources.json
@@ -9,9 +9,6 @@ class ResourcesController < ApplicationController
     @can_create_resource = can?(:create, Resource.new(game: @game))
     @resources = @game.resources
   end
-
-  # GET /resources/1 or /resources/1.json
-  def show; end
 
   # GET /resources/new
   def new
@@ -34,7 +31,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       if @resource.save
-        format.html { redirect_to resource_url(@resource), notice: "Resource was successfully created." }
+        format.html { redirect_to game_resources_url(@game), notice: "Resource was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -45,7 +42,7 @@ class ResourcesController < ApplicationController
   def update
     respond_to do |format|
       if @resource.update(resource_params)
-        format.html { redirect_to resource_url(@resource), notice: "Resource was successfully updated." }
+        format.html { redirect_to game_resources_url(@resource.game), notice: "Resource was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

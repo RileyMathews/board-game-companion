@@ -46,7 +46,7 @@ RSpec.describe "resource management" do
     expect(page).to have_text("25")
     expect(page).not_to have_text("Resource name")
 
-    click_button "Destroy this resource"
+    click_button "Delete"
 
     expect(page).to have_text("Resources for #{game.name}")
     expect(page).not_to have_text("New name for resource")
