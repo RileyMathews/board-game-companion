@@ -3,11 +3,11 @@
     <%= render @resource %>
 
     <% if can? :manage, @resource %>
-      <%= link_to 'Edit this resource', edit_resource_path(@resource), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= render "shared/link_button", text: 'Edit this resource', path: edit_resource_path(@resource) %>
       <div class="inline-block ml-2">
-        <%= button_to 'Destroy this resource', resource_path(@resource), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        <%= render "shared/delete_button", text: 'Destroy this resource', path: resource_path(@resource) %>
       </div>
     <% end %>
-    <%= link_to 'Back to resources', game_resources_path(@resource.game), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= render "shared/link_button", text: 'Back to resources', path: game_resources_path(@resource.game) %>
   </div>
 </div>

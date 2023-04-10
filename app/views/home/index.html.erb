@@ -6,7 +6,7 @@
     <div class="p-4 border-slate-500 rounded-md border-2 flex flex-col items-center">
       <h5><%= room.name %></h5>
       <p>Game: <%= room.game.name %></p>
-      <%= link_to "Play!", room_play_url(room), class: "btn" %>
+      <%= render "shared/link_button", text: "Play!", path: room_play_url(room) %>
     </div>
   <% end %>
 </div>

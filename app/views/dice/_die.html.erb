@@ -10,10 +10,10 @@
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this die", die, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= render "shared/link_button", text: "Show this die", path: die %>
     
     <% if can? :manage, die %>
-      <%= link_to 'Edit this die', edit_die_path(die), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= render "shared/link_button", text: 'Edit this die', path: edit_die_path(die) %>
     <% end %>
     
     <hr class="mt-6">

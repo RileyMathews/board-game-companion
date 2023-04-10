@@ -3,5 +3,5 @@
 
   <%= render "form", face: @face, die: @die %>
 
-  <%= link_to 'Back to faces', die_faces_path(@die), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= render "shared/link_button", text: 'Back to faces', path: die_faces_path(@die) %>
 </div>
