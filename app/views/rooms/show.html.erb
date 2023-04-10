@@ -1,15 +1,9 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <%= render @room %>
-
-    <% if can? :manage, @room %>
-      <p class="bg-slate-200 rounded-md p-4"><%= find_room_url(@room.join_code) %></p>
-      <%= render "shared/link_button", text: 'Edit this room', path: edit_room_path(@room) %>
-      <div class="inline-block ml-2">
-        <%= render "shared/delete_button", text: 'Destroy this room', path: room_path(@room) %>
-      </div>
-    <% end %>
-
-    <%= render "shared/link_button", text: 'Back to rooms', path: game_rooms_path(@room.game) %>
+<div class="flex flex-col gap-2">
+  <h1><%= @room.name %></h1>
+  <p class="bg-slate-200 rounded-md p-4"><%= find_room_url(@room.join_code) %></p>
+  <div class="flex flex-wrap">
+    <%= render "shared/link_button", text: 'Edit this room', path: edit_room_path(@room) %>
+    <%= render "shared/link_button", text: "Play!", path: room_play_url(@room) %>
+    <%= render "shared/delete_button", text: 'Delete', path: room_path(@room) %>
   </div>
 </div>
