@@ -38,7 +38,7 @@ services:
     ci: &ci
         build:
             context: .
-            dockerfile: ./Dockerfile
+            dockerfile: ./.docker/dev/dockerfile
             target: build
         volumes:
             - .:/code
