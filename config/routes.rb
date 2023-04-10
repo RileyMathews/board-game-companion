@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "/rooms/:room_id/play", to: "play#index", as: "room_play"
   post "/rooms/:room_id/roll/:die_id/:number", to: "play#roll", as: "roll_dice"
   post "/rooms/:room_id/archive_rolls", to: "play#archive_rolls", as: "archive_rolls"
+  post "/play/rolls/:roll_id/archive", to: "play#archive_roll", as: "archive_roll"
 
   root to: "home#index"
 end
