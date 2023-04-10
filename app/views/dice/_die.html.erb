@@ -10,10 +10,11 @@
   </p>
 
   <% if action_name != "show" %>
-    <%= render "shared/link_button", text: "Show this die", path: die %>
+    <%= render "shared/link_button", text: "Faces", path: die_faces_path(die) %>
     
     <% if can? :manage, die %>
       <%= render "shared/link_button", text: 'Edit this die', path: edit_die_path(die) %>
+      <%= render "shared/delete_button", text: "Delete", path: die %>
     <% end %>
     
     <hr class="mt-6">

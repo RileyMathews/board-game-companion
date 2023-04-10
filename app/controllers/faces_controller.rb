@@ -1,7 +1,7 @@
 class FacesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_die, only: %i(index new create)
-  before_action :set_face, only: %i(show edit update destroy)
+  before_action :set_face, only: %i(edit update destroy)
   authorize_resource
 
   # GET /faces or /faces.json
@@ -9,9 +9,6 @@ class FacesController < ApplicationController
     @faces = @die.faces
     @can_create_face = can? :new, Face.new(die: @die)
   end
-
-  # GET /faces/1 or /faces/1.json
-  def show; end
 
   # GET /faces/new
   def new
@@ -30,7 +27,7 @@ class FacesController < ApplicationController
 
     respond_to do |format|
       if @face.save
-        format.html { redirect_to face_url(@face), notice: "Face was successfully created." }
+        format.html { redirect_to die_faces_url(@die), notice: "Face was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -41,7 +38,7 @@ class FacesController < ApplicationController
   def update
     respond_to do |format|
       if @face.update(face_params)
-        format.html { redirect_to face_url(@face), notice: "Face was successfully updated." }
+        format.html { redirect_to die_faces_url(@face.die), notice: "Face was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

@@ -23,6 +23,7 @@
     <%= render "shared/link_button", text: "Show this resource", path: resource %>
     <% if can? :manage, resource %>
       <%= render "shared/link_button", text: 'Edit this resource', path: edit_resource_path(resource) %>
+      <%= render "shared/delete_button", text: "Delete", path: resource %>
     <% end %>
 
     <hr class="mt-6">
