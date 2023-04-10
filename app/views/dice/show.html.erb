@@ -2,13 +2,13 @@
   <div class="mx-auto">
     <%= render @die %>
  
+    <%= render "shared/link_button", text: 'Faces', path: die_faces_path(@die) %>
+    <%= render "shared/link_button", text: 'Back to dice', path: game_dice_path(@die.game) %>
     <% if can? :manage, @die %>
-      <%= link_to 'Edit this die', edit_die_path(@die), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= render "shared/link_button", text: 'Edit this die', path: edit_die_path(@die) %>
       <div class="inline-block ml-2">
-        <%= button_to 'Destroy this die', die_path(@die), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        <%= render "shared/delete_button", text: 'Destroy this die', path: die_path(@die) %>
       </div>
     <% end %>
-    <%= link_to 'Faces', die_faces_path(@die), class: "btn" %>
-    <%= link_to 'Back to dice', game_dice_path(@die.game), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

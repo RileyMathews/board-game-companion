@@ -3,5 +3,5 @@
 
   <%= render "form", game: @game, resource: @resource, resource_group_options: @resource_group_options %>
 
-  <%= link_to 'Back to resources', game_resources_path(@game), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= render "shared/link_button", text: 'Back to resources', path: game_resources_path(@game) %>
 </div>

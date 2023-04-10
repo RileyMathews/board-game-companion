@@ -5,13 +5,13 @@
   </p>
   <div class="flex gap-2">
 
-  <%= link_to 'Rooms', game_rooms_path(game), class: "btn" %>
-  <%= link_to 'Dice', game_dice_path(game), class: "btn" %>
-  <%= link_to 'Resources', game_resources_path(game), class: "btn" %>
-  <%= link_to 'Resource Groups', game_resource_groups_path(game), class: "btn" %>
+  <%= render "shared/link_button", text: 'Rooms', path: game_rooms_path(game) %>
+  <%= render "shared/link_button", text: 'Dice', path: game_dice_path(game) %>
+  <%= render "shared/link_button", text: 'Resources', path: game_resources_path(game) %>
+  <%= render "shared/link_button", text: 'Resource Groups', path: game_resource_groups_path(game) %>
   <% if can? :manage, game %>
-    <%= link_to 'Edit this game', edit_game_path(game), class: "btn" %>
-    <%= button_to 'Delete', game, method: :delete, class: "btn" %>
+    <%= render "shared/link_button", text: 'Edit this game', path: edit_game_path(game) %>
+    <%= render "shared/delete_button", text: 'Delete', path: game %>
   <% end %>
 
   </div>

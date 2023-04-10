@@ -1,10 +1,10 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Dice for <%= @game.name %></h1>
-    <%= link_to 'Back to games', games_path, class: "btn" %>
+    <%= render "shared/link_button", text: 'Back to games', path: games_path %>
     
     <% if @can_create_die %>
-      <%= link_to 'New die', new_game_die_path(@game), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <%= render "shared/link_button", text: 'New die', path: new_game_die_path(@game) %>
     <% end %>
     
   </div>
