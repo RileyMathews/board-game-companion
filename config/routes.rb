@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :resources
     resources :resource_groups, except: %i(show)
     resources :dice, shallow: true do
-      resources :faces, shallow: true
+      resources :faces, shallow: true, except: %i(show)
     end
     resources :rooms, shallow: true
   end

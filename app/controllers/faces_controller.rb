@@ -1,7 +1,7 @@
 class FacesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_die, only: %i(index new create)
-  before_action :set_face, only: %i(show edit update destroy)
+  before_action :set_face, only: %i(edit update destroy)
   authorize_resource
 
   # GET /faces or /faces.json
@@ -9,9 +9,6 @@ class FacesController < ApplicationController
     @faces = @die.faces
     @can_create_face = can? :new, Face.new(die: @die)
   end
-
-  # GET /faces/1 or /faces/1.json
-  def show; end
 
   # GET /faces/new
   def new
