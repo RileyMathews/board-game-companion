@@ -4,7 +4,7 @@
     created by player <%= game.created_by.username %>
   </p>
   <div class="flex flex-wrap">
-    <%= render "shared/link_button", text: 'Rooms', path: game_rooms_path(game) %>
+    <%= render "shared/link_button", text: 'Start Room', path: new_game_room_path(game) %>
     <%= render "shared/link_button", text: 'Dice', path: game_dice_path(game) %>
     <%= render "shared/link_button", text: 'Resources', path: game_resources_path(game) %>
     <%= render "shared/link_button", text: 'Resource Groups', path: game_resource_groups_path(game) %>

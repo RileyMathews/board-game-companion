@@ -1,13 +1,8 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_game, only: %i(index new create)
+  before_action :set_game, only: %i(new create)
   before_action :set_room, only: %i(show edit update destroy)
   authorize_resource
-
-  # GET /rooms or /rooms.json
-  def index
-    @rooms = @game.rooms
-  end
 
   # GET /rooms/1 or /rooms/1.json
   def show; end
@@ -48,11 +43,10 @@ class RoomsController < ApplicationController
 
   # DELETE /rooms/1 or /rooms/1.json
   def destroy
-    game = @room.game
     @room.destroy
 
     respond_to do |format|
-      format.html { redirect_to game_rooms_url(game), notice: "Room was successfully destroyed." }
+      format.html { redirect_to games_path, notice: "Room was successfully destroyed." }
     end
   end
 

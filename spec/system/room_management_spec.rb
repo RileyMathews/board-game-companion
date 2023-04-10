@@ -17,13 +17,9 @@ RSpec.describe "room management" do
 
     expect(page).to have_text(game.name)
 
-    click_on "Rooms"
+    click_on "Start Room"
 
-    expect(page).to have_text("Rooms for #{game.name}")
-
-    click_on "New room"
-
-    expect(page).to have_text("Back to rooms")
+    expect(page).to have_text("Creating room for #{game.name}")
 
     fill_in "Name", with: "Room name"
     click_button "Create Room"
@@ -32,7 +28,7 @@ RSpec.describe "room management" do
 
     click_on("Edit this room")
 
-    expect(page).to have_text("Back to rooms")
+    expect(page).to have_text("Back to room")
 
     fill_in "Name", with: "New name for room"
     click_button "Update Room"
@@ -40,20 +36,25 @@ RSpec.describe "room management" do
     expect(page).to have_text("New name for room")
     expect(page).not_to have_text("Room name")
 
-    click_button "Destroy this room"
+    click_on "Play!"
 
-    expect(page).to have_text("Rooms for #{game.name}")
-    expect(page).not_to have_text("New name for room")
+    expect(page).to have_text("Playing #{game.name}")
+
+    click_on "Manage room"
+
+    expect(page).to have_text("New name for room")
+
+    click_button "Delete"
+
+    expect(page).to have_text(game.name)
   end
 
   it "allows the user that created a room to play in a room" do
     visit "/"
     click_on "Games"
-    click_on "Rooms"
-    click_on "New room"
+    click_on "Start Room"
     fill_in "Name", with: "Room name"
     click_button "Create Room"
-    visit "/"
     click_on "Play!"
 
     expect(page).to have_text("Playing #{game.name}")

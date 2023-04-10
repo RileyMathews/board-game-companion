@@ -1,4 +1,9 @@
 <h1>Playing <%= @room.game.name %></h1>
+<% if RoomAbility.new(current_user).can? :manage, @room %>
+  <div class="flex">
+    <%= render "shared/link_button", text: "Manage room", path: @room %>
+  </div>
+<% end %>
 <%= render "resources", resources_by_group: @resources_by_group %>
 <%= render "dice", dice: @dice, roll_options: @roll_options %>
 <%= render "rolls", rolls: @rolls %>
