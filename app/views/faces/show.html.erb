@@ -4,9 +4,7 @@
 
     <% if can? :manage, @face %>
       <%= render "shared/link_button", text: 'Edit this face', path: edit_face_path(@face) %>
-      <div class="inline-block ml-2">
-        <%= render "shared/delete_button", text: 'Destroy this face', path: face_path(@face) %>
-      </div>
+      <%= render "shared/delete_button", text: 'Destroy this face', path: face_path(@face) %>
     <% end %>
 
     <%= render "shared/link_button", text: 'Back to faces', path: die_faces_path(@face.die) %>

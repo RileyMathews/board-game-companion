@@ -8,6 +8,7 @@
     <%= render "shared/link_button", text: "Show this face", path: face %>
     <% if can? :manage, face %>
       <%= render "shared/link_button", text: 'Edit this face', path: edit_face_path(face) %>  
+      <%= render "shared/delete_button", text: "Delete", path: face %>
     <% end %>
     <hr class="mt-6">
   <% end %>

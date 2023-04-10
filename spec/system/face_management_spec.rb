@@ -41,7 +41,7 @@ RSpec.describe "face management" do
     expect(page).to have_text("New name for face: 2")
     expect(page).not_to have_text("Face name")
 
-    click_button "Destroy this face"
+    click_button "Delete"
 
     expect(page).to have_text("Faces for #{die.name}")
     expect(page).not_to have_text("New name for face")

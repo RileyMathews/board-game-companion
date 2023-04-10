@@ -30,7 +30,7 @@ class FacesController < ApplicationController
 
     respond_to do |format|
       if @face.save
-        format.html { redirect_to face_url(@face), notice: "Face was successfully created." }
+        format.html { redirect_to die_faces_url(@die), notice: "Face was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -41,7 +41,7 @@ class FacesController < ApplicationController
   def update
     respond_to do |format|
       if @face.update(face_params)
-        format.html { redirect_to face_url(@face), notice: "Face was successfully updated." }
+        format.html { redirect_to die_faces_url(@face.die), notice: "Face was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
