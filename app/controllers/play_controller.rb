@@ -4,8 +4,8 @@ class PlayController < ApplicationController
   def index
     user_room = UserRoom.eager_load(:user_room_resources, room: { game: :dice })
                         .find_by(room_id: params[:room_id], user: current_user)
+    authorize! :manage, user_room
     @room = user_room.room
-    authorize! :play, @room
 
     @dice = @room.game.dice
     roll_log = RollLog.find_or_create_by(user_room: user_room)
@@ -16,7 +16,7 @@ class PlayController < ApplicationController
 
   def roll
     user_room = UserRoom.find_by(room_id: params[:room_id], user: current_user)
-    authorize! :play, user_room.room
+    authorize! :manage, user_room
     roll_log = RollLog.find_by(user_room: user_room)
     Die.find(params[:die_id]).roll roll_log: roll_log, number: params[:number]
 
@@ -25,7 +25,7 @@ class PlayController < ApplicationController
 
   def archive_roll
     roll = Roll.find params[:roll_id]
-    authorize! :archive, roll
+    authorize! :manage, roll
     roll.update! archived: true
 
     redirect_to room_play_url(roll.roll_log.user_room.room)

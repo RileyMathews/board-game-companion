@@ -3,7 +3,7 @@
     <h1 class="font-bold text-4xl">Dice for <%= @game.name %></h1>
     <%= render "shared/link_button", text: 'Back to games', path: games_path %>
     
-    <% if @can_create_die %>
+    <% if can? :manage, @game %>
       <%= render "shared/link_button", text: 'New die', path: new_game_die_path(@game) %>
     <% end %>
     
