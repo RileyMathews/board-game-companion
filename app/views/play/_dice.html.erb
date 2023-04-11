@@ -21,9 +21,9 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
         </svg>
       </button>
-      <div id="dropdown-dice-<%= die.id %>" class="flex gap-2 flex-wrap hidden bg-slate-500 p-4 rounded-md">
+      <div id="dropdown-dice-<%= die.id %>" class="flex flex-wrap z-10 hidden bg-white rounded-lg shadow dark:bg-gray-700 p-4">
         <% roll_options.each do |number| %>
-          <%= button_to number, roll_dice_path(@room, die, number), method: :post, class: "text-gray-900 bg-white border border-gray-300 focus: outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" %>
+          <%= button_to number, roll_dice_path(@room, die, number), method: :post, class: "text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700", form_class: "inline" %>
         <% end %>
       </div>
     </div>

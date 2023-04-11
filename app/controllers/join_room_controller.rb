@@ -1,4 +1,7 @@
 class JoinRoomController < ApplicationController
+  before_action :authenticate_user!
+  skip_authorization_check
+
   def find_room
     @room = Room.find_by join_code: params[:join_code]
     return unless @room.users.include? current_user

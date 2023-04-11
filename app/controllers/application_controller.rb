@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   extend Lettable
   before_action :configure_permitted_parameters, if: :devise_controller?
+  check_authorization unless: :devise_controller?
 
 protected
 

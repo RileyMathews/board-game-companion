@@ -16,11 +16,11 @@ class PlayController < ApplicationController
 
   def roll
     user_room = UserRoom.find_by(room_id: params[:room_id], user: current_user)
+    authorize! :play, user_room.room
     roll_log = RollLog.find_by(user_room: user_room)
-    die = Die.find params[:die_id]
-    die.roll roll_log: roll_log, number: params[:number]
+    Die.find(params[:die_id]).roll roll_log: roll_log, number: params[:number]
 
-    redirect_to room_play_url(params[:room_id])
+    redirect_to room_play_url(user_room.room)
   end
 
   def archive_roll
