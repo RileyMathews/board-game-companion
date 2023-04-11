@@ -70,8 +70,4 @@ private
   def die_params
     params.require(:die).permit(:name, :game_id)
   end
-
-  def current_ability
-    @current_ability ||= DieAbility.new(current_user)
-  end
 end

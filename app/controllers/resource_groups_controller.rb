@@ -55,8 +55,4 @@ private
   def resource_group_params
     params.require(:resource_group).permit(:name)
   end
-
-  def current_ability
-    @current_ability ||= ResourceGroupAbility.new current_user
-  end
 end

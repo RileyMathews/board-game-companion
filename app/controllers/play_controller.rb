@@ -30,10 +30,4 @@ class PlayController < ApplicationController
 
     redirect_to room_play_url(roll.roll_log.user_room.room)
   end
-
-private
-
-  def current_ability
-    @current_ability ||= PlayAbility.new current_user
-  end
 end

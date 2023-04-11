@@ -56,8 +56,4 @@ private
   def game_params
     params.require(:game).permit(:name, :created_by_id)
   end
-
-  def current_ability
-    @current_ability ||= GameAbility.new(current_user)
-  end
 end

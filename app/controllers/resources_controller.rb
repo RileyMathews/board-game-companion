@@ -70,10 +70,6 @@ private
     @game = Game.find(params[:game_id])
   end
 
-  def current_ability
-    @current_ability ||= ResourceAbility.new current_user
-  end
-
   def resource_group_options(game)
     [["------", ""]] + game.resource_groups.map { |group| [group.name, group.id] }
   end

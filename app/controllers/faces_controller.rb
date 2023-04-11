@@ -70,8 +70,4 @@ private
   def face_params
     params.require(:face).permit(:die_id, :name, :count)
   end
-
-  def current_ability
-    @current_ability ||= FaceAbility.new(current_user)
-  end
 end
