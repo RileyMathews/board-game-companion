@@ -9,16 +9,16 @@ class ResourceGroupsController < ApplicationController
   end
 
   def new
+    authorize! :manage, @game
     @resource_group = @game.resource_groups.build
-    authorize! :new, @resource_group
   end
 
   def edit; end
 
   def create
+    authorize! :create, @game
     @resource_group = ResourceGroup.new(resource_group_params)
     @resource_group.game = @game
-    authorize! :create, @resource_group
 
     if @resource_group.save
       redirect_to game_resource_groups_url(@game), notice: "Group created"
@@ -54,9 +54,5 @@ private
 
   def resource_group_params
     params.require(:resource_group).permit(:name)
-  end
-
-  def current_ability
-    @current_ability ||= ResourceGroupAbility.new current_user
   end
 end

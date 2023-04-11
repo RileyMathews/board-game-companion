@@ -6,14 +6,13 @@ class ResourcesController < ApplicationController
 
   # GET /resources or /resources.json
   def index
-    @can_create_resource = can?(:create, Resource.new(game: @game))
     @resources = @game.resources
   end
 
   # GET /resources/new
   def new
+    authorize! :manage, @game
     @resource = @game.resources.build
-    authorize! :new, @resource
 
     @resource_group_options = resource_group_options @game
   end
@@ -25,9 +24,9 @@ class ResourcesController < ApplicationController
 
   # POST /resources or /resources.json
   def create
+    authorize! :manage, @game
     @resource = Resource.new(resource_params)
     @resource.game = @game
-    authorize! :create, @resource
 
     respond_to do |format|
       if @resource.save
@@ -68,10 +67,6 @@ private
 
   def set_game
     @game = Game.find(params[:game_id])
-  end
-
-  def current_ability
-    @current_ability ||= ResourceAbility.new current_user
   end
 
   def resource_group_options(game)

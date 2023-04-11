@@ -6,14 +6,13 @@ class DiceController < ApplicationController
 
   # GET /dice or /dice.json
   def index
-    @can_create_die = can?(:create, Die.new(game: @game))
     @dice = @game.dice
   end
 
   # GET /dice/new
   def new
+    authorize! :manage, @game
     @die = @game.dice.build
-    authorize! :new, @die
   end
 
   # GET /dice/1/edit
@@ -21,9 +20,9 @@ class DiceController < ApplicationController
 
   # POST /dice or /dice.json
   def create
+    authorize! :manage, @game
     @die = Die.new(die_params)
     @die.game = @game
-    authorize! :create, @die
 
     respond_to do |format|
       if @die.save
@@ -69,9 +68,5 @@ private
   # Only allow a list of trusted parameters through.
   def die_params
     params.require(:die).permit(:name, :game_id)
-  end
-
-  def current_ability
-    @current_ability ||= DieAbility.new(current_user)
   end
 end

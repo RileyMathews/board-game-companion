@@ -16,8 +16,4 @@ private
   def user_room_resource_params
     params.require(:user_room_resource).permit(:ammount)
   end
-
-  def current_ability
-    @current_ability ||= UserRoomResourceAbility.new current_user
-  end
 end

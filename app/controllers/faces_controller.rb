@@ -7,13 +7,12 @@ class FacesController < ApplicationController
   # GET /faces or /faces.json
   def index
     @faces = @die.faces
-    @can_create_face = can? :new, Face.new(die: @die)
   end
 
   # GET /faces/new
   def new
+    authorize! :manage, @die
     @face = @die.faces.build
-    authorize! :new, @face
   end
 
   # GET /faces/1/edit
@@ -21,9 +20,9 @@ class FacesController < ApplicationController
 
   # POST /faces or /faces.json
   def create
+    authorize! :manage, @die
     @face = Face.new(face_params)
     @face.die = @die
-    authorize! :create, @face
 
     respond_to do |format|
       if @face.save
@@ -69,9 +68,5 @@ private
   # Only allow a list of trusted parameters through.
   def face_params
     params.require(:face).permit(:die_id, :name, :count)
-  end
-
-  def current_ability
-    @current_ability ||= FaceAbility.new(current_user)
   end
 end

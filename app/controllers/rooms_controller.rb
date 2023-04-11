@@ -65,8 +65,4 @@ private
   def room_params
     params.require(:room).permit(:game_id, :name, :created_by_id)
   end
-
-  def current_ability
-    @current_ability ||= RoomAbility.new(current_user)
-  end
 end
