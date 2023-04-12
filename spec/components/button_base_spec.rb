@@ -17,5 +17,9 @@ RSpec.describe ButtonBase do
     it "returns the correct class list for light variant" do
       expect(TestHarness.new(:light).full_class_list).to eq "text-sm focus:ring-4 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2 focus:outline-none text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" # rubocop:disable Layout/LineLength
     end
+
+    it "returns the correct class list for danger variant" do
+      expect(TestHarness.new(:danger).full_class_list).to eq "text-sm focus:ring-4 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" # rubocop:disable Layout/LineLength
+    end
   end
 end
