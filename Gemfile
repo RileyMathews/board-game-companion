@@ -23,7 +23,6 @@ group :development, :test do
   gem "capybara"
   gem "debug", platforms: %i(mri mingw x64_mingw) # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "factory_bot_rails"
-  gem "rails-controller-testing"
   gem "rspec-rails"
   gem "selenium-webdriver"
 end

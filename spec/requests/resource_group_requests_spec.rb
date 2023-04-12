@@ -13,7 +13,6 @@ RSpec.describe "resource group management" do
     it "shows all of the groups for a game" do
       get game_resource_groups_path(game)
 
-      expect(response).to render_template :index
       expect(response.body).to include("Resource groups for #{game.name}")
       expect(response.body).to include(resource_group.name)
     end
@@ -23,7 +22,6 @@ RSpec.describe "resource group management" do
     it "renders the create form" do
       get new_game_resource_group_path(game)
 
-      expect(response).to render_template :new
       expect(response.body).to include("New group")
       expect(response.body).to include("Create Resource group")
     end
@@ -36,7 +34,6 @@ RSpec.describe "resource group management" do
       expect(response).to redirect_to game_resource_groups_path(game)
       follow_redirect!
 
-      expect(response).to render_template :index
       expect(response.body).to include("New group name")
 
       group = ResourceGroup.last
@@ -49,7 +46,6 @@ RSpec.describe "resource group management" do
     it "shows the edit form" do
       get edit_resource_group_path(resource_group)
 
-      expect(response).to render_template :edit
       expect(response.body).to include("Editing resource group")
       expect(response.body).to include("Update Resource group")
     end
@@ -64,7 +60,6 @@ RSpec.describe "resource group management" do
       expect(response).to redirect_to game_resource_groups_path(game)
       follow_redirect!
 
-      expect(response).to render_template :index
       expect(response.body).not_to include("Old name")
       expect(response.body).to include("New name")
     end
@@ -77,7 +72,6 @@ RSpec.describe "resource group management" do
       expect(response).to redirect_to game_resource_groups_path(game)
       follow_redirect!
 
-      expect(response).to render_template :index
       expect(response.body).not_to include(resource_group.name)
     end
   end

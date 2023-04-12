@@ -76,4 +76,6 @@ RSpec.configure do |config|
     Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
     Capybara.server_port = 3000
   end
+
+  config.include Capybara::RSpecMatchers, type: :request
 end

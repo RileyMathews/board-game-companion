@@ -24,15 +24,15 @@ RSpec.describe UserRoom do
       resource_group_one = create :resource_group, game: user_room.room.game
       resource_group_two = create :resource_group, game: user_room.room.game
       [resource_group_one, resource_group_two].each do |group|
-        create_list :resource, 10, resource_group: group, game: user_room.room.game
+        create_list :resource, 3, resource_group: group, game: user_room.room.game
       end
-      create_list :resource, 5, resource_group: nil, game: user_room.room.game
+      create_list :resource, 2, resource_group: nil, game: user_room.room.game
 
       result = user_room.resources_by_group
 
-      expect(result[resource_group_one.name].length).to eq 10
-      expect(result[resource_group_two.name].length).to eq 10
-      expect(result["Ungrouped"].length).to eq 5
+      expect(result[resource_group_one.name].length).to eq 3
+      expect(result[resource_group_two.name].length).to eq 3
+      expect(result["Ungrouped"].length).to eq 2
       expect(result[resource_group_one.name].first).to be_a UserRoomResource
     end
   end

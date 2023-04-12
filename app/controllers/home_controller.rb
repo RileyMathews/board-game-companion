@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @active_rooms = if user_signed_in?
-                      current_user.rooms
+                      UserRoom.eager_load(:room).where(user: current_user).map(&:room)
                     else
                       []
                     end
