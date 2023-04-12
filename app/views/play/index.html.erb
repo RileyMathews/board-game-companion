@@ -1,7 +1,7 @@
 <h1>Playing <%= @room.game.name %></h1>
 <% if can? :manage, @room %>
   <div class="flex">
-    <%= render "shared/link_button", text: "Manage room", path: @room %>
+    <%= render LinkButtonComponent.new text: "Manage room", href: @room %>
   </div>
 <% end %>
 <%= render "resources", resources_by_group: @resources_by_group %>

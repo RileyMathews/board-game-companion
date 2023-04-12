@@ -5,10 +5,10 @@
   </p>
 
   <div class="flex flex-wrap">
-    <%= render "shared/link_button", text: "Faces", path: die_faces_path(die) %>
+    <%= render LinkButtonComponent.new text: "Faces", href: die_faces_path(die) %>
     
     <% if can? :manage, die %>
-      <%= render "shared/link_button", text: 'Edit this die', path: edit_die_path(die) %>
+      <%= render LinkButtonComponent.new text: 'Edit this die', href: edit_die_path(die) %>
       <%= render "shared/delete_button", text: "Delete", path: die %>
     <% end %>
   </div>

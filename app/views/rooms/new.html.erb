@@ -3,5 +3,5 @@
 
   <%= render "form", room: @room, game: @game %>
 
-  <%= render "shared/link_button", text: 'Back to rooms', path: game_rooms_path(@game) %>
+  <%= render LinkButtonComponent.new text: 'Back to rooms', href: game_rooms_path(@game) %>
 </div>

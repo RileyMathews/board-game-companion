@@ -2,7 +2,7 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Resources for <%= @game.name %></h1>
     <% if can? :manage, @game %>
-      <%= render "shared/link_button", text: 'New resource', path: new_game_resource_path(@game) %>
+      <%= render LinkButtonComponent.new text: 'New resource', href: new_game_resource_path(@game) %>
     <% end %>
   </div>
 

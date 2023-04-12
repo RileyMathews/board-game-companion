@@ -5,9 +5,9 @@
   </p>
 
   <div class="flex flex-wrap">
-    <%= render "shared/link_button", text: "Show this face", path: face %>
+    <%= render LinkButtonComponent.new text: "Show this face", href: face %>
     <% if can? :manage, face %>
-      <%= render "shared/link_button", text: 'Edit this face', path: edit_face_path(face) %>  
+      <%= render LinkButtonComponent.new text: 'Edit this face', href: edit_face_path(face) %>  
       <%= render "shared/delete_button", text: "Delete", path: face %>
     <% end %>
   </div>

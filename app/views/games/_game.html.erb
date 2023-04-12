@@ -4,12 +4,12 @@
     created by player <%= game.created_by.username %>
   </p>
   <div class="flex flex-wrap">
-    <%= render "shared/link_button", text: 'Start Room', path: new_game_room_path(game) %>
-    <%= render "shared/link_button", text: 'Dice', path: game_dice_path(game) %>
-    <%= render "shared/link_button", text: 'Resources', path: game_resources_path(game) %>
-    <%= render "shared/link_button", text: 'Resource Groups', path: game_resource_groups_path(game) %>
+    <%= render LinkButtonComponent.new text: 'Start Room', href: new_game_room_path(game) %>
+    <%= render LinkButtonComponent.new text: 'Dice', href: game_dice_path(game) %>
+    <%= render LinkButtonComponent.new text: 'Resources', href: game_resources_path(game) %>
+    <%= render LinkButtonComponent.new text: 'Resource Groups', href: game_resource_groups_path(game) %>
     <% if can? :manage, game %>
-      <%= render "shared/link_button", text: 'Edit this game', path: edit_game_path(game) %>
+      <%= render LinkButtonComponent.new text: 'Edit this game', href: edit_game_path(game) %>
       <%= render "shared/delete_button", text: 'Delete', path: game %>
     <% end %>
   </div>

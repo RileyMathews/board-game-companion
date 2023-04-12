@@ -19,9 +19,9 @@
     <%= resource.max %>
   </p>
   <div class="flex flex-wrap">
-    <%= render "shared/link_button", text: "Show this resource", path: resource %>
+    <%= render LinkButtonComponent.new text: "Show this resource", href: resource %>
     <% if can? :manage, resource %>
-      <%= render "shared/link_button", text: 'Edit this resource', path: edit_resource_path(resource) %>
+      <%= render LinkButtonComponent.new text: 'Edit this resource', href: edit_resource_path(resource) %>
       <%= render "shared/delete_button", text: "Delete", path: resource %>
     <% end %>
   </div>
