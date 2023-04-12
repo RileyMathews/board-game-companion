@@ -67,3 +67,6 @@ RSpec/MultipleExpectations:
 
 RSpec/ExampleLength:
   Max: 100
+
+Lint/MissingSuper:
+  Enabled: false
