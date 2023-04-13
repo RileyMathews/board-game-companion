@@ -3,7 +3,7 @@
   <% if can? :manage, resource_group %>
     <div class="flex flex-wrap">
       <%= render LinkButtonComponent.new text: 'Edit', href: edit_resource_group_path(resource_group) %>
-      <%= render "shared/delete_button", text: 'Delete', path: resource_group_path(resource_group) %>
+      <%= render DeleteButtonComponent.new text: 'Delete', href: resource_group_path(resource_group) %>
     </div>
   <% end %>
 </div>

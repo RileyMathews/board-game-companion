@@ -10,7 +10,7 @@
     <%= render LinkButtonComponent.new text: 'Resource Groups', href: game_resource_groups_path(game) %>
     <% if can? :manage, game %>
       <%= render LinkButtonComponent.new text: 'Edit this game', href: edit_game_path(game) %>
-      <%= render "shared/delete_button", text: 'Delete', path: game %>
+      <%= render DeleteButtonComponent.new text: 'Delete', href: game %>
     <% end %>
   </div>
   <hr class="mt-6">

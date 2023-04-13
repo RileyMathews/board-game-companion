@@ -22,7 +22,7 @@
     <%= render LinkButtonComponent.new text: "Show this resource", href: resource %>
     <% if can? :manage, resource %>
       <%= render LinkButtonComponent.new text: 'Edit this resource', href: edit_resource_path(resource) %>
-      <%= render "shared/delete_button", text: "Delete", path: resource %>
+      <%= render DeleteButtonComponent.new text: "Delete", href: resource %>
     <% end %>
   </div>
   <hr class="mt-6">

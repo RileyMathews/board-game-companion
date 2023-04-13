@@ -8,7 +8,7 @@
     <%= render LinkButtonComponent.new text: "Show this face", href: face %>
     <% if can? :manage, face %>
       <%= render LinkButtonComponent.new text: 'Edit this face', href: edit_face_path(face) %>  
-      <%= render "shared/delete_button", text: "Delete", path: face %>
+      <%= render DeleteButtonComponent.new text: "Delete", href: face %>
     <% end %>
   </div>
   <hr class="mt-6">

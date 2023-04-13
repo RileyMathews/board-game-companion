@@ -7,6 +7,6 @@ RSpec.describe DeleteButtonComponent, type: :component do
     render_inline component
 
     expect(page).to have_selector 'form[action="/path"]'
-    expect(page).to have_selector 'input[name="_method"][value="delete"]', visible: false
+    expect(page).to have_selector 'input[name="_method"][value="delete"]', visible: :hidden
   end
 end

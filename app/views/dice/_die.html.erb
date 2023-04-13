@@ -9,7 +9,7 @@
     
     <% if can? :manage, die %>
       <%= render LinkButtonComponent.new text: 'Edit this die', href: edit_die_path(die) %>
-      <%= render "shared/delete_button", text: "Delete", path: die %>
+      <%= render DeleteButtonComponent.new text: "Delete", href: die %>
     <% end %>
   </div>
   <hr class="mt-6">
