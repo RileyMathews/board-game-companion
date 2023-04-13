@@ -22,7 +22,7 @@ RSpec.describe "room management" do
     expect(page).to have_text("Creating room for #{game.name}")
 
     fill_in "Name", with: "Room name"
-    click_button "Create Room"
+    click_button "Save"
 
     expect(page).to have_text("Room name")
 
@@ -31,7 +31,7 @@ RSpec.describe "room management" do
     expect(page).to have_text("Back to room")
 
     fill_in "Name", with: "New name for room"
-    click_button "Update Room"
+    click_button "Save"
 
     expect(page).to have_text("New name for room")
     expect(page).not_to have_text("Room name")
@@ -54,7 +54,7 @@ RSpec.describe "room management" do
     click_on "Games"
     click_on "Start Room"
     fill_in "Name", with: "Room name"
-    click_button "Create Room"
+    click_button "Save"
     click_on "Play!"
 
     expect(page).to have_text("Playing #{game.name}")

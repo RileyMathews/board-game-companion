@@ -23,7 +23,7 @@ RSpec.describe "dice management" do
       get new_game_die_path(game)
 
       expect(response.body).to include("New die")
-      expect(response.body).to include("Create Die")
+      expect(response.body).to include("Save")
     end
   end
 

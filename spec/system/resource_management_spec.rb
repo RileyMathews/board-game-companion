@@ -26,7 +26,7 @@ RSpec.describe "resource management" do
     fill_in "Name", with: "Resource name"
     fill_in "Min", with: 10
     fill_in "Max", with: 20
-    click_button "Create Resource"
+    click_button "Save"
 
     expect(page).to have_text("Resource name")
     expect(page).to have_text("10")
@@ -39,7 +39,7 @@ RSpec.describe "resource management" do
     fill_in "Name", with: "New name for resource"
     fill_in "Min", with: 5
     fill_in "Max", with: 25
-    click_button "Update Resource"
+    click_button "Save"
 
     expect(page).to have_text("New name for resource")
     expect(page).to have_text("5")

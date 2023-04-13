@@ -16,7 +16,7 @@
   <% end %>
 
   <div>
-    <%= f.submit "Log In", class: "btn-primary" %>
+    <%= render SubmitButtonComponent.new text: "Log In" %>
   </div>
 <% end %>
 <%= render "devise/shared/links" %>

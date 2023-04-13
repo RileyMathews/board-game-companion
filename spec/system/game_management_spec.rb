@@ -23,7 +23,7 @@ RSpec.describe "game management" do
     expect(page).to have_text("Back to games")
 
     fill_in "Name", with: "Game name"
-    click_button "Create Game"
+    click_button "Save"
 
     expect(page).to have_text("Game name")
 
@@ -32,7 +32,7 @@ RSpec.describe "game management" do
     expect(page).to have_text("Back to games")
 
     fill_in "Name", with: "New name for game"
-    click_button "Update Game"
+    click_button "Save"
 
     expect(page).to have_text("New name for game")
     expect(page).not_to have_text("Game name")

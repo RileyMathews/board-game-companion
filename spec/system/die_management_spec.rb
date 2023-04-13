@@ -24,7 +24,7 @@ RSpec.describe "die management" do
     expect(page).to have_text("Back to dice")
 
     fill_in "Name", with: "Die name"
-    click_button "Create Die"
+    click_button "Save"
 
     expect(page).to have_text("Die name")
 
@@ -33,7 +33,7 @@ RSpec.describe "die management" do
     expect(page).to have_text("Back to dice")
 
     fill_in "Name", with: "New name for die"
-    click_button "Update Die"
+    click_button "Save"
 
     expect(page).to have_text("New name for die")
     expect(page).not_to have_text("Die name")

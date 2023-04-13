@@ -26,7 +26,7 @@ RSpec.describe "face management" do
 
     fill_in "Name", with: "Face name"
     fill_in "Count", with: 1
-    click_button "Create Face"
+    click_button "Save"
 
     expect(page).to have_text("Face name: 1")
 
@@ -36,7 +36,7 @@ RSpec.describe "face management" do
 
     fill_in "Name", with: "New name for face"
     fill_in "Count", with: 2
-    click_button "Update Face"
+    click_button "Save"
 
     expect(page).to have_text("New name for face: 2")
     expect(page).not_to have_text("Face name")

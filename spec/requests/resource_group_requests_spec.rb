@@ -23,7 +23,7 @@ RSpec.describe "resource group management" do
       get new_game_resource_group_path(game)
 
       expect(response.body).to include("New group")
-      expect(response.body).to include("Create Resource group")
+      expect(response.body).to include("Save")
     end
   end
 
@@ -47,7 +47,7 @@ RSpec.describe "resource group management" do
       get edit_resource_group_path(resource_group)
 
       expect(response.body).to include("Editing resource group")
-      expect(response.body).to include("Update Resource group")
+      expect(response.body).to include("Save")
     end
   end
 

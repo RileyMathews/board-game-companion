@@ -23,7 +23,7 @@ RSpec.describe "face management" do
       get new_game_path
 
       expect(response.body).to include("New game")
-      expect(response.body).to include("Create Game")
+      expect(response.body).to include("Save")
     end
   end
 

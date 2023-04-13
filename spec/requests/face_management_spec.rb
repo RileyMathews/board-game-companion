@@ -24,7 +24,7 @@ RSpec.describe "face management" do
       get new_die_face_path(die)
 
       expect(response.body).to include("New face")
-      expect(response.body).to include("Create Face")
+      expect(response.body).to include("Save")
     end
   end
 
