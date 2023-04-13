@@ -11,8 +11,9 @@ RSpec.describe Resource do
       resource = create :resource, game: game
 
       player = UserRoom.find_by user: user, room: room
+
       expect(
-        player.current_resources.first.resource.name
+        player.room_resources.first.resource.name
       ).to eq resource.name
     end
   end

@@ -10,7 +10,7 @@ class Ability
     resource_group_ability
     room_ability
     roll_ability
-    user_room_resource_ability
+    room_resource_ability
     user_room_ability
   end
 

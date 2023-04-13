@@ -28,4 +28,8 @@ class UserRoom < ApplicationRecord
     end
     group_map
   end
+
+  def room_resources
+    RoomResource.where(user: user, room: room)
+  end
 end

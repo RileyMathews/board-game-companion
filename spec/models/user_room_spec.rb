@@ -10,8 +10,10 @@ RSpec.describe UserRoom do
 
       room.users << user
 
+      user_room = described_class.find_by(room: room, user: user)
+
       expect(
-        RoomResource.where(user: user, room: room).first.resource.name
+        user_room.room_resources.first.resource.name
       ).to eq resource.name
     end
   end
@@ -31,7 +33,7 @@ RSpec.describe UserRoom do
       expect(result[resource_group_one.name].length).to eq 3
       expect(result[resource_group_two.name].length).to eq 3
       expect(result["Ungrouped"].length).to eq 2
-      expect(result[resource_group_one.name].first).to be_a UserRoomResource
+      expect(result[resource_group_one.name].first).to be_a RoomResource
     end
   end
 end
