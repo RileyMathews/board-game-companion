@@ -52,8 +52,8 @@ private
     can :manage, Roll, roll_log: { user_room: { user_id: @user.id } }
   end
 
-  def user_room_resource_ability
-    can :manage, UserRoomResource, user_room: { user_id: @user.id }
+  def room_resource_ability
+    can :manage, RoomResource, user_id: @user.id
   end
 
   def user_room_ability

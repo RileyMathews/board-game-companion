@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="user-room-resource"
+// Connects to data-controller="room-resource"
 export default class extends Controller {
   static targets = ["output", "id"]
 
@@ -22,7 +22,7 @@ export default class extends Controller {
 
   set current(next) {
     this.outputTarget.textContent = next
-    fetch(`${location.origin}/user_room_resources/${this.id}`, {
+    fetch(`${location.origin}/room_resources/${this.id}`, {
       method: "PATCH",
       body: JSON.stringify({ "ammount": next }),
       headers: {

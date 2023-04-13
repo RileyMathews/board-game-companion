@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_09_183316) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_13_230653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,6 +85,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_183316) do
     t.index ["roll_log_id"], name: "index_rolls_on_roll_log_id"
   end
 
+  create_table "room_resources", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "resource_id", null: false
+    t.bigint "user_id"
+    t.integer "ammount", default: 0, null: false
+    t.index ["resource_id"], name: "index_room_resources_on_resource_id"
+    t.index ["room_id", "resource_id", "user_id"], name: "index_room_resources_on_room_id_and_resource_id_and_user_id", unique: true
+    t.index ["room_id"], name: "index_room_resources_on_room_id"
+    t.index ["user_id"], name: "index_room_resources_on_user_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.string "name"
@@ -95,17 +106,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_183316) do
     t.index ["created_by_id"], name: "index_rooms_on_created_by_id"
     t.index ["game_id"], name: "index_rooms_on_game_id"
     t.index ["join_code"], name: "index_rooms_on_join_code", unique: true
-  end
-
-  create_table "user_room_resources", force: :cascade do |t|
-    t.bigint "user_room_id", null: false
-    t.bigint "resource_id", null: false
-    t.integer "ammount", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["resource_id"], name: "index_user_room_resources_on_resource_id"
-    t.index ["user_room_id", "resource_id"], name: "index_user_room_resources_on_user_room_id_and_resource_id", unique: true
-    t.index ["user_room_id"], name: "index_user_room_resources_on_user_room_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|
@@ -146,10 +146,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_183316) do
   add_foreign_key "roll_results", "faces"
   add_foreign_key "roll_results", "rolls"
   add_foreign_key "rolls", "roll_logs"
+  add_foreign_key "room_resources", "resources"
+  add_foreign_key "room_resources", "rooms"
+  add_foreign_key "room_resources", "users"
   add_foreign_key "rooms", "games"
   add_foreign_key "rooms", "users", column: "created_by_id"
-  add_foreign_key "user_room_resources", "resources"
-  add_foreign_key "user_room_resources", "user_rooms"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
 end

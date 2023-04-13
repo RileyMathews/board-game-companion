@@ -1,8 +1,6 @@
 class UserRoom < ApplicationRecord
   belongs_to :room
   belongs_to :user
-  has_many :user_room_resources, dependent: :destroy
-  has_many :resources, through: :user_room_resources
   has_many :roll_logs, dependent: :destroy
 
   after_create :sync_resources
@@ -11,24 +9,21 @@ class UserRoom < ApplicationRecord
     # TODO: add test
     resources = Resource.where(game: room.game)
     resources.each do |resource|
-      UserRoomResource.find_or_create_by(
-        user_room: self,
+      RoomResource.find_or_create_by(
+        room: room,
+        user: user,
         resource: resource
       )
     end
   end
 
-  def current_resources
-    user_room_resources
-  end
-
   def resources_by_group
     group_map = {}
-    user_room_resources.each do |user_room_resource|
-      if group_map.key? user_room_resource.resource.group_name
-        group_map[user_room_resource.resource.group_name].push user_room_resource
+    room_resources.each do |room_resource|
+      if group_map.key? room_resource.resource.group_name
+        group_map[room_resource.resource.group_name].push room_resource
       else
-        group_map[user_room_resource.resource.group_name] = [user_room_resource]
+        group_map[room_resource.resource.group_name] = [room_resource]
       end
     end
     group_map

@@ -10,10 +10,8 @@ RSpec.describe UserRoom do
 
       room.users << user
 
-      player = described_class.find_by user: user, room: room
-
       expect(
-        player.current_resources.first.resource.name
+        RoomResource.where(user: user, room: room).first.resource.name
       ).to eq resource.name
     end
   end
