@@ -6,7 +6,7 @@
     <div class="p-4 border-slate-500 rounded-md border-2 flex flex-col items-center">
       <h5><%= room.name %></h5>
       <p>Game: <%= room.game.name %></p>
-      <%= render "shared/link_button", text: "Play!", path: room_play_url(room) %>
+      <%= render LinkButtonComponent.new text: "Play!", href: room_play_url(room) %>
     </div>
   <% end %>
 </div>

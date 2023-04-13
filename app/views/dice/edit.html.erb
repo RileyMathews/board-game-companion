@@ -3,6 +3,6 @@
 
   <%= render "form", die: @die, game: nil %>
 
-  <%= render "shared/link_button", text: "Show this die", path: @die %>
-  <%= render "shared/link_button", text: "Back to dice", path: game_dice_path(@die.game) %>
+  <%= render LinkButtonComponent.new text: "Show this die", href: @die %>
+  <%= render LinkButtonComponent.new text: "Back to dice", href: game_dice_path(@die.game) %>
 </div>

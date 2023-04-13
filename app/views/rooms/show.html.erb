@@ -2,8 +2,8 @@
   <h1><%= @room.name %></h1>
   <p class="bg-slate-200 rounded-md p-4"><%= find_room_url(@room.join_code) %></p>
   <div class="flex flex-wrap">
-    <%= render "shared/link_button", text: 'Edit this room', path: edit_room_path(@room) %>
-    <%= render "shared/link_button", text: "Play!", path: room_play_url(@room) %>
-    <%= render "shared/delete_button", text: 'Delete', path: room_path(@room) %>
+    <%= render LinkButtonComponent.new text: 'Edit this room', href: edit_room_path(@room) %>
+    <%= render LinkButtonComponent.new text: "Play!", href: room_play_url(@room) %>
+    <%= render DeleteButtonComponent.new text: 'Delete', href: room_path(@room) %>
   </div>
 </div>

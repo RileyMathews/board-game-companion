@@ -3,6 +3,6 @@
 
   <%= render "form", resource: @resource, game: nil, resource_group_options: @resource_group_options %>
 
-  <%= render "shared/link_button", text: "Show this resource", path: @resource %>
-  <%= render "shared/link_button", text: "Back to resources", path: game_resources_path(@resource.game) %>
+  <%= render LinkButtonComponent.new text: "Show this resource", href: @resource %>
+  <%= render LinkButtonComponent.new text: "Back to resources", href: game_resources_path(@resource.game) %>
 </div>
