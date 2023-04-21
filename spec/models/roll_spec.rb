@@ -34,7 +34,7 @@ RSpec.describe Roll do
 
       summary = roll.summary_string
 
-      expected_string = "#{face_a.name}: 1 | #{face_b.name}: 1"
+      expected_string = "#{roll.user.username} rolled #{face_a.name}: 1 | #{face_b.name}: 1"
       expect(summary).to eq expected_string
     end
   end

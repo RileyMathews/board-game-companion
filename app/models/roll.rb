@@ -9,6 +9,11 @@ class Roll < ApplicationRecord
 
   def summary_string
     summary_map = summary
-    summary_map.map { |face, count| "#{face}: #{count}" }.join(" | ")
+    rolls = summary_map.map { |face, count| "#{face}: #{count}" }.join(" | ")
+    "#{user.username} rolled #{rolls}"
+  end
+
+  def broadcast_roll
+    broadcast_append_to "room-#{room.id}-rolls", partial: "play/roll", locals: { roll: self }, target: "rolls"
   end
 end

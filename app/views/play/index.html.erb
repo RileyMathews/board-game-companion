@@ -4,6 +4,7 @@
     <%= render LinkButtonComponent.new text: "Manage room", href: room_path(@room) %>
   </div>
 <% end %>
+<%= turbo_stream_from "room-#{@room.id}-rolls" %>
 <%= render "resources", resources_by_group: @resources_by_group %>
 <%= render "dice", dice: @dice, roll_options: @roll_options %>
 <%= turbo_frame_tag "rolls", class: "fixed flex flex-col gap-4 right-5 bottom-5" %>
