@@ -1,8 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="fade"
+// Connects to data-controller="dismiss"
 export default class extends Controller {
-  remove() {
+  dismiss() {
     this.element.remove()
   }
 }

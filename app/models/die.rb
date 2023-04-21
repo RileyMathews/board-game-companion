@@ -7,6 +7,7 @@ class Die < ApplicationRecord
     roll = Roll.create! user: user, room: room
     roll_results_data = rolled_faces.map { |face| { face_id: face.id, roll_id: roll.id } }
     RollResult.insert_all! roll_results_data # rubocop:disable Rails/SkipsModelValidations
+    roll
   end
 
 private
