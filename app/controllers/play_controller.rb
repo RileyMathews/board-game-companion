@@ -11,7 +11,7 @@ class PlayController < ApplicationController
     @resources_by_group = user_room.resources_by_group
   end
 
-  def roll
+  def roll # rubocop:disable Metrics/AbcSize
     user_room = UserRoom.find_by(room_id: params[:room_id], user: current_user)
     authorize! :play, user_room
     @roll = Die.find(params[:die_id]).roll user: current_user, room: user_room.room, number: params[:number]
