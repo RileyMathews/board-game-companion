@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :roll do
-    roll_log
+    user
+    room
     archived { false }
   end
 end

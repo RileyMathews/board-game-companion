@@ -1,5 +1,6 @@
 class Roll < ApplicationRecord
-  belongs_to :roll_log
+  belongs_to :user
+  belongs_to :room
   has_many :roll_results, dependent: :destroy
 
   def summary

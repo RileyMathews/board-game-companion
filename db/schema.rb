@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_13_230653) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_20_180410) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,13 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_230653) do
     t.index ["resource_group_id"], name: "index_resources_on_resource_group_id"
   end
 
-  create_table "roll_logs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_room_id", null: false
-    t.index ["user_room_id"], name: "index_roll_logs_on_user_room_id"
-  end
-
   create_table "roll_results", force: :cascade do |t|
     t.bigint "face_id", null: false
     t.bigint "roll_id", null: false
@@ -78,11 +71,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_230653) do
   end
 
   create_table "rolls", force: :cascade do |t|
-    t.bigint "roll_log_id", null: false
     t.boolean "archived", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["roll_log_id"], name: "index_rolls_on_roll_log_id"
+    t.bigint "user_id"
+    t.bigint "room_id"
+    t.index ["room_id"], name: "index_rolls_on_room_id"
+    t.index ["user_id"], name: "index_rolls_on_user_id"
   end
 
   create_table "room_resources", force: :cascade do |t|
@@ -142,10 +137,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_230653) do
   add_foreign_key "resource_groups", "games"
   add_foreign_key "resources", "games"
   add_foreign_key "resources", "resource_groups"
-  add_foreign_key "roll_logs", "user_rooms"
   add_foreign_key "roll_results", "faces"
   add_foreign_key "roll_results", "rolls"
-  add_foreign_key "rolls", "roll_logs"
+  add_foreign_key "rolls", "rooms"
+  add_foreign_key "rolls", "users"
   add_foreign_key "room_resources", "resources"
   add_foreign_key "room_resources", "rooms"
   add_foreign_key "room_resources", "users"

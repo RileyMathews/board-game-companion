@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe Roll do
   let(:roll) { create :roll }
-  let(:die1) { create :die, game: roll.roll_log.user_room.room.game }
-  let(:die2) { create :die, game: roll.roll_log.user_room.room.game }
+  let(:die1) { create :die, game: roll.room.game }
+  let(:die2) { create :die, game: roll.room.game }
   let(:face1) { create :face, die: die1 }
   let(:face2) { create :face, die: die1 }
   let(:face3) { create :face, die: die2 }

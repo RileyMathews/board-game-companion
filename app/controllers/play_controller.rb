@@ -7,8 +7,7 @@ class PlayController < ApplicationController
     @room = user_room.room
 
     @dice = @room.game.dice
-    roll_log = RollLog.find_or_create_by(user_room: user_room)
-    @rolls = roll_log.rolls.where(archived: false)
+    @rolls = Roll.where(archived: false, user: current_user, room_id: params[:room_id])
     @roll_options = 1..10
     @resources_by_group = user_room.resources_by_group
   end
@@ -16,8 +15,7 @@ class PlayController < ApplicationController
   def roll
     user_room = UserRoom.find_by(room_id: params[:room_id], user: current_user)
     authorize! :play, user_room
-    roll_log = RollLog.find_by(user_room: user_room)
-    Die.find(params[:die_id]).roll roll_log: roll_log, number: params[:number]
+    Die.find(params[:die_id]).roll user: current_user, room: user_room.room, number: params[:number]
 
     redirect_to room_play_url(user_room.room)
   end
@@ -27,6 +25,6 @@ class PlayController < ApplicationController
     authorize! :manage, roll
     roll.update! archived: true
 
-    redirect_to room_play_url(roll.roll_log.user_room.room)
+    redirect_to room_play_url(roll.room)
   end
 end

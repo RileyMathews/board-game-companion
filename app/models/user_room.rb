@@ -1,7 +1,6 @@
 class UserRoom < ApplicationRecord
   belongs_to :room
   belongs_to :user
-  has_many :roll_logs, dependent: :destroy
 
   after_create :sync_resources
 
