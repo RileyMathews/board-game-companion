@@ -9,6 +9,7 @@ class PlayController < ApplicationController
     @dice = @room.game.dice
     @roll_options = 1..10
     @resources_by_group = user_room.resources_by_group
+    @other_players_resources = RoomResource.where(room: @room).where.not(user: current_user).joins(:user).group_by(&:user)
   end
 
   def roll # rubocop:disable Metrics/AbcSize

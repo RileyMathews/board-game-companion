@@ -14,6 +14,6 @@ class Roll < ApplicationRecord
   end
 
   def broadcast_roll
-    broadcast_append_to "room-#{room.id}-rolls", partial: "play/roll", locals: { roll: self }, target: "rolls"
+    broadcast_append_to "room-#{room.id}", partial: "play/roll", locals: { roll: self }, target: "rolls"
   end
 end
