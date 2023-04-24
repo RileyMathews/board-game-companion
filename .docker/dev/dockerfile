@@ -1,4 +1,4 @@
-FROM ruby:3 as base
+FROM ruby:3.2.2 as base
 
 ARG USERNAME=docker
 ARG USER_UID=1000
