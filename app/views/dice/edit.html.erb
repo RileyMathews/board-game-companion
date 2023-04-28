@@ -3,6 +3,6 @@
 
   <%= render "form", die: @die, game: nil %>
 
-  <%= render LinkButtonComponent.new text: "Show this die", href: @die %>
-  <%= render LinkButtonComponent.new text: "Back to dice", href: game_dice_path(@die.game) %>
+  <%= link_to "Show this die", @die, class: "btn-light" %>
+  <%= link_to "Back to dice", game_dice_path(@die.game), class: "btn-light" %>
 </div>

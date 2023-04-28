@@ -1,7 +1,7 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Games</h1>
-    <%= render LinkButtonComponent.new text: 'New game', href: new_game_path %>
+    <%= link_to 'New game', new_game_path, class: "btn-light" %>
   </div>
 
   <div id="games" class="min-w-full">

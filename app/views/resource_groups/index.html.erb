@@ -1,7 +1,7 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Resource groups for <%= @game.name %></h1>
-    <%= render LinkButtonComponent.new text: 'New group', href: new_game_resource_group_path(@game) %>
+    <%= link_to 'New group', new_game_resource_group_path(@game), class: "btn-light" %>
   </div>
 
   <div id="resources" class="min-w-full">

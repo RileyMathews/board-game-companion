@@ -1,7 +1,7 @@
 <h1>Playing <%= @room.game.name %></h1>
 <div class="flex gap-2">
   <% if can? :manage, @room %>
-    <%= render LinkButtonComponent.new text: "Manage room", href: room_path(@room) %>
+    <%= link_to "Manage room", room_path(@room), class: "btn-light" %>
   <% end %>
   <button class="btn-primary" 
     type="button" 

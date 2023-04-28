@@ -3,5 +3,5 @@
 
   <%= render "form", game: @game %>
 
-  <%= render LinkButtonComponent.new text: 'Back to games', href: games_path %>
+  <%= link_to 'Back to games', games_path, class: "btn-light" %>
 </div>

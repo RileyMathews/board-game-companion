@@ -5,10 +5,10 @@
   </p>
 
   <div class="flex flex-wrap">
-    <%= render LinkButtonComponent.new text: "Show this face", href: face %>
+    <%= link_to "Show this face", face, class: "btn-light" %>
     <% if can? :manage, face %>
-      <%= render LinkButtonComponent.new text: 'Edit this face', href: edit_face_path(face) %>  
-      <%= render DeleteButtonComponent.new text: "Delete", href: face %>
+      <%= link_to 'Edit this face', edit_face_path(face), class: "btn-light" %>
+      <%= button_to 'Delete', face, method: :delete, class: "btn-red", form_class: "inline" %>
     <% end %>
   </div>
   <hr class="mt-6">

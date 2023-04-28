@@ -19,10 +19,10 @@
     <%= resource.max %>
   </p>
   <div class="flex flex-wrap">
-    <%= render LinkButtonComponent.new text: "Show this resource", href: resource %>
+    <%= link_to "Show this resource", resource, class: "btn-light" %>
     <% if can? :manage, resource %>
-      <%= render LinkButtonComponent.new text: 'Edit this resource', href: edit_resource_path(resource) %>
-      <%= render DeleteButtonComponent.new text: "Delete", href: resource %>
+      <%= link_to 'Edit this resource', edit_resource_path(resource), class: "btn-light" %>
+      <%= button_to 'Delete', resource, method: :delete, class: "btn-red", form_class: "inline" %>
     <% end %>
   </div>
   <hr class="mt-6">

@@ -3,5 +3,5 @@
 
   <%= render "form", face: @face, die: @die %>
 
-  <%= render LinkButtonComponent.new text: 'Back to faces', href: die_faces_path(@die) %>
+  <%= link_to 'Back to faces', die_faces_path(@die), class: "btn-light" %>
 </div>
