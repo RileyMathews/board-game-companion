@@ -1,1 +1,2 @@
 <%= turbo_stream.append "rolls", partial: "play/roll", locals: { roll: @roll } %>
+<%= turbo_stream.prepend "roll-log", partial: "play/roll_log_entry", locals: { summary: @roll.summary_string } %>
