@@ -6,6 +6,7 @@ class RoomResource < ApplicationRecord
   after_save :broadcast_update
 
   def broadcast_update
-    broadcast_replace_to "room-#{room.id}", partial: "play/resource", locals: { resource: self }, target: "read-resource-#{id}"
+    broadcast_replace_to "room-#{room.id}", partial: "play/resource", locals: { resource: self },
+                                            target: "read-resource-#{id}"
   end
 end

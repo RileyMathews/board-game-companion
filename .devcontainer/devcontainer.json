@@ -11,7 +11,8 @@
                 "manuelpuyol.erb-linter",
                 "aki77.rails-db-schema",
                 "rayhanw.erb-helpers",
-                "noku.rails-run-spec-vscode"
+                "noku.rails-run-spec-vscode",
+                "KoichiSasada.vscode-rdbg"
             ]
         }
     },
