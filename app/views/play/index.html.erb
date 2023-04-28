@@ -49,8 +49,8 @@
     <span class="sr-only">Close menu</span>
   </button>
   <div id="roll-log">
-    <% @all_rolls_summaries.each do |summary| %>
-      <%= render "roll_log_entry", summary: summary %>
+    <% @all_rolls.each do |roll| %>
+      <%= render "roll_log_entry", roll: roll %>
     <% end %>
   </div>
 </div>

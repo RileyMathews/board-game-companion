@@ -12,8 +12,7 @@ class PlayController < ApplicationController
     @resources_by_group = user_room.resources_by_group
     @other_players_resources = RoomResource.other_players(@room, current_user)
                                            .group_by(&:user)
-    @all_rolls_summaries = Roll.for_room_log(@room)
-                               .map(&:summary_string)
+    @all_rolls = Roll.for_room_log(@room)
   end
 
   def roll # rubocop:disable Metrics/AbcSize
