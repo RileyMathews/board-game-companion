@@ -5,6 +5,7 @@ class Room < ApplicationRecord
   has_many :users, through: :user_rooms
   has_many :room_resources, dependent: :destroy
   has_many :resources, through: :room_resources
+  has_many :rolls, dependent: :destroy
 
   after_create :just_created
 
