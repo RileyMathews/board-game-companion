@@ -1,12 +1,12 @@
 <% resources_by_group.each do |group_name, resources| %>
   <div>
     <h3 class="font-bold text-lg"><%= group_name %></h3>
-    <div class="flex gap-2">
+    <div class="flex">
       <% resources.each do |user_resource| %>
         <div data-controller="room-resource" id="resource-<%= user_resource.id %>">
           <data data-room-resource-target="id" id="<%= user_resource.id %>"></data>
           <button
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center items-center cursor-pointer"
+            class="btn-primary"
             id="resource-button-<%= user_resource.resource.id %>"
             data-dropdown-toggle="dropdown-<%= user_resource.id %>"
           >
