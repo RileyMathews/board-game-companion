@@ -3,8 +3,10 @@ class Roll < ApplicationRecord
   belongs_to :room
   has_many :roll_results, dependent: :destroy
 
+  scope :for_room_log, ->(room) { where(room: room).order(created_at: :desc).includes(:user, roll_results: :face) }
+
   def summary
-    roll_results.joins(:face).group("faces.name").count
+    roll_results.map { |result| result.face.name }.tally
   end
 
   def summary_string
