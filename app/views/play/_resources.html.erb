@@ -1,33 +1,36 @@
-<% resources_by_group.each do |group_name, resources| %>
-  <div>
-    <h3 class="font-bold text-lg"><%= group_name %></h3>
-    <div class="flex">
-      <% resources.each do |user_resource| %>
-        <div data-controller="room-resource" id="resource-<%= user_resource.id %>">
-          <data data-room-resource-target="id" id="<%= user_resource.id %>"></data>
-          <button
-            class="btn-primary"
-            id="resource-button-<%= user_resource.resource.id %>"
-            data-dropdown-toggle="dropdown-<%= user_resource.id %>"
-          >
-            <%= user_resource.resource.name %>: <span data-room-resource-target="output"><%= user_resource.amount %></span>
-            <svg 
-              class="w-4 h-4 ml-2 inline" 
-              aria-hidden="true" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
-              xmlns="http://www.w3.org/2000/svg"
+<% resources_by_group.each do |type, group| %>
+  <h2 class="font-bold text-2xl"><%= type %></h2>
+  <% group.each do |group_name, resources| %>
+    <div>
+      <h3 class="font-bold text-lg"><%= group_name %></h3>
+      <div class="flex">
+        <% resources.each do |user_resource| %>
+          <div data-controller="room-resource" id="resource-<%= user_resource.id %>">
+            <data data-room-resource-target="id" id="<%= user_resource.id %>"></data>
+            <button
+              class="btn-primary"
+              id="resource-button-<%= user_resource.resource.id %>"
+              data-dropdown-toggle="dropdown-<%= user_resource.id %>"
             >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div id="dropdown-<%= user_resource.id %>" class="flex gap-2 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 p-4">
-            <button data-action="click->room-resource#decrement" class="text-4xl inline-block text-white border-2 border-red-600 rounded-md px-2 bg-red-500">-1</button>
-            <button data-action="click->room-resource#increment" class="text-4xl inline-block text-white border-2 border-slate-600 rounded-md px-2 bg-green-500">+1</button>
+              <%= user_resource.resource.name %>: <span data-room-resource-target="output"><%= user_resource.amount %></span>
+              <svg 
+                class="w-4 h-4 ml-2 inline" 
+                aria-hidden="true" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="dropdown-<%= user_resource.id %>" class="flex gap-2 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 p-4">
+              <button data-action="click->room-resource#decrement" class="text-4xl inline-block text-white border-2 border-red-600 rounded-md px-2 bg-red-500">-1</button>
+              <button data-action="click->room-resource#increment" class="text-4xl inline-block text-white border-2 border-slate-600 rounded-md px-2 bg-green-500">+1</button>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

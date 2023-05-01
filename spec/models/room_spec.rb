@@ -48,4 +48,37 @@ RSpec.describe Room do
       expect(player_resources.first.resource).to eq non_global_resource
     end
   end
+
+  describe "grouped_resources_for_player" do
+    it "returns a nested hash of global and player resources grouped by resource grouping" do
+      game = create :game
+      resource_group1 = create :resource_group, game: game
+      resource_group2 = create :resource_group, game: game
+      global_resource_group1 = create :resource_group, game: game
+      global_resource_group2 = create :resource_group, game: game
+      [resource_group1, resource_group2].each do |group|
+        create_list :resource, 5, game: game, resource_group: group
+      end
+      [global_resource_group1, global_resource_group2].each do |group|
+        create_list :resource, 5, game: game, global: true, resource_group: group
+      end
+
+      room = create :room, game: game
+
+      result = room.grouped_resources_for_player user: room.created_by
+
+      expect(result[:global].length).to eq 2
+      expect(result[:player].length).to eq 2
+      expect(result[:global][global_resource_group1.name].length).to eq 5
+      expect(result[:global][global_resource_group2.name].length).to eq 5
+      expect(result[:player][resource_group1.name].length).to eq 5
+      expect(result[:player][resource_group2.name].length).to eq 5
+
+      non_global_resource = Resource.where(game: game, global: false).first
+      expect(result[:player][non_global_resource.resource_group.name].first.amount).to eq 0
+
+      global_resource = Resource.where(game: game, global: true).first
+      expect(result[:global][global_resource.resource_group.name].first.amount).to eq 0
+    end
+  end
 end

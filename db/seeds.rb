@@ -44,3 +44,9 @@ skyrim_room = Room.create!(name: "Skyrim game night", created_by: User.first, ga
 Room.create!(name: "Second users room", created_by: User.second, game: skyrim)
 
 skyrim_room.users << User.second
+
+stars = Game.create!(name: "Stars of Akiros", created_by: User.first)
+ship_group = ResourceGroup.create!(name: "Mothership", game: stars)
+Resource.create!(name: "Mothership Health", game: stars, resource_group: ship_group, global: true)
+Resource.create!(name: "Fighter Health", game: stars)
+Room.create!(name: "Sci-fi room", created_by: User.first, game: stars)

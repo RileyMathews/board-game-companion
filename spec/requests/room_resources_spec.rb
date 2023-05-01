@@ -14,4 +14,10 @@ RSpec.describe "room resources" do
       expect(RoomResource.find(room_resource.id).amount).to eq 2
     end
   end
+
+  describe "#group_name" do
+    it "delegates to the resource 'group_name' method" do
+      expect(room_resource.group_name).to eq room_resource.resource.group_name
+    end
+  end
 end

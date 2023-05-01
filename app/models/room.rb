@@ -16,6 +16,13 @@ class Room < ApplicationRecord
     sync_player_resources
   end
 
+  def grouped_resources_for_player(user:)
+    {
+      global: RoomResource.where(user: nil, room: self).group_by(&:group_name),
+      player: RoomResource.where(user: user, room: self).group_by(&:group_name)
+    }
+  end
+
 private
 
   def just_created

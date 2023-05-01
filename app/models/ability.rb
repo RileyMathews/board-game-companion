@@ -53,7 +53,9 @@ private
   end
 
   def room_resource_ability
-    can :manage, RoomResource, user_id: @user.id
+    can :manage, RoomResource do |room_resource|
+      room_resource.user_id == @user.id || room_resource.room.users.include?(@user)
+    end
   end
 
   def user_room_ability
