@@ -13,5 +13,6 @@ RSpec.describe Game do
 
   describe "validations" do
     it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:created_by_id) }
   end
 end

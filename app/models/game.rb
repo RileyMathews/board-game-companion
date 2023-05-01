@@ -5,5 +5,5 @@ class Game < ApplicationRecord
   has_many :rooms, dependent: :destroy
   has_many :resource_groups, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :created_by_id }
 end
