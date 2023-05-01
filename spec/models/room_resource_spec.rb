@@ -9,6 +9,10 @@ RSpec.describe RoomResource do
     it { is_expected.to belong_to :room }
   end
 
+  describe "validations" do
+    it { is_expected.to validate_uniqueness_of(:resource).scoped_to(:user_id, :room_id) }
+  end
+
   describe ".other_players" do
     it "returns other players resources for the given room and user" do
       active_user = create :user
