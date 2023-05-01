@@ -15,19 +15,21 @@ RSpec.describe Resource do
   end
 
   describe "#sync_resources" do
-    it "syncs a newly created resource to the currently active rooms" do
-      user = create :user
-      game = create :game
-      room = create :room, game: game
-      room.users << user
+    describe "when a resource is not global" do
+      it "syncs a newly created resource to the currently active rooms" do
+        user = create :user
+        game = create :game
+        room = create :room, game: game
+        room.users << user
 
-      resource = create :resource, game: game
+        resource = create :resource, game: game
 
-      player = UserRoom.find_by user: user, room: room
+        player = UserRoom.find_by user: user, room: room
 
-      expect(
-        player.room_resources.first.resource.name
-      ).to eq resource.name
+        expect(
+          player.room_resources.first.resource.name
+        ).to eq resource.name
+      end
     end
   end
 
