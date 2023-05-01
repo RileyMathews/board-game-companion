@@ -14,6 +14,6 @@ class RoomResourcesController < ApplicationController
 private
 
   def room_resource_params
-    params.require(:room_resource).permit(:ammount)
+    params.require(:room_resource).permit(:amount)
   end
 end

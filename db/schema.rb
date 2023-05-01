@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_21_161957) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_01_134333) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,7 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_161957) do
     t.bigint "room_id", null: false
     t.bigint "resource_id", null: false
     t.bigint "user_id"
-    t.integer "ammount", default: 0, null: false
+    t.integer "amount", default: 0, null: false
     t.index ["resource_id"], name: "index_room_resources_on_resource_id"
     t.index ["room_id", "resource_id", "user_id"], name: "index_room_resources_on_room_id_and_resource_id_and_user_id", unique: true
     t.index ["room_id"], name: "index_room_resources_on_room_id"

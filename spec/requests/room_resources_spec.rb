@@ -8,10 +8,10 @@ RSpec.describe "room resources" do
   end
 
   describe "#update" do
-    it "updates the ammount of resource" do
-      patch room_resource_path(room_resource.id), params: { room_resource: { ammount: 2 } }
+    it "updates the amount of resource" do
+      patch room_resource_path(room_resource.id), params: { room_resource: { amount: 2 } }
 
-      expect(RoomResource.find(room_resource.id).ammount).to eq 2
+      expect(RoomResource.find(room_resource.id).amount).to eq 2
     end
   end
 end

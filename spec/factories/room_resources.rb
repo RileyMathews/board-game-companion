@@ -3,6 +3,6 @@ FactoryBot.define do
     user
     room
     resource
-    ammount { 1 }
+    amount { 1 }
   end
 end

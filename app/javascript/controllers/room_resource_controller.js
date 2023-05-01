@@ -24,7 +24,7 @@ export default class extends Controller {
     this.outputTarget.textContent = next
     fetch(`${location.origin}/room_resources/${this.id}`, {
       method: "PATCH",
-      body: JSON.stringify({ "ammount": next }),
+      body: JSON.stringify({ "amount": next }),
       headers: {
         "Content-Type": "application/json",
         "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
