@@ -9,6 +9,12 @@ RSpec.describe Roll do
   let(:face3) { create :face, die: die2 }
   let(:face4) { create :face, die: die2 }
 
+  describe "associations" do
+    it { is_expected.to belong_to :user }
+    it { is_expected.to belong_to :room }
+    it { is_expected.to have_many :roll_results }
+  end
+
   describe "#summary" do
     it "returns a map of face names to count" do
       create :roll_result, face: face1, roll: roll
