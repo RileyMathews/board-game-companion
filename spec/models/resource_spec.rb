@@ -1,6 +1,19 @@
 require "rails_helper"
 
 RSpec.describe Resource do
+  subject { create :resource }
+
+  describe "associations" do
+    it { is_expected.to belong_to :game }
+    it { is_expected.to belong_to(:resource_group).optional }
+    it { is_expected.to have_many :room_resources }
+  end
+
+  describe "validations" do
+    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:game_id) }
+  end
+
   describe "#sync_resources" do
     it "syncs a newly created resource to the currently active rooms" do
       user = create :user

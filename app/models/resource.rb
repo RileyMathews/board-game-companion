@@ -3,6 +3,8 @@ class Resource < ApplicationRecord
   belongs_to :resource_group, optional: true
   has_many :room_resources, dependent: :destroy
 
+  validates :name, presence: true, uniqueness: { scope: :game_id }
+
   after_create :sync_resources
 
   def sync_resources
