@@ -7,7 +7,6 @@ class UserRoom < ApplicationRecord
   after_create :sync_resources
 
   def sync_resources
-    # TODO: add test
     resources = Resource.where(game: room.game)
     resources.each do |resource|
       RoomResource.find_or_create_by(
