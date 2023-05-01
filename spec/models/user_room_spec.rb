@@ -1,6 +1,17 @@
 require "rails_helper"
 
 RSpec.describe UserRoom do
+  subject { create :user_room }
+
+  describe "associations" do
+    it { is_expected.to belong_to :room }
+    it { is_expected.to belong_to :user }
+  end
+
+  describe "validations" do
+    it { is_expected.to validate_uniqueness_of(:user).scoped_to(:room_id) }
+  end
+
   describe "#sync_resources" do
     it "creates a user room resource for every game resource" do
       user = create :user

@@ -7,6 +7,8 @@ class Room < ApplicationRecord
   has_many :resources, through: :room_resources
   has_many :rolls, dependent: :destroy
 
+  validates :name, presence: true, uniqueness: { scope: :created_by_id }
+
   after_create :just_created
 
 private

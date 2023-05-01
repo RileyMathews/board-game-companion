@@ -2,6 +2,8 @@ class UserRoom < ApplicationRecord
   belongs_to :room
   belongs_to :user
 
+  validates :user, uniqueness: { scope: :room_id }
+
   after_create :sync_resources
 
   def sync_resources
