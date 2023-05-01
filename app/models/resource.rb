@@ -8,8 +8,8 @@ class Resource < ApplicationRecord
   after_create :sync_resources
 
   def sync_resources
-    active_rooms = UserRoom.joins(room: :game).where(games: { id: game.id })
-    active_rooms.each(&:sync_resources)
+    active_rooms = Room.where(game_id: game_id)
+    active_rooms.each(&:sync_all_resources)
   end
 
   def group_name

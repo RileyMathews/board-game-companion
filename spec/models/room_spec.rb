@@ -24,5 +24,28 @@ RSpec.describe Room do
 
       expect(room.users).to include room.created_by
     end
+
+    it "creates room resource entries for global resources of the game" do
+      game = create :game
+      global_resource = create :resource, game: game, global: true
+      create :resource, game: game, global: false
+
+      room = create :room, game: game
+
+      global_room_resources = RoomResource.where(user: nil, room: room)
+      expect(global_room_resources.length).to be 1
+      expect(global_room_resources.first.resource).to eq global_resource
+    end
+
+    it "creates room resource entries for the creating player" do
+      game = create :game
+      non_global_resource = create :resource, game: game, global: false
+
+      room = create :room, game: game
+
+      player_resources = RoomResource.where(user: room.created_by, room: room)
+      expect(player_resources.length).to be 1
+      expect(player_resources.first.resource).to eq non_global_resource
+    end
   end
 end

@@ -11,9 +11,39 @@ class Room < ApplicationRecord
 
   after_create :just_created
 
+  def sync_all_resources
+    sync_global_resources
+    sync_player_resources
+  end
+
 private
 
   def just_created
     users << created_by
+    sync_all_resources
+  end
+
+  def sync_global_resources
+    global_resources = Resource.where(global: true, game: game)
+    global_resources.each do |resource|
+      RoomResource.find_or_create_by(
+        user: nil,
+        room: self,
+        resource: resource
+      )
+    end
+  end
+
+  def sync_player_resources
+    player_resources = Resource.where(global: false, game: game)
+    users.each do |user|
+      player_resources.each do |resource|
+        RoomResource.find_or_create_by(
+          user: user,
+          room: self,
+          resource: resource
+        )
+      end
+    end
   end
 end

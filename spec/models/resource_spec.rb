@@ -22,13 +22,26 @@ RSpec.describe Resource do
         room = create :room, game: game
         room.users << user
 
-        resource = create :resource, game: game
+        create :resource, game: game, global: true
+        non_global_resource = create :resource, game: game, global: false
 
-        player = UserRoom.find_by user: user, room: room
+        room_resources = RoomResource.where(room: room, user: user)
+        expect(room_resources.length).to eq 1
+        expect(room_resources.first.resource).to eq non_global_resource
+      end
+    end
 
-        expect(
-          player.room_resources.first.resource.name
-        ).to eq resource.name
+    describe "when a resource is global" do
+      it "syncs only as a global resource" do
+        game = create :game
+        room = create :room, game: game
+
+        create :resource, game: game, global: false
+        global_resource = create :resource, game: game, global: true
+
+        room_resources = RoomResource.where(room: room, user: nil)
+        expect(room_resources.length).to eq 1
+        expect(room_resources.first.resource).to eq global_resource
       end
     end
   end

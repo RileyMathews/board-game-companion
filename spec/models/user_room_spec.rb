@@ -12,23 +12,6 @@ RSpec.describe UserRoom do
     it { is_expected.to validate_uniqueness_of(:user).scoped_to(:room_id) }
   end
 
-  describe "#sync_resources" do
-    it "creates a user room resource for every game resource" do
-      user = create :user
-      game = create :game
-      resource = create :resource, game: game
-      room = create :room, game: game
-
-      room.users << user
-
-      user_room = described_class.find_by(room: room, user: user)
-
-      expect(
-        user_room.room_resources.first.resource.name
-      ).to eq resource.name
-    end
-  end
-
   describe "#resourecs_by_group" do
     it "returns a map of resources by their group name" do
       user_room = create :user_room
