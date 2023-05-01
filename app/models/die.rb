@@ -2,6 +2,8 @@ class Die < ApplicationRecord
   belongs_to :game
   has_many :faces, dependent: :destroy
 
+  validates :name, presence: true, uniqueness: { scope: :game_id }
+
   def roll(user:, room:, number: 1)
     rolled_faces = rolled_faces number
     roll = Roll.create! user: user, room: room
