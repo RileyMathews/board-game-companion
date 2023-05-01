@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_01_134333) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_01_194158) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_134333) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["die_id"], name: "index_faces_on_die_id"
+    t.index ["name", "die_id"], name: "index_faces_on_name_and_die_id", unique: true
   end
 
   create_table "games", force: :cascade do |t|
@@ -37,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_134333) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_games_on_created_by_id"
+    t.index ["name", "created_by_id"], name: "index_games_on_name_and_created_by_id", unique: true
   end
 
   create_table "resource_groups", force: :cascade do |t|
@@ -45,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_134333) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_resource_groups_on_game_id"
+    t.index ["name", "game_id"], name: "index_resource_groups_on_name_and_game_id", unique: true
   end
 
   create_table "resources", force: :cascade do |t|
@@ -100,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_134333) do
     t.index ["created_by_id"], name: "index_rooms_on_created_by_id"
     t.index ["game_id"], name: "index_rooms_on_game_id"
     t.index ["join_code"], name: "index_rooms_on_join_code", unique: true
+    t.index ["name", "created_by_id"], name: "index_rooms_on_name_and_created_by_id", unique: true
   end
 
   create_table "user_rooms", force: :cascade do |t|
