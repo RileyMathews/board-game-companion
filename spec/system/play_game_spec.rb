@@ -34,4 +34,61 @@ RSpec.describe "playing a game" do
     expect(page).to have_text(face.name)
     expect(page).to have_text("#{face.name}: 5")
   end
+
+  describe "turbo stream features" do
+    let(:first_player) { create :user }
+    let(:second_player) { create :user }
+
+    before do
+      room.users << first_player
+      room.users << second_player
+      using_session "first" do
+        login_user first_player
+
+        visit room_play_path(room)
+      end
+
+      using_session "second" do
+        login_user second_player
+
+        visit room_play_path(room)
+      end
+    end
+
+    it "allows the users to see eachothers rolls" do
+      using_session "first" do
+        click_button id: "die-button-#{die.id}"
+        click_on "5"
+        expect(page).to have_text("#{first_player.username} rolled #{face.name}: 5")
+      end
+
+      using_session "second" do
+        expect(page).to have_text("#{first_player.username} rolled #{face.name}: 5")
+
+        click_button id: "die-button-#{die.id}"
+        click_on "3"
+
+        expect(page).to have_text("#{second_player.username} rolled #{face.name}: 3")
+      end
+
+      using_session "first" do
+        expect(page).to have_text("#{second_player.username} rolled #{face.name}: 3")
+
+        all('button[aria-label="Close"]').each(&:click)
+
+        expect(page).not_to have_text("#{first_player.username} rolled #{face.name}: 5")
+        expect(page).not_to have_text("#{second_player.username} rolled #{face.name}: 3")
+
+        click_button "Roll Log"
+
+        expect(page).to have_text("#{first_player.username} rolled #{face.name}: 5")
+        expect(page).to have_text("#{second_player.username} rolled #{face.name}: 3")
+
+        click_button "Roll Log"
+
+        expect(page).not_to have_text("#{first_player.username} rolled #{face.name}: 5")
+        expect(page).not_to have_text("#{second_player.username} rolled #{face.name}: 3")
+      end
+    end
+  end
 end

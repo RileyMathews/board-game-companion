@@ -5,6 +5,7 @@ module LoginHelper
     fill_in "Email", with: user.email
     fill_in "Password", with: "Password1@"
     click_button "Log In"
+    expect(page).to have_text("Signed in successfully.")
     user
   end
 end
