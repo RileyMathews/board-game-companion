@@ -1,15 +1,9 @@
 require "rails_helper"
 
 RSpec.describe "game management" do
-  before do
-    user = create :user, password: "Password1@"
-    visit "/users/sign_in"
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "Password1@"
-    click_button "Log In"
-  end
-
   it "can manage the various aspects of a game" do
+    user = login_user
+
     visit "/"
 
     expect(page).to have_text("Welcome to board game companion!")

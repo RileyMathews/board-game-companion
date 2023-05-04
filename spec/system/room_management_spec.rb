@@ -5,10 +5,7 @@ RSpec.describe "room management" do
   let!(:game) { create :game, created_by: user }
 
   before do
-    visit "/users/sign_in"
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "Password1@"
-    click_button "Log In"
+    login_user user
   end
 
   it "can manage the various aspects of rooms" do

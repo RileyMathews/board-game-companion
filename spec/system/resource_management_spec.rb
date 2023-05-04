@@ -2,12 +2,8 @@ require "rails_helper"
 
 RSpec.describe "resource management" do
   it "can manage the various aspects of resuources" do
-    user = create :user, password: "Password1@"
+    user = login_user
     game = create :game, created_by: user
-    visit "/users/sign_in"
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "Password1@"
-    click_button "Log In"
 
     expect(page).to have_text("Welcome")
 

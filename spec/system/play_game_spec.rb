@@ -7,11 +7,7 @@ RSpec.describe "playing a game" do
   let!(:resource) { create :resource, game: room.game }
 
   it "allows the player to play a game once they have joined" do
-    user = room.created_by
-    visit "/users/sign_in"
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "Password1@"
-    click_button "Log In"
+    login_user room.created_by
 
     expect(page).to have_text("Welcome")
 
