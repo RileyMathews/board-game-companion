@@ -12,7 +12,7 @@
               id="resource-button-<%= user_resource.resource.id %>"
               data-dropdown-toggle="dropdown-<%= user_resource.id %>"
             >
-              <%= user_resource.resource.name %>: <span data-room-resource-target="output"><%= user_resource.amount %></span>
+              <%= render user_resource %>
               <svg 
                 class="w-4 h-4 ml-2 inline" 
                 aria-hidden="true" 

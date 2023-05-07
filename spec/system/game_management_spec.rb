@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "game management" do
   it "can manage the various aspects of a game" do
-    user = login_user
+    login_user
 
     visit "/"
 

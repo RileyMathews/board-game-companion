@@ -36,7 +36,9 @@
     <h3 class="text-lg"><%= user.username %></h3>
     <div class="flex gap-1 flex-wrap my-2">
       <% resources.each do |resource| %>
-        <%= render "resource", resource: resource %>
+        <span class="inline-block bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+          <%= render resource %>
+        </span>
       <% end %>
     </div>
     <hr>

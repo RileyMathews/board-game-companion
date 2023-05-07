@@ -1,14 +1,22 @@
 class RoomResourcesController < ApplicationController
   before_action :authenticate_user!
 
-  def update
+  def increment
     resource = RoomResource.find params[:id]
     authorize! :update, resource
-    if resource.update!(room_resource_params)
-      render json: resource
-    else
-      render json: { errors: resource.errors }, status: :unprocessable_entity
-    end
+
+    resource.amount += 1
+    resource.save
+    render json: resource
+  end
+
+  def decrement
+    resource = RoomResource.find params[:id]
+    authorize! :update, resource
+
+    resource.amount -= 1
+    resource.save
+    render json: resource
   end
 
 private

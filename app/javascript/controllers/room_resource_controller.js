@@ -6,10 +6,26 @@ export default class extends Controller {
 
   increment() {
     this.current = this.current + 1
+    fetch(`${location.origin}/room_resources/${this.id}/increment`, {
+      method: "POST",
+      body: JSON.stringify({}),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')?.content
+      },
+    });
   }
 
   decrement() {
     this.current = this.current - 1
+    fetch(`${location.origin}/room_resources/${this.id}/decrement`, {
+      method: "POST",
+      body: JSON.stringify({}),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')?.content
+      },
+    });
   }
 
   get current() {
@@ -22,13 +38,5 @@ export default class extends Controller {
 
   set current(next) {
     this.outputTarget.textContent = next
-    fetch(`${location.origin}/room_resources/${this.id}`, {
-      method: "PATCH",
-      body: JSON.stringify({ "amount": next }),
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')?.content
-      },
-    });
   }
 }

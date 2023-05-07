@@ -27,4 +27,10 @@ RSpec.describe RoomResource do
       expect(result).to include other_user_resource
     end
   end
+
+  describe "#group_name" do
+    it "delegates to the resource 'group_name' method" do
+      expect(room_resource.group_name).to eq room_resource.resource.group_name
+    end
+  end
 end

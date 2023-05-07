@@ -12,7 +12,6 @@ class RoomResource < ApplicationRecord
   delegate :group_name, to: :resource
 
   def broadcast_update
-    broadcast_replace_to "room-#{room.id}", partial: "play/resource", locals: { resource: self },
-                                            target: "read-resource-#{id}"
+    broadcast_replace_to "room-#{room.id}"
   end
 end

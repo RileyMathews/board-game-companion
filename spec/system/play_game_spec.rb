@@ -5,6 +5,7 @@ RSpec.describe "playing a game" do
   let!(:die) { create :die, game: room.game }
   let!(:face) { create :face, die: die }
   let!(:resource) { create :resource, game: room.game }
+  let!(:global_resource) { create :resource, game: room.game, global: true }
 
   it "allows the player to play a game once they have joined" do
     login_user room.created_by
@@ -110,6 +111,26 @@ RSpec.describe "playing a game" do
 
       using_session "second" do
         expect(page).to have_text "#{resource.name}: 3"
+      end
+    end
+
+    it "allows users to each update global resources" do
+      using_session "first" do
+        click_button id: "resource-button-#{global_resource.id}"
+        2.times { click_on "+1" }
+
+        expect(page).to have_text("#{global_resource.name}: 2")
+      end
+
+      using_session "second" do
+        click_button id: "resource-button-#{global_resource.id}"
+        2.times { click_on "+1" }
+
+        expect(page).to have_text("#{global_resource.name}: 4")
+      end
+
+      using_session "first" do
+        expect(page).to have_text("#{global_resource.name}: 4")
       end
     end
   end
