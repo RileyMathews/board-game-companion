@@ -90,5 +90,27 @@ RSpec.describe "playing a game" do
         expect(page).not_to have_text("#{second_player.username} rolled #{face.name}: 3")
       end
     end
+
+    it "allows users to see eachothers resources" do
+      using_session "first" do
+        click_button id: "resource-button-#{resource.id}"
+        2.times { click_on "+1" }
+
+        expect(page).to have_text("#{resource.name}: 2")
+      end
+
+      using_session "second" do
+        click_button "Other Player's Resources"
+
+        expect(page).to have_text first_player.username
+        expect(page).to have_text "#{resource.name}: 2"
+      end
+
+      using_session("first") { click_button "+1" }
+
+      using_session "second" do
+        expect(page).to have_text "#{resource.name}: 3"
+      end
+    end
   end
 end

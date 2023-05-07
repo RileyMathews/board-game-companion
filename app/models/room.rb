@@ -43,10 +43,10 @@ private
 
   def sync_player_resources
     player_resources = Resource.where(global: false, game: game)
-    users.each do |user|
+    user_rooms.reload.each do |user_room|
       player_resources.each do |resource|
         RoomResource.find_or_create_by(
-          user: user,
+          user: user_room.user,
           room: self,
           resource: resource
         )

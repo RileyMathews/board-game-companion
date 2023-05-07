@@ -4,6 +4,12 @@ class UserRoom < ApplicationRecord
 
   validates :user, uniqueness: { scope: :room_id }
 
+  after_create -> { room.sync_all_resources }
+
+  def sync_resources
+    room.sync_all_resources
+  end
+
   def resources_by_group
     group_map = {}
     room_resources.each do |room_resource|

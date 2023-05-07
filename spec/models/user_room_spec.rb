@@ -30,4 +30,16 @@ RSpec.describe UserRoom do
       expect(result[resource_group_one.name].first).to be_a RoomResource
     end
   end
+
+  describe "#after_create" do
+    it "syncs required resources to the new player" do
+      room = create :room
+      user = create :user
+      resource = create :resource, game: room.game
+      # binding.pry
+      described_class.create! room: room, user: user
+      # binding.pry
+      expect(RoomResource.find_by(room: room, user: user, resource: resource).resource).to eq resource
+    end
+  end
 end
