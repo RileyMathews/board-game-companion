@@ -6,6 +6,8 @@ class RoomResourcesController < ApplicationController
   def index
     authorize! :play, @room
     @room_resources_grouped = @room.grouped_resources_for_player user: current_user
+    @other_players_resources = RoomResource.other_players(@room, current_user)
+                                           .group_by(&:user)
   end
 
   def edit
