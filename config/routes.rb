@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     resources :dice, shallow: true, except: %i(show) do
       resources :faces, shallow: true, except: %i(show)
     end
-    resources :rooms, shallow: true, except: %i(index)
+    resources :rooms, shallow: true, except: %i(index) do
+      resources :room_resources, except: %i(new create delete)
+    end
   end
   devise_for :users
 
