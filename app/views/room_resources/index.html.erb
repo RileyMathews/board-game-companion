@@ -1,20 +1,21 @@
-<%= turbo_stream_from "room-#{@room.id}" %>
-<h1>Resources</h1>
-<div>
-  <%= render "shared/drawer", drawer_id: "other_players_rolls_drawer", show_button_text: "Other Player's Resources" do %>
-    <% @other_players_resources.each do |user, resources| %>
-      <h3 class="text-lg"><%= user.username %></h3>
-      <%= render resources %>
+<%= turbo_frame_tag "room_#{@room.id}_room_resources" do %>
+  <h1>Resources</h1>
+  <div>
+    <%= render "shared/drawer", drawer_id: "other_players_rolls_drawer", show_button_text: "Other Player's Resources" do %>
+      <% @other_players_resources.each do |user, resources| %>
+        <h3 class="text-lg"><%= user.username %></h3>
+        <%= render resources %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
-<% @room_resources_grouped.each do |type, groups| %>
-  <h2 class="font-bold text-2xl"><%= type %></h2>
-  <% groups.each do |group_name, room_resources| %>
-    <h3 class="font-bold text-xl"><%= group_name %></h3>
-    <div class="flex gap-2">
-      <%= render room_resources %>
-    </div>
+  <% @room_resources_grouped.each do |type, groups| %>
+    <h2 class="font-bold text-2xl"><%= type %></h2>
+    <% groups.each do |group_name, room_resources| %>
+      <h3 class="font-bold text-xl"><%= group_name %></h3>
+      <div class="flex gap-2">
+        <%= render room_resources %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

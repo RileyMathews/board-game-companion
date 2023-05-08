@@ -9,9 +9,6 @@ class PlayController < ApplicationController
 
     @dice = @room.game.dice
     @roll_options = 1..10
-    @resources_by_group = @room.grouped_resources_for_player user: current_user
-    @other_players_resources = RoomResource.other_players(@room, current_user)
-                                           .group_by(&:user)
     @all_rolls = Roll.for_room_log(@room)
   end
 

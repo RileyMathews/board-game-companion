@@ -15,19 +15,14 @@ RSpec.describe "playing a game" do
     visit room_play_path(room)
 
     expect(page).to have_text("Playing #{room.game.name}")
-    expect(page).to have_text("#{resource.name}: 0")
+    expect(page).to have_text("#{resource.name}\n0")
     expect(page).to have_text(die.name)
 
-    click_button id: "resource-button-#{resource.id}"
-    click_on "+1"
+    click_link resource.name
+    fill_in "Amount", with: 2
+    click_button "Save"
 
-    expect(page).to have_text("#{resource.name}: 1")
-
-    click_on "-1"
-
-    expect(page).to have_text("#{resource.name}: 0")
-    # click resource again to clear dropdown
-    click_button id: "resource-button-#{resource.id}"
+    expect(page).to have_text("#{resource.name}\n2")
 
     click_button id: "die-button-#{die.id}"
     click_on "5"
@@ -94,43 +89,50 @@ RSpec.describe "playing a game" do
 
     it "allows users to see eachothers resources" do
       using_session "first" do
-        click_button id: "resource-button-#{resource.id}"
-        2.times { click_on "+1" }
+        click_link resource.name
+        fill_in "Amount", with: 2
+        click_button "Save"
 
-        expect(page).to have_text("#{resource.name}: 2")
+        expect(page).to have_text("#{resource.name}\n2")
       end
 
       using_session "second" do
         click_button "Other Player's Resources"
 
         expect(page).to have_text first_player.username
-        expect(page).to have_text "#{resource.name}: 2"
+        expect(page).to have_text "#{resource.name}\n2"
       end
 
-      using_session("first") { click_button "+1" }
+      using_session "first" do
+        click_link resource.name
+        fill_in "Amount", with: 3
+        click_button "Save"
+      end
 
       using_session "second" do
-        expect(page).to have_text "#{resource.name}: 3"
+        expect(page).to have_text "#{resource.name}\n3"
       end
     end
 
     it "allows users to each update global resources" do
       using_session "first" do
-        click_button id: "resource-button-#{global_resource.id}"
-        2.times { click_on "+1" }
+        click_link global_resource.name
+        fill_in "Amount", with: 2
+        click_button "Save"
 
-        expect(page).to have_text("#{global_resource.name}: 2")
+        expect(page).to have_text("#{global_resource.name}\n2")
       end
 
       using_session "second" do
-        click_button id: "resource-button-#{global_resource.id}"
-        2.times { click_on "+1" }
+        click_link global_resource.name
+        fill_in "Amount", with: 4
+        click_button "Save"
 
-        expect(page).to have_text("#{global_resource.name}: 4")
+        expect(page).to have_text("#{global_resource.name}\n4")
       end
 
       using_session "first" do
-        expect(page).to have_text("#{global_resource.name}: 4")
+        expect(page).to have_text("#{global_resource.name}\n4")
       end
     end
   end
