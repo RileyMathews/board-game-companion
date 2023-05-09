@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
     resources :rooms, shallow: true, except: %i(index) do
       resources :room_resources, except: %i(new create delete)
+      resources :rolls, only: %i(index)
     end
   end
   devise_for :users

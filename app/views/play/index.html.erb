@@ -27,8 +27,8 @@
     <span class="sr-only">Close menu</span>
   </button>
   <div id="roll-log">
-    <% @all_rolls.each do |roll| %>
-      <%= render "roll_log_entry", roll: roll %>
+    <%= turbo_frame_tag "room_#{@room.id}_rolls", src: room_rolls_path(@room), loading: :lazy do %>
+      <p>Loading...</p>
     <% end %>
   </div>
 </div>

@@ -80,7 +80,7 @@ RSpec.describe "playing a game" do
         expect(page).to have_text("#{first_player.username} rolled #{face.name}: 5")
         expect(page).to have_text("#{second_player.username} rolled #{face.name}: 3")
 
-        click_button "Roll Log"
+        find('#dice-rolls-drawer button[aria-controls="dice-rolls-drawer"]').click
 
         expect(page).not_to have_text("#{first_player.username} rolled #{face.name}: 5")
         expect(page).not_to have_text("#{second_player.username} rolled #{face.name}: 3")
