@@ -1,0 +1,5 @@
+<div id="notifications" class="fixed flex flex-col gap-4 right-5 bottom-5">
+  <% flash.each do |_flash_type, message| %>
+    <%= render "layouts/notification", message: message %>
+  <% end %>
+</div>

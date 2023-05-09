@@ -1,34 +1,21 @@
+<%= turbo_stream_from "room-#{@room.id}" %>
+
+
 <h1>Playing <%= @room.game.name %></h1>
 <div class="flex gap-2">
   <% if can? :manage, @room %>
     <%= link_to "Manage room", room_path(@room), class: "btn-light" %>
   <% end %>
-  <button class="btn-primary" 
-    type="button" 
-    data-drawer-target="dice-rolls-drawer" 
-    data-drawer-toggle="dice-rolls-drawer" 
-    data-drawer-placement="right" 
-    aria-controls="dice-rolls-drawer"
-  >
-    Roll Log
-  </button>
+  <%= render "shared/drawer", show_button_text: "Roll Log", drawer_id: "dice-rolls-drawer" do %>
+    <div id="roll-log">
+      <%= turbo_frame_tag "room_#{@room.id}_rolls", src: room_rolls_path(@room), loading: :lazy do %>
+        <p>Loading...</p>
+      <% end %>
+    </div>
+  <% end %>
 </div>
-<%= turbo_stream_from "room-#{@room.id}" %>
 <%= turbo_frame_tag "room_#{@room.id}_room_resources", src: room_room_resources_path(@room), loading: :lazy do %>
   <p>Loading...</p>
 <% end %>
 
 <%= render "dice", dice: @dice, roll_options: @roll_options %>
-<%= turbo_frame_tag "rolls", class: "fixed flex flex-col gap-4 right-5 bottom-5" %>
-
-<div id="dice-rolls-drawer" class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-right-label">
-  <button type="button" data-drawer-hide="dice-rolls-drawer" aria-controls="dice-rolls-drawer" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
-    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-    <span class="sr-only">Close menu</span>
-  </button>
-  <div id="roll-log">
-    <%= turbo_frame_tag "room_#{@room.id}_rolls", src: room_rolls_path(@room), loading: :lazy do %>
-      <p>Loading...</p>
-    <% end %>
-  </div>
-</div>
