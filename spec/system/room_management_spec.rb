@@ -4,11 +4,8 @@ RSpec.describe "room management" do
   let(:user) { create :user, password: "Password1@" }
   let!(:game) { create :game, created_by: user }
 
-  before do
-    login_user user
-  end
-
   it "can manage the various aspects of rooms" do
+    login_user user
     visit "/"
     click_on "Games"
 
@@ -47,6 +44,7 @@ RSpec.describe "room management" do
   end
 
   it "allows the user that created a room to play in a room" do
+    login_user user
     visit "/"
     click_on "Games"
     click_on "Start Room"
@@ -58,6 +56,7 @@ RSpec.describe "room management" do
   end
 
   it "allows a second user to join a game" do
+    login_user user
     room = create :room
     join_code = room.join_code
 

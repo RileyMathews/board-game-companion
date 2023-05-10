@@ -10,7 +10,7 @@ development: &development
   database: board_game_companion_dev
   username: user
   password: password
-  host: database
+  host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
 
 test:
   <<: *development

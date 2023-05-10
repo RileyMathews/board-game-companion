@@ -9,6 +9,10 @@ services:
     stdin_open: true
     ports:
       - 3000:3000
+    environment:
+      - IS_DOCKER=true
+      - DATABASE_HOST=database
+      - REDIS_URL=redis://redis:6379/1
     volumes:
       - .:/code
       - bundle_cache:/usr/local/bundle

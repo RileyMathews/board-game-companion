@@ -33,7 +33,7 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 
-Capybara.register_driver :chrome_headless do |app|
+Capybara.register_driver :remote_chrome_headless do |app|
   Capybara::Selenium::Driver.new(app,
                                  browser: :remote,
                                  url: "http://chrome:4444/wd/hub",
@@ -72,11 +72,15 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
 
   config.before(:each, type: :system) do
-    driven_by :chrome_headless
+    if ENV.fetch("IS_DOCKER", nil) == "true"
+      driven_by :remote_chrome_headless
 
-    Capybara.app_host = "http://#{IPSocket.getaddress(Socket.gethostname)}:3000"
-    Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
-    Capybara.server_port = 3000
+      Capybara.app_host = "http://#{IPSocket.getaddress(Socket.gethostname)}:3000"
+      Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
+      Capybara.server_port = 3000
+    else
+      driven_by :selenium
+    end
   end
 
   config.include Capybara::RSpecMatchers, type: :request
