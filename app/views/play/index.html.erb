@@ -9,13 +9,16 @@
   <%= render "shared/drawer", show_button_text: "Roll Log", drawer_id: "dice-rolls-drawer" do %>
     <div id="roll-log">
       <%= turbo_frame_tag "room_#{@room.id}_rolls", src: room_rolls_path(@room), loading: :lazy do %>
-        <p>Loading...</p>
+        <p>Loading Rolls!</p>
       <% end %>
     </div>
   <% end %>
 </div>
 <%= turbo_frame_tag "room_#{@room.id}_room_resources", src: room_room_resources_path(@room), loading: :lazy do %>
-  <p>Loading...</p>
+  <p>Loading Resources!</p>
 <% end %>
 
-<%= render "dice", dice: @dice, roll_options: @roll_options %>
+<%= turbo_frame_tag "room_#{@room.id}_rolls_new", src: new_room_roll_path(@room), loading: :lazy do %>
+  <p>Loading Dice!</p>
+<% end %>
+
