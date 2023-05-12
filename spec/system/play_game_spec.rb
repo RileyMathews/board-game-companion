@@ -15,14 +15,14 @@ RSpec.describe "playing a game" do
     visit room_play_path(room)
 
     expect(page).to have_text("Playing #{room.game.name}")
-    expect(page).to have_text("#{resource.name}\n0")
+    expect(page).to have_text("#{resource.name}: 0")
     expect(page).to have_text(die.name)
 
     click_link resource.name
     fill_in "Amount", with: 2
     click_button "Save"
 
-    expect(page).to have_text("#{resource.name}\n2")
+    expect(page).to have_text("#{resource.name}: 2")
 
     click_button id: "die-button-#{die.id}"
     click_on "5"
@@ -93,14 +93,14 @@ RSpec.describe "playing a game" do
         fill_in "Amount", with: 2
         click_button "Save"
 
-        expect(page).to have_text("#{resource.name}\n2")
+        expect(page).to have_text("#{resource.name}: 2")
       end
 
       using_session "second" do
         click_button "Other Player's Resources"
 
         expect(page).to have_text first_player.username
-        expect(page).to have_text "#{resource.name}\n2"
+        expect(page).to have_text "#{resource.name}: 2"
       end
 
       using_session "first" do
@@ -110,7 +110,7 @@ RSpec.describe "playing a game" do
       end
 
       using_session "second" do
-        expect(page).to have_text "#{resource.name}\n3"
+        expect(page).to have_text "#{resource.name}: 3"
       end
     end
 
@@ -120,7 +120,7 @@ RSpec.describe "playing a game" do
         fill_in "Amount", with: 2
         click_button "Save"
 
-        expect(page).to have_text("#{global_resource.name}\n2")
+        expect(page).to have_text("#{global_resource.name}: 2")
       end
 
       using_session "second" do
@@ -128,11 +128,11 @@ RSpec.describe "playing a game" do
         fill_in "Amount", with: 4
         click_button "Save"
 
-        expect(page).to have_text("#{global_resource.name}\n4")
+        expect(page).to have_text("#{global_resource.name}: 4")
       end
 
       using_session "first" do
-        expect(page).to have_text("#{global_resource.name}\n4")
+        expect(page).to have_text("#{global_resource.name}: 4")
       end
     end
   end

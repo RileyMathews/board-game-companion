@@ -19,6 +19,7 @@ services:
     depends_on:
       - database
       - redis
+      - chrome
 
   database:
     image: postgres:14
@@ -35,6 +36,7 @@ services:
     image: redis:7
     ports:
       - 6379:6379
+
   chrome:
     image: selenium/standalone-chrome:3.141.59-zirconium # this version should match that of the selenium-webdriver gem (see Gemfile)
     volumes:

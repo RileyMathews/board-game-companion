@@ -9,12 +9,12 @@ RSpec.describe "room resource management" do
 
     visit room_room_resources_path(room)
 
-    expect(page).to have_text("#{resource.name}\n0")
+    expect(page).to have_text("#{resource.name}: 0")
 
     click_link resource.name
     fill_in "Amount", with: 2
     click_button "Save"
 
-    expect(page).to have_text("#{resource.name}\n2")
+    expect(page).to have_text("#{resource.name}: 2")
   end
 end
