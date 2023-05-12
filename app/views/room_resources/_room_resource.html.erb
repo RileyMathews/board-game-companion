@@ -1,8 +1,7 @@
 <%= turbo_frame_tag room_resource do %>
   <%= link_to edit_room_resource_path(room_resource) do %>
     <%= render "shared/card" do %>
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= room_resource.resource.name %></h5>
-      <p id="room_resource_<%= room_resource.id %>_amount" class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= room_resource.amount %></p>
+      <h5 class="font-bold tracking-tight text-gray-900 dark:text-white"><%= room_resource.resource.name %>: <%= room_resource.amount %></h5>
     <% end %>
   <% end %>
 <% end %>

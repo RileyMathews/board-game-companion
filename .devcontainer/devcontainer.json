@@ -17,5 +17,6 @@
         }
     },
     "service": "dev",
+    "runServices": ["dev"],
     "workspaceFolder": "/code"
 }
