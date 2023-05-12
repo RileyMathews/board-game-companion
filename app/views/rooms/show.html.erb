@@ -1,9 +1,31 @@
+<%= turbo_stream_from "room-#{@room.id}" %>
+
 <div class="flex flex-col gap-2">
-  <h1><%= @room.name %></h1>
-  <p class="bg-slate-200 rounded-md p-4"><%= find_room_url(@room.join_code) %></p>
-  <div class="flex flex-wrap">
-    <%= link_to 'Edit this room', edit_room_path(@room), class: "btn-light" %>
-    <%= link_to "Play!", room_play_url(@room), class: "btn-light" %>
-    <%= button_to 'Delete', room_path(@room), method: :delete, class: "btn-red", form_class: "inline" %>
-  </div>
+  <h1>Playing <%= @room.name %></h1>
+  <% if can? :manage, @room %>
+    <p class="bg-slate-200 rounded-md p-4"><%= find_room_url(@room.join_code) %></p>
+    <div class="flex flex-wrap">
+      <%= link_to 'Edit this room', edit_room_path(@room), class: "btn-light" %>
+      <%= button_to 'Delete', room_path(@room), method: :delete, class: "btn-red", form_class: "inline" %>
+    </div>
+  <% end %>
 </div>
+
+
+<h1>Playing <%= @room.game.name %></h1>
+<div class="flex gap-2">
+  <%= render "shared/drawer", show_button_text: "Roll Log", drawer_id: "dice-rolls-drawer" do %>
+    <div id="roll-log">
+      <%= turbo_frame_tag "room_#{@room.id}_rolls", src: room_rolls_path(@room), loading: :lazy do %>
+        <%= render "shared/skeleton" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<%= turbo_frame_tag "room_#{@room.id}_room_resources", src: room_room_resources_path(@room), loading: :lazy do %>
+  <%= render "shared/skeleton" %>
+<% end %>
+
+<%= turbo_frame_tag "room_#{@room.id}_rolls_new", src: new_room_roll_path(@room), loading: :lazy do %>
+  <%= render "shared/skeleton" %>
+<% end %>

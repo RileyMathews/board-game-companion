@@ -42,7 +42,7 @@ private
   end
 
   def room_ability
-    can :play, Room do |room|
+    can :show, Room do |room|
       room.users.include? @user
     end
     can :manage, Room, created_by_id: @user.id

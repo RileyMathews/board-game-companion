@@ -4,7 +4,7 @@ class RoomResourcesController < ApplicationController
   before_action :set_room_resource, only: %i(edit update)
 
   def index
-    authorize! :play, @room
+    authorize! :show, @room
     @room_resources_grouped = @room.grouped_resources_for_player user: current_user
     @other_players_resources = RoomResource.other_players(@room, current_user)
                                            .group_by(&:user)

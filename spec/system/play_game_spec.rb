@@ -12,7 +12,7 @@ RSpec.describe "playing a game" do
 
     expect(page).to have_text("Welcome")
 
-    visit room_play_path(room)
+    visit room_path(room)
 
     expect(page).to have_text("Playing #{room.game.name}")
     expect(page).to have_text("#{resource.name}: 0")
@@ -41,13 +41,13 @@ RSpec.describe "playing a game" do
       using_session "first" do
         login_user first_player
 
-        visit room_play_path(room)
+        visit room_path(room)
       end
 
       using_session "second" do
         login_user second_player
 
-        visit room_play_path(room)
+        visit room_path(room)
       end
     end
 

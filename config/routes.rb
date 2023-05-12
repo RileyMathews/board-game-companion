@@ -15,7 +15,5 @@ Rails.application.routes.draw do
   get "/rooms/join/:join_code", to: "join_room#find_room", as: "find_room"
   post "/rooms/join/:join_code", to: "join_room#join_room", as: "join_room"
 
-  get "/rooms/:room_id/play", to: "play#index", as: "room_play"
-
   root to: "home#index"
 end
