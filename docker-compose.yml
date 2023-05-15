@@ -44,12 +44,11 @@ services:
 
   ci:
     &ci
+    <<: *dev
     build:
       context: .
       dockerfile: ./.docker/dev/dockerfile
       target: build
-    volumes:
-      - .:/code
 
   rubocop:
     <<: *ci
