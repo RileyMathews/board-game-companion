@@ -13,7 +13,7 @@ gem "propshaft" # The modern asset pipeline for Rails [https://github.com/rails/
 gem "pry"
 gem "puma", "~> 5.0" # Use the Puma web server [https://github.com/puma/puma]
 gem "rails", "~> 7.0.4", ">= 7.0.4.3" # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "redis", "~> 4.0" # Use Redis for Action Cable
+gem "redis", "~> 5.0" # Use Redis for Action Cable
 gem "stimulus-rails" # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "tailwindcss-rails" # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
