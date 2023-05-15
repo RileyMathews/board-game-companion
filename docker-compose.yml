@@ -1,6 +1,7 @@
 version: "3.8"
 services:
   dev:
+    &dev
     build:
       context: .
       dockerfile: ./.docker/dev/dockerfile
