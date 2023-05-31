@@ -154,7 +154,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.8)
+    nio4r (2.5.9)
     nokogiri (1.14.4-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.4-x86_64-linux)
@@ -173,7 +173,7 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (5.0.1)
-    puma (5.6.5)
+    puma (6.3.0)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.7)
@@ -337,7 +337,7 @@ DEPENDENCIES
   pg (~> 1.5)
   propshaft
   pry
-  puma (~> 5.0)
+  puma (~> 6.3)
   rails (~> 7.0.4, >= 7.0.4.3)
   redis (~> 5.0)
   rspec-rails
