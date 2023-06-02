@@ -1,41 +1,26 @@
 # fly.toml file generated for boardgamecompanion on 2023-04-09T20:47:25-05:00
 
 app = "boardgamecompanion"
-kill_signal = "SIGINT"
-kill_timeout = 5
-processes = []
+primary_region = "dfw"
 
 [env]
 
 [experimental]
   auto_rollback = true
 
-[[services]]
-  http_checks = []
+[http_service]
   internal_port = 3000
-  processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
-
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
-
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
+  auto_stop_machines = true
+  auto_start_machines = true
+  force_https = true
 
 [[statics]]
   guest_path = "/rails/public"
   url_prefix = "/"
+
+[checks]
+  [checks.alive]
+  type = "tcp"
+  interval = "15s"
+  timeout = "2s"
+  grace_period = "5s"
