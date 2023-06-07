@@ -1,20 +1,11 @@
-# fly.toml app configuration file generated for boardgamecompanion on 2023-06-02T09:40:41-05:00
+# fly.toml app configuration file generated for boardgamecompanion on 2023-06-07T09:45:34-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = "boardgamecompanion"
-primary_region = "dfw"
+primary_region = "iad"
 console_command = "/rails/bin/rails console"
-
-[experimental]
-  auto_rollback = true
-
-[deploy]
-  release_command = "bin/rails fly:release"
-
-[env]
-  PORT = "8080"
 
 [http_service]
   internal_port = 3000
@@ -22,13 +13,6 @@ console_command = "/rails/bin/rails console"
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
-
-[checks]
-  [checks.alive]
-    type = "tcp"
-    interval = "15s"
-    timeout = "2s"
-    grace_period = "5s"
 
 [[statics]]
   guest_path = "/rails/public"
