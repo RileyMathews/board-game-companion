@@ -1,5 +1,7 @@
 <%= turbo_frame_tag room_resource do %>
-  <span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-    <%= room_resource.resource.name %>: <%= room_resource.amount %>
-  </span>
+  <a href=<%= edit_room_resource_path(room_resource) %>>
+    <div class="px-4 py-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <h5><%= room_resource.resource.name %>: <%= room_resource.amount %></h5>
+    </div>
+  </a>
 <% end %>

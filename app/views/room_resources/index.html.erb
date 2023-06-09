@@ -1,13 +1,11 @@
 <%= turbo_frame_tag "room_#{@room.id}_room_resources" do %>
   <h1>Resources</h1>
-  <%= render "other_players_resources_drawer", other_players_resources: @other_players_resources %>
-
   <% @room_resources_grouped.each do |type, groups| %>
     <h2 class="font-bold text-2xl"><%= type %></h2>
     <% groups.each do |group_name, room_resources| %>
       <h3 class="font-bold text-xl"><%= group_name %></h3>
       <div class="flex gap-2">
-        <%= render "players_resources", room_resources: room_resources %>
+        <%= render room_resources %>
       </div>
     <% end %>
   <% end %>

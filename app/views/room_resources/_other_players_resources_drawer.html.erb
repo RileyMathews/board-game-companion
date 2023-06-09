@@ -1,8 +1,0 @@
-<div>
-  <%= render "shared/drawer", drawer_id: "other_players_rolls_drawer", show_button_text: "Other Player's Resources" do %>
-    <% other_players_resources.each do |user, resources| %>
-      <h3 class="text-lg"><%= user.username %></h3>
-      <%= render resources %>
-    <% end %>
-  <% end %>
-</div>
