@@ -38,4 +38,4 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV["database_url"] %>
+  url: <%= ENV["DATABASE_URL"] %>
