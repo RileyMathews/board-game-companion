@@ -1,7 +1,7 @@
 <%= turbo_frame_tag room_resource do %>
-  <%= link_to edit_room_resource_path(room_resource) do %>
-    <%= render "shared/card" do %>
-      <h5 class="font-bold tracking-tight text-gray-900 dark:text-white"><%= room_resource.resource.name %>: <%= room_resource.amount %></h5>
-    <% end %>
-  <% end %>
+  <a href=<%= edit_room_resource_path(room_resource) %>>
+    <div class="px-4 py-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <h5><%= room_resource.resource.name %>: <%= room_resource.amount %></h5>
+    </div>
+  </a>
 <% end %>

@@ -10,8 +10,4 @@ class RoomResource < ApplicationRecord
   scope :other_players, ->(room, active_user) { where(room: room).where.not(user: active_user).joins(:user) }
 
   delegate :group_name, to: :resource
-
-  def broadcast_update
-    broadcast_replace_to "room-#{room.id}"
-  end
 end
