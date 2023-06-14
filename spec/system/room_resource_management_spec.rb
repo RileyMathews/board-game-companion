@@ -12,7 +12,7 @@ RSpec.describe "room resource management" do
     expect(page).to have_text("#{resource.name}: 0")
 
     click_link resource.name
-    fill_in "Amount", with: 2
+    fill_in "New Value", with: 2
     click_button "Save"
 
     expect(page).to have_text("#{resource.name}: 2")

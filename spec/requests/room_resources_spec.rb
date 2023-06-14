@@ -22,7 +22,7 @@ RSpec.describe "room resources" do
       get edit_room_resource_path(room_resource.id)
 
       expect(response.body).to include room_resource.resource.name
-      expect(response.body).to include "Amount"
+      expect(response.body).to include "New Value"
       expect(response.body).to include "Save"
     end
   end

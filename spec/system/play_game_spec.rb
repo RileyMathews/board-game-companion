@@ -19,7 +19,7 @@ RSpec.describe "playing a game" do
     expect(page).to have_text(die.name)
 
     click_link resource.name
-    fill_in "Amount", with: 2
+    fill_in "New Value", with: 2
     click_button "Save"
 
     expect(page).to have_text("#{resource.name}: 2")
@@ -88,9 +88,16 @@ RSpec.describe "playing a game" do
     end
 
     it "allows users to see eachothers resources" do
+      pending "Pending until feature added back in"
+      # feature originally implemented using the 'default'
+      # way of turbo streams which was co-opted to instead
+      # implement a better editing UI which is more in line
+      # with the use case for default braodcast arguments
+      # This will be re-implemented when a good pattern
+      # for braodcasting 'read-only' updates is found.
       using_session "first" do
         click_link resource.name
-        fill_in "Amount", with: 2
+        fill_in "New Value", with: 2
         click_button "Save"
 
         expect(page).to have_text("#{resource.name}: 2")
@@ -105,7 +112,7 @@ RSpec.describe "playing a game" do
 
       using_session "first" do
         click_link resource.name
-        fill_in "Amount", with: 3
+        fill_in "New Value", with: 3
         click_button "Save"
       end
 
@@ -117,7 +124,7 @@ RSpec.describe "playing a game" do
     it "allows users to each update global resources" do
       using_session "first" do
         click_link global_resource.name
-        fill_in "Amount", with: 2
+        fill_in "New Value", with: 2
         click_button "Save"
 
         expect(page).to have_text("#{global_resource.name}: 2")
@@ -125,7 +132,7 @@ RSpec.describe "playing a game" do
 
       using_session "second" do
         click_link global_resource.name
-        fill_in "Amount", with: 4
+        fill_in "New Value", with: 4
         click_button "Save"
 
         expect(page).to have_text("#{global_resource.name}: 4")

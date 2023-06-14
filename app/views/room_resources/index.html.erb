@@ -4,7 +4,7 @@
     <h2 class="font-bold text-2xl"><%= type %></h2>
     <% groups.each do |group_name, room_resources| %>
       <h3 class="font-bold text-xl"><%= group_name %></h3>
-      <div class="flex gap-2">
+      <div class="flex gap-2 flex-wrap">
         <%= render room_resources %>
       </div>
     <% end %>
